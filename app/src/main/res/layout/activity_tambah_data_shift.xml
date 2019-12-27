@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:padding="16dp"
+android:theme="@style/AdminMainTheme"
+android:background="@color/colorAdmin"
+tools:context=".View.Admin.Shift.tambah_data_shift">
+
+
+<TextView
+    android:id="@+id/textView_Judul"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:text="Tambah Shift"
+    android:textAlignment="center"
+    android:textSize="24sp"
+    android:layout_marginBottom="20dp"/>
+<android.support.design.widget.TextInputLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:counterEnabled="true"
+    app:counterMaxLength="50"
+    app:errorEnabled="true">
+    <android.support.design.widget.TextInputEditText
+        android:id="@+id/text_input_namaShift"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nama Shift"
+        android:inputType="text"/>
+</android.support.design.widget.TextInputLayout>
+
+<android.support.design.widget.TextInputLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:errorEnabled="true">
+
+    <android.support.design.widget.TextInputEditText
+        android:id="@+id/text_input_jamMasuk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Jam Masuk"
+        android:inputType="time"/>
+</android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:errorEnabled="true">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/text_input_jamKeluar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Jam Keluar"
+            android:inputType="time"/>
+    </android.support.design.widget.TextInputLayout>
+
+
+<Button
+    android:id="@+id/button_Simpan"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp"
+    android:layout_marginTop="50dp"
+    android:text="SIMPAN"
+    android:textSize="12sp" />
+
+<Button
+    android:id="@+id/button_Batal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="BATAL"
+    android:textSize="12sp" />
+
+</LinearLayout>
