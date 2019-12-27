@@ -1,11 +1,49 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AdminMainTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/colorAdmin</item>
+        <item name="colorPrimaryDark">@color/colorAdmin2</item>
+        <item name="colorAccent">@color/colorAdmin3</item>
+        <item name="android:textColor">@color/colorAdmin4</item>
     </style>
 
+    <style name="AdminViewTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorAdmin</item>
+        <item name="colorPrimaryDark">@color/colorAdmin2</item>
+        <item name="colorAccent">@color/colorAdmin3</item>
+        <item name="android:textColor">@color/colorAdmin4</item>
+    </style>
+
+    <style name="PegawaiMainTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPegawai</item>
+        <item name="colorPrimaryDark">@color/colorPegawai2</item>
+        <item name="colorAccent">@color/colorPegawai3</item>
+        <item name="android:textColor">@color/colorPegawai4</item>
+    </style>
+
+    <style name="PegawaiViewTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPegawai</item>
+        <item name="colorPrimaryDark">@color/colorPegawai2</item>
+        <item name="colorAccent">@color/colorPegawai3</item>
+        <item name="android:textColor">@color/colorPegawai4</item>
+    </style>
+
+    <!--ini harusnya nanti berubah lagi ya-->
+    <style name="KonsumenMainTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorKonsumen</item>
+        <item name="colorPrimaryDark">@color/colorKonsumen2</item>
+        <item name="colorAccent">@color/colorKonsumen3</item>
+        <item name="android:textColor">@color/colorKonsumen4</item>
+    </style>
+
+    <style name="KonsumenViewTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorKonsumen</item>
+        <item name="colorPrimaryDark">@color/colorKonsumen2</item>
+        <item name="colorAccent">@color/colorKonsumen3</item>
+        <item name="android:textColor">@color/colorKonsumen4</item>
+    </style>
 </resources>
