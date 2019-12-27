@@ -6,8 +6,8 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:background="@drawable/icon_background"
-android:theme="@style/AdminMainTheme"
-tools:context=".View.Admin.admin_pengelolaan_data">
+android:theme="@style/PegawaiMainTheme"
+tools:context=".View.Pegawai.pegawai_main_menu">
 
 
 
@@ -24,22 +24,22 @@ tools:context=".View.Admin.admin_pengelolaan_data">
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:id="@+id/txtPengelolaanData"
-            android:text="Pengelolaan Data"
+            android:id="@+id/txtSIPPYOG"
+            android:text="SIPP YOG"
             android:textSize="28sp"
             android:textColor="#FFFF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
             android:layout_margin="6dp"
-            android:layout_below="@id/txtPengelolaanData"
-            android:text="Hi, Admin!"
+            android:layout_below="@id/txtSIPPYOG"
+            android:text="Hi, Pegawai!"
             android:textColor="#FFFF"
             android:textSize="16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <ImageView
-            android:src="@drawable/icon_owner"
+            android:src="@drawable/icon_pegawai"
             android:layout_alignParentRight="true"
             android:layout_width="88dp"
             android:layout_height="88dp"/>
@@ -62,29 +62,29 @@ tools:context=".View.Admin.admin_pengelolaan_data">
             >
 
             <LinearLayout
-                android:id="@+id/layout_data_shift"
+                android:id="@+id/layout_profil_saya"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:background="@color/colorAdmin"
+                android:background="@color/colorPegawai"
                 android:orientation="vertical"
                 android:padding="16dp">
 
                 <ImageView
-                    android:id="@+id/img_dataShift"
+                    android:id="@+id/img_profilSaya"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/icon_shift"
+                    android:src="@drawable/icon_profil_saya"
                     />
 
                 <TextView
-                    android:id="@+id/textView_dataShift"
+                    android:id="@+id/textView_profilSaya"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="12dp"
-                    android:text="Data Shift"
+                    android:text="Profil Saya"
                     android:textSize="18dp" />
             </LinearLayout>
 
@@ -100,28 +100,28 @@ tools:context=".View.Admin.admin_pengelolaan_data">
             >
 
             <LinearLayout
-                android:id="@+id/layout_data_kapasitas_parkir"
+                android:id="@+id/layout_kelola_kendaraan_masuk"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:background="@color/colorAdmin"
+                android:background="@color/colorPegawai"
                 android:orientation="vertical"
                 android:padding="16dp">
 
                 <ImageView
-                    android:id="@+id/img_dataKapasitasParkir"
+                    android:id="@+id/img_kelolaKendaraanMasuk"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/icon_kapasitas_parkir" />
+                    android:src="@drawable/icon_kelola_kendaraan_masuk" />
 
                 <TextView
-                    android:id="@+id/textView_datakapasitasParkir"
+                    android:id="@+id/textView_kelolaKendaraanMasuk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="12dp"
-                    android:text="Data Kapasitas Parkir"
+                    android:text="Kelola Kendaraan Masuk"
                     android:textSize="18dp" />
             </LinearLayout>
 
@@ -137,32 +137,65 @@ tools:context=".View.Admin.admin_pengelolaan_data">
             >
 
             <LinearLayout
-                android:id="@+id/layout_data_pegawai"
+                android:id="@+id/layout_kelola_kendaraan_keluar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:background="@color/colorAdmin"
+                android:background="@color/colorPegawai"
                 android:orientation="vertical"
                 android:padding="16dp">
 
                 <ImageView
-                    android:id="@+id/img_dataPegawai"
+                    android:id="@+id/img_kelolaKendaraanKeluar"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/icon_pegawai" />
+                    android:src="@drawable/icon_kelola_kendaraan_keluar" />
 
                 <TextView
-                    android:id="@+id/textView_dataPegawai"
+                    android:id="@+id/textView_kelolaKendaraanKeluar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="12dp"
-                    android:text="Data Pegawai"
+                    android:text="Kelola Kendaraan Keluar"
                     android:textSize="18dp" />
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            app:cardElevation="6dp"
+            app:cardCornerRadius="12dp"
+            android:layout_margin="12dp"
+            >
+
+            <LinearLayout
+                android:id="@+id/layout_logout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@color/colorPegawai"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/textView_logout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="LOGOUT"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+
+
     </GridLayout>
 </LinearLayout>
 </ScrollView>

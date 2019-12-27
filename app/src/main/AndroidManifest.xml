@@ -11,11 +11,9 @@
         android:roundIcon="@drawable/logo_sippyog"
         android:supportsRtl="true"
         android:theme="@style/AdminMainTheme">
-
-        <activity android:name=".MainActivity"></activity>
-
-        <activity android:name=".admin_pengelolaan_data"></activity>
-
+        <activity android:name=".View.Pegawai.pegawai_main_menu"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".View.Admin.admin_pengelolaan_data" />
         <activity android:name=".View.Admin.admin_main_menu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +21,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

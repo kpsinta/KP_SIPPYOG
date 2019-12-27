@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import jls.com.sippyog.R;
-import jls.com.sippyog.admin_pengelolaan_data;
 
 public class admin_main_menu extends AppCompatActivity {
 
