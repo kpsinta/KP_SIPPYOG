@@ -9,8 +9,6 @@ android:background="@drawable/icon_background"
 android:theme="@style/AdminMainTheme"
 tools:context=".View.Admin.admin_main_menu">
 
-
-
 <LinearLayout
     android:orientation="vertical"
     android:layout_width="match_parent"

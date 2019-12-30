@@ -46,7 +46,7 @@ tools:context=".View.Admin.Pegawai.tambah_data_pegawai">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="NIP Pegawai"
-        android:inputType="number"/>
+        android:inputType="text"/>
 </android.support.design.widget.TextInputLayout>
 
 <android.support.design.widget.TextInputLayout
@@ -82,19 +82,21 @@ tools:context=".View.Admin.Pegawai.tambah_data_pegawai">
 
 
 <Button
-    android:id="@+id/button_Simpan"
+    android:id="@+id/btnSimpan"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="20dp"
     android:layout_marginTop="50dp"
     android:text="SIMPAN"
-    android:textSize="12sp" />
+    android:textColor="@color/colorAdmin"
+    android:background="@color/colorAdmin3"
+    android:textSize="14sp" />
 
 <Button
-    android:id="@+id/button_Batal"
+    android:id="@+id/btnBatal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="BATAL"
-    android:textSize="12sp" />
+    android:textSize="14sp" />
 
 </LinearLayout>

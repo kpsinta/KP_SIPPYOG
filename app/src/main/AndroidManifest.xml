@@ -26,14 +26,16 @@
         <activity android:name=".View.Admin.Pegawai.edit_data_pegawai" />
         <activity android:name=".View.Admin.Pegawai.tambah_data_pegawai" />
 
-        <activity android:name=".View.Admin.Shift.edit_data_shift" />
-        <activity android:name=".View.Admin.Shift.tampil_data_shift" />
-        <activity android:name=".View.Admin.Shift.tambah_data_shift">
+        <activity android:name=".View.Admin.Shift.edit_data_shift">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".View.Admin.Shift.tampil_data_shift" />
+        <activity android:name=".View.Admin.Shift.tambah_data_shift">
+
         </activity>
 
         <activity android:name=".View.Pegawai.pegawai_main_menu" />
