@@ -11,21 +11,17 @@
         android:roundIcon="@drawable/logo_sippyog"
         android:supportsRtl="true"
         android:theme="@style/AdminMainTheme">
-
+        <activity android:name=".recycle_adapter_pegawai"></activity>
+        <activity android:name=".recycle_adapter_shift" />
+        <activity android:name=".recycle_adapter_kapasitas_parkir" />
         <activity android:name=".View.Admin.admin_pengelolaan_data" />
-        <activity android:name=".View.Admin.admin_main_menu">
-
-        </activity>
-        <activity android:name=".View.Admin.KapasitasParkir.edit_kapasitas_parkir"></activity>
+        <activity android:name=".View.Admin.admin_main_menu" />
+        <activity android:name=".View.Admin.KapasitasParkir.edit_kapasitas_parkir" />
         <activity android:name=".View.Admin.KapasitasParkir.tampil_kapasitas_parkir" />
-        <activity android:name=".View.Admin.KapasitasParkir.tambah_kapasitas_parkir">
-
-        </activity>
-
+        <activity android:name=".View.Admin.KapasitasParkir.tambah_kapasitas_parkir" />
         <activity android:name=".View.Admin.Pegawai.tampil_data_pegawai" />
         <activity android:name=".View.Admin.Pegawai.edit_data_pegawai" />
         <activity android:name=".View.Admin.Pegawai.tambah_data_pegawai" />
-
         <activity android:name=".View.Admin.Shift.edit_data_shift">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,13 +30,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".View.Admin.Shift.tampil_data_shift" />
-        <activity android:name=".View.Admin.Shift.tambah_data_shift">
-
-        </activity>
-
+        <activity android:name=".View.Admin.Shift.tambah_data_shift" />
         <activity android:name=".View.Pegawai.pegawai_main_menu" />
         <activity android:name=".MainActivity" />
-
     </application>
 
 </manifest>

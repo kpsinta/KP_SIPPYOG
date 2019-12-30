@@ -46,7 +46,7 @@ tools:context=".View.Admin.Pegawai.tambah_data_pegawai">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="NIP Pegawai"
-        android:inputType="text"/>
+        android:inputType="number"/>
 </android.support.design.widget.TextInputLayout>
 
 <android.support.design.widget.TextInputLayout
