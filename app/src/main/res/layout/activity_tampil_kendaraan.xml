@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".recycle_adapter_kapasitas_parkir">
+    tools:context=".View.Admin.Kendaraan.tampil_kendaraan">
 
 </android.support.constraint.ConstraintLayout>

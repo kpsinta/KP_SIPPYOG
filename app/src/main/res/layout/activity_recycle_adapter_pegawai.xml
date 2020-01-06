@@ -1,9 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".recycle_adapter_pegawai">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_marginBottom="20dp"
+android:background="@color/colorAdmin"
+android:orientation="vertical"
+android:id="@+id/row_container">
 
-</android.support.constraint.ConstraintLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/nama_pegawai"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nama Pegawai" />
+
+    <TextView
+        android:id="@+id/nip_pegawai"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NIP Pegawai" />
+
+    <TextView
+        android:id="@+id/username_pegawai"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username Pegawai" />
+
+</LinearLayout>
+
+
+</RelativeLayout>

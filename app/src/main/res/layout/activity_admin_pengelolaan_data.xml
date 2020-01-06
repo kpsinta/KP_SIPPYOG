@@ -100,7 +100,7 @@ tools:context=".View.Admin.admin_pengelolaan_data">
             >
 
             <LinearLayout
-                android:id="@+id/layout_data_kapasitas_parkir"
+                android:id="@+id/layout_data_kendaraan"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -109,19 +109,19 @@ tools:context=".View.Admin.admin_pengelolaan_data">
                 android:padding="16dp">
 
                 <ImageView
-                    android:id="@+id/img_dataKapasitasParkir"
+                    android:id="@+id/img_dataKendaraan"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
                     android:src="@drawable/icon_kapasitas_parkir" />
 
                 <TextView
-                    android:id="@+id/textView_datakapasitasParkir"
+                    android:id="@+id/textView_datakendaraan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="12dp"
-                    android:text="Data Kapasitas Parkir"
+                    android:text="Data Kendaraan"
                     android:textSize="18dp" />
             </LinearLayout>
 
