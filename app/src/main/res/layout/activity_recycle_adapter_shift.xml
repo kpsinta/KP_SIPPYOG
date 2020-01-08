@@ -19,7 +19,7 @@
             android:text="Nama Shift" />
 
         <TextView
-            android:id="@+id/njam_masuk"
+            android:id="@+id/jam_masuk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Jam Masuk" />

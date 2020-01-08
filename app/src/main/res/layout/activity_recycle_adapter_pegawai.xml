@@ -1,36 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:layout_marginBottom="20dp"
-android:background="@color/colorAdmin"
-android:orientation="vertical"
-android:id="@+id/row_container">
-
-<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="20dp"
+    android:background="@color/colorAdmin"
+    android:orientation="vertical"
+    android:id="@+id/row_container">
 
-    <TextView
-        android:id="@+id/nama_pegawai"
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nama Pegawai" />
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        app:cardElevation="6dp"
+        app:cardCornerRadius="12dp"
+        android:layout_margin="12dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/colorAdmin2"
+        android:orientation="vertical">
+        >
 
-    <TextView
-        android:id="@+id/nip_pegawai"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="NIP Pegawai" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/username_pegawai"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Username Pegawai" />
+            <TextView
+                android:id="@+id/nama_pegawai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  Nama Pegawai" />
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/nip_pegawai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  NIP Pegawai" />
+
+            <TextView
+                android:id="@+id/username_pegawai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  Username Pegawai" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
 
 
 </RelativeLayout>

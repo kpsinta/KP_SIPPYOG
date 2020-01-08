@@ -91,6 +91,16 @@ tools:context=".View.Admin.Pegawai.edit_data_pegawai">
     android:textSize="14sp" />
 
 <Button
+    android:id="@+id/btnBatal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp"
+    android:text="BATAL"
+    android:textColor="@color/colorAdmin"
+    android:background="@color/colorAdmin3"
+    android:textSize="14sp" />
+
+<Button
     android:id="@+id/btnDelete"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

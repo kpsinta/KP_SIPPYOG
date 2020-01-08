@@ -3,6 +3,7 @@
     package="jls.com.sippyog">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -10,26 +11,37 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo_sippyog"
         android:supportsRtl="true"
-        android:theme="@style/AdminMainTheme">
-        <activity android:name=".recycle_adapter_kendaraan"></activity>
+        android:theme="@style/AdminMainTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".recycle_adapter_kendaraan" />
         <activity android:name=".recycle_adapter_pegawai" />
         <activity android:name=".recycle_adapter_shift" />
         <activity android:name=".View.Admin.admin_pengelolaan_data" />
-        <activity android:name=".View.Admin.admin_main_menu" />
-        <activity android:name=".View.Admin.Kendaraan.edit_kendaraan" />
-        <activity android:name=".View.Admin.Kendaraan.tampil_kendaraan" />
-        <activity android:name=".View.Admin.Kendaraan.tambah_kendaraan" />
-        <activity android:name=".View.Admin.Pegawai.tampil_data_pegawai" />
-        <activity android:name=".View.Admin.Pegawai.edit_data_pegawai" />
-        <activity android:name=".View.Admin.Pegawai.tambah_data_pegawai" />
-        <activity android:name=".View.Admin.Shift.edit_data_shift">
+        <activity android:name=".View.Admin.admin_main_menu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".View.Admin.Shift.tampil_data_shift" />
+        <activity android:name=".View.Admin.Kendaraan.edit_data_kendaraan" />
+        <activity android:name=".View.Admin.Kendaraan.tampil_data_kendaraan"
+            android:theme="@style/AdminViewTheme"
+            android:label="Kelola Data Kendaraan"/>
+        <activity android:name=".View.Admin.Kendaraan.tambah_data_kendaraan">
+
+        </activity>
+        <activity android:name=".View.Admin.Pegawai.tampil_data_pegawai"
+            android:theme="@style/AdminViewTheme"
+            android:label="Kelola Data Pegawai" />
+        <activity android:name=".View.Admin.Pegawai.edit_data_pegawai" />
+        <activity android:name=".View.Admin.Pegawai.tambah_data_pegawai" />
+        <activity android:name=".View.Admin.Shift.edit_data_shift"></activity>
+        <activity android:name=".View.Admin.Shift.tampil_data_shift"
+            android:theme="@style/AdminViewTheme"
+            android:label="Kelola Data Shift">
+        </activity>
+
         <activity android:name=".View.Admin.Shift.tambah_data_shift" />
         <activity android:name=".View.Pegawai.pegawai_main_menu" />
         <activity android:name=".MainActivity" />

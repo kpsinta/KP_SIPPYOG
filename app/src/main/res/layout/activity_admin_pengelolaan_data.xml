@@ -63,6 +63,7 @@ tools:context=".View.Admin.admin_pengelolaan_data">
 
             <LinearLayout
                 android:id="@+id/layout_data_shift"
+                android:onClick="data_shift"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -104,6 +105,7 @@ tools:context=".View.Admin.admin_pengelolaan_data">
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:onClick="data_kendaraan"
                 android:background="@color/colorAdmin"
                 android:orientation="vertical"
                 android:padding="16dp">
@@ -138,6 +140,7 @@ tools:context=".View.Admin.admin_pengelolaan_data">
 
             <LinearLayout
                 android:id="@+id/layout_data_pegawai"
+                android:onClick="data_pegawai"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"

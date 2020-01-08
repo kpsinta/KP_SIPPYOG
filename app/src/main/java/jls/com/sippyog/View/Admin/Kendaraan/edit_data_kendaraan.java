@@ -5,11 +5,11 @@ import android.os.Bundle;
 
 import jls.com.sippyog.R;
 
-public class tampil_kendaraan extends AppCompatActivity {
+public class edit_data_kendaraan extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tampil_kendaraan);
+        setContentView(R.layout.activity_edit_data_kendaraan);
     }
 }

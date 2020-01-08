@@ -9,7 +9,7 @@ android:orientation="vertical"
 android:padding="16dp"
 android:theme="@style/AdminViewTheme"
 android:background="@color/colorAdmin"
-tools:context=".View.Admin.Kendaraan.edit_kendaraan">
+tools:context=".View.Admin.Kendaraan.edit_data_kendaraan">
 
     <TextView
         android:id="@+id/textView_Judul"
