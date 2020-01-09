@@ -63,8 +63,15 @@ tools:context=".View.Admin.Pegawai.edit_data_pegawai">
         android:hint="Username Pegawai"
         android:inputType="text"/>
 </android.support.design.widget.TextInputLayout>
+    <Switch
+        android:id="@+id/switch_ubah_Password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:text="Edit Password"/>
 
-<android.support.design.widget.TextInputLayout
+    <android.support.design.widget.TextInputLayout
+    android:id="@+id/text_input_layout_passwordPegawai"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:counterEnabled="true"
@@ -78,34 +85,51 @@ tools:context=".View.Admin.Pegawai.edit_data_pegawai">
         android:hint="Password Pegawai"
         android:inputType="textPassword"/>
 </android.support.design.widget.TextInputLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EDIT"
+            android:textColor="@color/colorAdmin"
+            android:background="@color/colorAdmin3"
+            android:textSize="14sp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="5dp"/>
 
-<Button
-    android:id="@+id/btnEdit"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="20dp"
-    android:layout_marginTop="50dp"
-    android:text="EDIT"
-    android:textColor="@color/colorAdmin"
-    android:background="@color/colorAdmin3"
-    android:textSize="14sp" />
+        <Button
+            android:id="@+id/btnBatal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BATAL"
+            android:textColor="@color/colorAdmin"
+            android:background="@color/colorAdmin3"
+            android:textSize="14sp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"/>
 
-<Button
-    android:id="@+id/btnBatal"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="20dp"
-    android:text="BATAL"
-    android:textColor="@color/colorAdmin"
-    android:background="@color/colorAdmin3"
-    android:textSize="14sp" />
 
-<Button
-    android:id="@+id/btnDelete"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/colorKonsumen3"
-    android:text="DELETE"
-    android:textSize="12sp" />
+        <Button
+            android:id="@+id/btnDelete"
+            android:drawableLeft="@drawable/ic_delete_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorKonsumen4"
+            android:text="DELETE"
+            android:textSize="14sp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"/>
+
+    </LinearLayout>
+
 
 </LinearLayout>

@@ -2,10 +2,12 @@ package jls.com.sippyog.View.Admin.Pegawai;
 
 import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -22,11 +24,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class edit_data_pegawai extends AppCompatActivity {
     private Button btnBatal, btnEdit, btnDelete;
+    private Switch switchUbahPassword;
     private TextInputEditText nama_pegawai,nip_pegawai,username_pegawai,password_pegawai;
+    private TextInputLayout til_password_pegawai;
     private Integer id_role_fk, id_pegawai;
     private String namaPegawai,nipPegawai,usernamePegawai,passwordPegawai;
     private Intent i;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,13 +39,14 @@ public class edit_data_pegawai extends AppCompatActivity {
         nip_pegawai = findViewById(R.id.text_input_NIPPegawai);
         username_pegawai = findViewById(R.id.text_input_usernamePegawai);
         password_pegawai = findViewById(R.id.text_input_passwordPegawai);
+        til_password_pegawai = findViewById(R.id.text_input_layout_passwordPegawai);
+
 
         btnEdit = findViewById(R.id.btnEdit);
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 UpdatePegawai();
-                startIntent();
             }
         });
         btnBatal = findViewById(R.id.btnBatal);
@@ -62,12 +66,32 @@ public class edit_data_pegawai extends AppCompatActivity {
             }
         });
 
+        switchUbahPassword = findViewById(R.id.switch_ubah_Password);
+        switchUbahPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(switchUbahPassword.isChecked()==false)
+                {
+                    Toast.makeText(getApplicationContext(), "Tidak Ubah Password", Toast.LENGTH_SHORT).show();
+                    password_pegawai.setVisibility(View.INVISIBLE);
+                    til_password_pegawai.setVisibility(View.INVISIBLE);
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "Ubah Password", Toast.LENGTH_SHORT).show();
+                    password_pegawai.setVisibility(View.VISIBLE);
+                    til_password_pegawai.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
         i = getIntent();
         nama_pegawai.setText(i.getStringExtra("nama_pegawai"));
         nip_pegawai.setText(i.getStringExtra("nip_pegawai"));
         username_pegawai.setText(i.getStringExtra("username_pegawai"));
         id_pegawai=i.getIntExtra("id_pegawai",-1);
     }
+
     public void startIntent()
     {
         Intent intent= new Intent(getApplicationContext(), tampil_data_pegawai.class);
@@ -111,7 +135,7 @@ public class edit_data_pegawai extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                 }
             });
-
+            startIntent();
         }
     }
     private void DeletePegawai() {
