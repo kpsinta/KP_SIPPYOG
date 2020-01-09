@@ -14,7 +14,7 @@ import retrofit2.http.Path;
 
 public interface ApiClient_Pegawai {
 
-    String baseURL = "http://sippyog.000webhostapp.com/";
+    String baseURL = "http://sippyog.jasonfw.com/";
 
     // --------------------- C R E A T E --------------------- //
 

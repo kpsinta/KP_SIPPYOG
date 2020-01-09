@@ -75,7 +75,8 @@ public class tampil_data_pegawai extends AppCompatActivity {
                 startActivity(i);
             }
         });
-    } @Override
+    }
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.menu_pegawai, menu);
@@ -119,7 +120,7 @@ public class tampil_data_pegawai extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    public void setRecycleViewMotor() {
+    public void setRecycleViewPegawai() {
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
@@ -151,6 +152,6 @@ public class tampil_data_pegawai extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        setRecycleViewMotor();
+        setRecycleViewPegawai();
     }
 }

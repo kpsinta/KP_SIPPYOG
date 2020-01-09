@@ -49,10 +49,7 @@ public class edit_data_pegawai extends AppCompatActivity {
         btnBatal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                nama_pegawai.getText().clear();
-                nip_pegawai.getText().clear();
-                username_pegawai.getText().clear();
-                password_pegawai.getText().clear();
+               startIntent();
 
             }
         });
@@ -69,8 +66,7 @@ public class edit_data_pegawai extends AppCompatActivity {
         nama_pegawai.setText(i.getStringExtra("nama_pegawai"));
         nip_pegawai.setText(i.getStringExtra("nip_pegawai"));
         username_pegawai.setText(i.getStringExtra("username_pegawai"));
-        password_pegawai.setText(i.getStringExtra("password_pegawai"));
-        id_pegawai=Integer.parseInt(i.getStringExtra("id_pegawai"));
+        id_pegawai=i.getIntExtra("id_pegawai",-1);
     }
     public void startIntent()
     {
@@ -144,7 +140,5 @@ public class edit_data_pegawai extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 }

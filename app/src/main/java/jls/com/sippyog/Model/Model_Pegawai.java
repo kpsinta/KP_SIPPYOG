@@ -17,15 +17,15 @@ public class Model_Pegawai {
         return id_pegawai;
     }
 
-    public void setId_pegawai(int id_pegawai) {
+    public void setId_pegawai(Integer id_pegawai) {
         this.id_pegawai = id_pegawai;
     }
 
-    public int getId_role_fk() {
+    public Integer getId_role_fk() {
         return id_role_fk;
     }
 
-    public void setId_role_fk(int id_role_fk) {
+    public void setId_role_fk(Integer id_role_fk) {
         this.id_role_fk = id_role_fk;
     }
 

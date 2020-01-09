@@ -45,9 +45,11 @@ public class Adapter_Pegawai extends RecyclerView.Adapter<Adapter_Pegawai.MyView
             Log.d("ID Pegawai : ",pgw.getId_pegawai().toString());
             Log.d("Nama Pegawai : ",pgw.getNama_pegawai());
             Log.d("Username Pegawai : ",pgw.getUsername_pegawai());
-            myViewHolder.nama_pegawai.setText       ("  Nama Pegawai          : "+ pgw.getNama_pegawai());
-            myViewHolder.nip_pegawai.setText        ("  NIP Pegawai           : "+ pgw.getNip_pegawai());
-            myViewHolder.username_pegawai.setText   ("  Username Pegawai      : "+ pgw.getUsername_pegawai());
+            Log.d("ID Role : ",pgw.getId_role_fk().toString());
+
+            myViewHolder.nama_pegawai.setText       ("  Nama Pegawai        : "+ pgw.getNama_pegawai());
+            myViewHolder.nip_pegawai.setText        ("  NIP Pegawai         : "+ pgw.getNip_pegawai());
+            myViewHolder.username_pegawai.setText   ("  Username Pegawai    : "+ pgw.getUsername_pegawai());
 
         }
 

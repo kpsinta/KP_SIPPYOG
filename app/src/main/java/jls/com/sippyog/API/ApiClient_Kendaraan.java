@@ -14,7 +14,7 @@ import retrofit2.http.Path;
 
 public interface ApiClient_Kendaraan {
 
-    String baseURL = "http://sippyog.000webhostapp.com/";
+    String baseURL = "http://sippyog.jasonfw.com/";
 
     // --------------------- C R E A T E --------------------- //
 
@@ -46,8 +46,8 @@ public interface ApiClient_Kendaraan {
     Call<ResponseBody>update(
             @Field("jenis_kendaraan")String jenis_kendaraan,
             @Field("kapasitas_maksimum")Integer kapasitas_maksimum,
-            @Field("biaya_parkir")String biaya_parkir,
-            @Field("biaya_denda")String biaya_denda,
+            @Field("biaya_parkir")Double biaya_parkir,
+            @Field("biaya_denda")Double biaya_denda,
             @Path("id_kendaraan")Integer id_kendaraan);
 
     // --------------------- U P D A T E --------------------- //

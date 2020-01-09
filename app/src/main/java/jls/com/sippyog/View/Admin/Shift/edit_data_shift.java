@@ -1,5 +1,6 @@
 package jls.com.sippyog.View.Admin.Shift;
 
+import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
@@ -36,6 +37,13 @@ public class edit_data_shift extends AppCompatActivity implements TimePickerFrag
         addJamKeluar = findViewById(R.id.addJamKeluar);
         btnSimpan = findViewById(R.id.btnSimpan);
         btnBatal = findViewById(R.id.btnBatal);
+        btnBatal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startIntent();
+
+            }
+        });
         addJamMasuk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,8 +103,10 @@ public class edit_data_shift extends AppCompatActivity implements TimePickerFrag
                 showJamKeluar.setText(jam + " : " + menit);
             }
         }
-
-
     }
-
+    public void startIntent()
+    {
+        Intent intent= new Intent(getApplicationContext(), tampil_data_shift.class);
+        startActivity(intent);
+    }
 }

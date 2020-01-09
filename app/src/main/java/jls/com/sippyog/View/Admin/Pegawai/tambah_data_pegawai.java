@@ -58,7 +58,7 @@ public class tambah_data_pegawai extends AppCompatActivity {
         });
     }
     private void startIntent() {
-        Intent intent = new Intent(getApplicationContext(), tampil_data_kendaraan.class);
+        Intent intent = new Intent(getApplicationContext(), tampil_data_pegawai.class);
         startActivity(intent);
     }
 
