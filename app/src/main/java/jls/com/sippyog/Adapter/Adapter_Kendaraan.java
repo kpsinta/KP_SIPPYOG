@@ -44,10 +44,10 @@ public class Adapter_Kendaraan extends RecyclerView.Adapter<Adapter_Kendaraan.My
         Log.d("Biaya Parkir : ",knd.getBiaya_parkir().toString());
         Log.d("Biaya Denda : ",knd.getBiaya_denda().toString());
 
-        myViewHolder.jenis_kendaraan.setText        ("  Jenis Kendaraan     : "+ knd.getJenis_kendaraan());
-        myViewHolder.kapasitas_maksimum.setText     ("  Kapasitas Maksimum  : "+ knd.getKapasitas_maksimum());
-        myViewHolder.biaya_parkir.setText           ("  Biaya Parkir        : "+ String.format("%.0f",knd.getBiaya_parkir()));
-        myViewHolder.biaya_denda.setText            ("  Biaya Denda         : "+ String.format("%.0f",knd.getBiaya_denda()));
+        myViewHolder.jenis_kendaraan.setText        (knd.getJenis_kendaraan());
+        myViewHolder.kapasitas_maksimum.setText     (knd.getKapasitas_maksimum().toString());
+        myViewHolder.biaya_parkir.setText           (String.format("%.0f",knd.getBiaya_parkir()));
+        myViewHolder.biaya_denda.setText            (String.format("%.0f",knd.getBiaya_denda()));
 
 
     }

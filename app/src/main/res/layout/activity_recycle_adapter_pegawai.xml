@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginBottom="20dp"
-    android:background="@color/colorAdmin"
+    android:layout_marginBottom="5dp"
     android:orientation="vertical"
     android:id="@+id/row_container">
 
@@ -15,34 +14,67 @@
         android:layout_rowWeight="1"
         app:cardElevation="6dp"
         app:cardCornerRadius="12dp"
-        android:layout_margin="12dp"
-        android:layout_marginBottom="20dp"
-        android:background="@color/colorAdmin2"
+        android:layout_margin="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
         android:orientation="vertical">
-        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@color/colorAdmin">
+
+            <TextView
+                android:id="@+id/judul_nama_pegawai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  Nama Pegawai"
+                android:textSize="14dp"
+                android:textColor="@color/colorAdmin3"/>
 
             <TextView
                 android:id="@+id/nama_pegawai"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="  Nama Pegawai" />
+                android:layout_marginLeft="15dp"
+                android:text="Nama Pegawai"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/judul_nip_pegawai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  NIP Pegawai"
+                android:textSize="14dp"
+                android:textColor="@color/colorAdmin3"/>
 
             <TextView
                 android:id="@+id/nip_pegawai"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="  NIP Pegawai" />
+                android:layout_marginLeft="15dp"
+                android:text="NIP Pegawai"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/judul_username_pegawai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  Username Pegawai"
+                android:textSize="14dp"
+                android:textColor="@color/colorAdmin3"/>
 
             <TextView
                 android:id="@+id/username_pegawai"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="  Username Pegawai" />
+                android:text="Username Pegawai"
+                android:layout_marginLeft="15dp"
+                android:textSize="18dp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 

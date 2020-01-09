@@ -10,20 +10,32 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.Calendar;
 
+import jls.com.sippyog.API.ApiClient_Shift;
 import jls.com.sippyog.R;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class edit_data_shift extends AppCompatActivity implements TimePickerFragment.TimePickerListener {
 
     TextInputEditText namaShift;
     TextView showJamMasuk, showJamKeluar;
     ImageView addJamMasuk, addJamKeluar;
-    Button btnSimpan, btnBatal;
+    Button btnEdit, btnBatal, btnDelete;
 
     Calendar currentTime;
     int jam, menit,id=0;
+    Integer id_shift;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +47,15 @@ public class edit_data_shift extends AppCompatActivity implements TimePickerFrag
         showJamKeluar = findViewById(R.id.textView_tampilJamKeluar);
         addJamMasuk = findViewById(R.id.addJamMasuk);
         addJamKeluar = findViewById(R.id.addJamKeluar);
-        btnSimpan = findViewById(R.id.btnSimpan);
+
+        btnEdit = findViewById(R.id.btnEdit);
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+        //        UpdateShift();
+                startIntent();
+            }
+        });
         btnBatal = findViewById(R.id.btnBatal);
         btnBatal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +64,15 @@ public class edit_data_shift extends AppCompatActivity implements TimePickerFrag
 
             }
         });
+        btnDelete = findViewById(R.id.btnDelete);
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DeleteShift();
+                startIntent();
+            }
+        });
+
         addJamMasuk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,5 +137,74 @@ public class edit_data_shift extends AppCompatActivity implements TimePickerFrag
     {
         Intent intent= new Intent(getApplicationContext(), tampil_data_shift.class);
         startActivity(intent);
+    }
+
+//    private void UpdateShift()
+//    {
+//        namaShift = nama_pegawai.getText().toString();
+//        nipShift = nip_pegawai.getText().toString();
+//        usernameShift = username_pegawai.getText().toString();
+//        passwordShift = password_pegawai.getText().toString();
+//
+//        if(namaShift.isEmpty() || nipShift.isEmpty() || usernameShift.isEmpty() || passwordShift.isEmpty())
+//        {
+//            Toast.makeText(this, "Semua field harus diisi!", Toast.LENGTH_SHORT).show();
+//        }
+//
+//        else
+//        {
+//            Retrofit.Builder builder=new Retrofit
+//                    .Builder()
+//                    .baseUrl(ApiClient_Shift.baseURL)
+//                    .addConverterFactory(GsonConverterFactory.create());
+//
+//            Retrofit retrofit=builder.build();
+//
+//            ApiClient_Shift apiClientShift =retrofit.create(ApiClient_Shift.class);
+//            Call<ResponseBody> pegawaiDAOCall= apiClientShift.update(2,namaShift,nipShift,usernameShift,passwordShift,id_pegawai);
+//            pegawaiDAOCall.enqueue(new Callback<ResponseBody>() {
+//                @Override
+//                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//                    if (response.code() == 201) {
+//                        Toast.makeText(getApplicationContext(), "Success Update", Toast.LENGTH_SHORT).show();
+//                    } else {
+//                        Toast.makeText(getApplicationContext(), "Failed Update", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//
+//                @Override
+//                public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                    Toast.makeText(getApplicationContext(), t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+//                }
+//            });
+//
+//        }
+//    }
+    private void DeleteShift() {
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+        Retrofit.Builder builder = new Retrofit
+                .Builder()
+                .baseUrl(ApiClient_Shift.baseURL)
+                .addConverterFactory(GsonConverterFactory.create());
+        Retrofit retrofit=builder.build();
+        ApiClient_Shift apiClientShift =retrofit.create(ApiClient_Shift.class);
+
+        Call<ResponseBody> shiftDAOCall = apiClientShift.delete(id_shift);
+        shiftDAOCall.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.code() == 201) {
+                    Toast.makeText(getApplicationContext(), "Success Delete", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Failed Delete", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

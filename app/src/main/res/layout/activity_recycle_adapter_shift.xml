@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginBottom="20dp"
-    android:background="@color/colorAdmin"
+    android:layout_marginBottom="5dp"
     android:orientation="vertical"
     android:id="@+id/row_container">
 
@@ -16,31 +15,65 @@
         app:cardElevation="6dp"
         app:cardCornerRadius="12dp"
         android:layout_margin="12dp"
-        android:layout_marginBottom="20dp"
-        android:background="@color/colorAdmin2"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
         android:orientation="vertical">
-    >
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/colorAdmin">
+
+        <TextView
+            android:id="@+id/judul_nama_shift"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  Nama Shift"
+            android:textSize="14dp"
+            android:textColor="@color/colorAdmin3"/>
 
         <TextView
             android:id="@+id/nama_shift"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:textSize="18dp"
+            android:textStyle="bold"
             android:text="Nama Shift" />
+
+        <TextView
+            android:id="@+id/judul_jam_masuk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  Jam Masuk"
+            android:textSize="14dp"
+            android:textColor="@color/colorAdmin3"/>
 
         <TextView
             android:id="@+id/jam_masuk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:textSize="18dp"
+            android:textStyle="bold"
             android:text="Jam Masuk" />
+
+        <TextView
+            android:id="@+id/judul_jam_keluar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  Jam Keluar"
+            android:textSize="14dp"
+            android:textColor="@color/colorAdmin3"/>
 
         <TextView
             android:id="@+id/jam_keluar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:textSize="18dp"
+            android:textStyle="bold"
             android:text="Jam Keluar" />
 
     </LinearLayout>

@@ -44,9 +44,9 @@ public class Adapter_Shift extends RecyclerView.Adapter<Adapter_Shift.MyViewHold
         Log.d("Jam Masuk : ",shf.getJam_masuk().toString());
         Log.d("Jam Keluar : ",shf.getJam_keluar().toString());
 
-        myViewHolder.nama_shift.setText ("  Nama Shift  : "+ shf.getNama_shift());
-        myViewHolder.jam_masuk.setText  ("  Jam Masuk   : "+ shf.getJam_masuk());
-        myViewHolder.jam_keluar.setText ("  Jam Keluar  : "+ shf.getJam_keluar());
+        myViewHolder.nama_shift.setText (shf.getNama_shift());
+        myViewHolder.jam_masuk.setText  (shf.getJam_masuk().toString());
+        myViewHolder.jam_keluar.setText (shf.getJam_keluar().toString());
     }
 
     @Override
