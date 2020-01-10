@@ -49,9 +49,14 @@ public interface ApiClient_Pegawai {
             @Field("nama_pegawai")String nama_pegawai,
             @Field("nip_pegawai")String nip_pegawai,
             @Field("username_pegawai")String username_pegawai,
-            @Field("password_pegawai")String password_pegawai,
             @Path("id_pegawai")Integer id_pegawai);
 
+    @POST("api/pegawai/updatePassword")
+    @FormUrlEncoded
+    Call<ResponseBody> updatePassword(
+            @Field("username_pegawai")String username_pegawai,
+            @Field("password_pegawai")String password_pegawai,
+            @Field("password_pegawai_baru")String password_pegawai_baru);
     // --------------------- U P D A T E --------------------- //
 
     // --------------------- D E L E T E --------------------- //
