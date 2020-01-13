@@ -1,13 +1,10 @@
 package jls.com.sippyog.Model;
 
-import java.sql.Time;
-
 public class Model_Shift {
     Integer id_shift;
-    String nama_shift;
-    Time jam_masuk, jam_keluar;
+    String nama_shift, jam_masuk, jam_keluar;
 
-    public Model_Shift(Integer id_shift, String nama_shift, Time jam_masuk, Time jam_keluar) {
+    public Model_Shift(Integer id_shift, String nama_shift, String jam_masuk, String jam_keluar) {
         this.id_shift = id_shift;
         this.nama_shift = nama_shift;
         this.jam_masuk = jam_masuk;
@@ -30,19 +27,19 @@ public class Model_Shift {
         this.nama_shift = nama_shift;
     }
 
-    public Time getJam_masuk() {
+    public String getJam_masuk() {
         return jam_masuk;
     }
 
-    public void setJam_masuk(Time jam_masuk) {
+    public void setJam_masuk(String jam_masuk) {
         this.jam_masuk = jam_masuk;
     }
 
-    public Time getJam_keluar() {
+    public String getJam_keluar() {
         return jam_keluar;
     }
 
-    public void setJam_keluar(Time jam_keluar) {
+    public void setJam_keluar(String jam_keluar) {
         this.jam_keluar = jam_keluar;
     }
 }

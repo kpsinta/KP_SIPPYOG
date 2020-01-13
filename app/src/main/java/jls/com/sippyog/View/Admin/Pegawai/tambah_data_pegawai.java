@@ -38,7 +38,6 @@ public class tambah_data_pegawai extends AppCompatActivity {
         password_pegawai = findViewById(R.id.text_input_passwordPegawai);
 
         btnBatal = findViewById(R.id.btnBatal);
-        btnBatal = findViewById(R.id.btnBatal);
         btnBatal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

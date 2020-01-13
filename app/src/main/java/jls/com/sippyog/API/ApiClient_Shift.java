@@ -22,8 +22,8 @@ public interface ApiClient_Shift {String baseURL = "http://sippyog.jasonfw.com/"
     @FormUrlEncoded
     Call<Model_Shift> create(
             @Field("nama_shift")String nama_shift,
-            @Field("jam_masuk")Time jam_masuk,
-            @Field("jam_keluar")Time jam_keluar);
+            @Field("jam_masuk")String jam_masuk,
+            @Field("jam_keluar")String jam_keluar);
 
     // --------------------- C R E A T E --------------------- //
 
@@ -44,8 +44,8 @@ public interface ApiClient_Shift {String baseURL = "http://sippyog.jasonfw.com/"
     @FormUrlEncoded
     Call<ResponseBody>update(
             @Field("nama_shift")String nama_shift,
-            @Field("jam_masuk")Time jam_masuk,
-            @Field("jam_keluar")Time jam_keluar,
+            @Field("jam_masuk")String jam_masuk,
+            @Field("jam_keluar")String jam_keluar,
             @Path("id_shift")Integer id_shift);
 
     // --------------------- U P D A T E --------------------- //

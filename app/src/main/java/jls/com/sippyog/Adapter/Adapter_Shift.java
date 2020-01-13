@@ -10,7 +10,10 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import jls.com.sippyog.Model.Model_Shift;
@@ -20,7 +23,7 @@ public class Adapter_Shift extends RecyclerView.Adapter<Adapter_Shift.MyViewHold
     public List<Model_Shift> shift = new ArrayList<>();
     private Context context;
     private Adapter_Shift.RecyclerViewClickListener mListener;
-
+    String jamMasuk,jamKeluar;
 
     public Adapter_Shift(List<Model_Shift> shift, Context context, Adapter_Shift.RecyclerViewClickListener mListener) {
         this.shift = shift;
@@ -41,12 +44,24 @@ public class Adapter_Shift extends RecyclerView.Adapter<Adapter_Shift.MyViewHold
         final Model_Shift shf = shift.get(i);
         Log.d("ID Shift : ",shf.getId_shift().toString());
         Log.d("Nama Shift : ",shf.getNama_shift());
-        Log.d("Jam Masuk : ",shf.getJam_masuk().toString());
-        Log.d("Jam Keluar : ",shf.getJam_keluar().toString());
+        Log.d("Jam Masuk : ",shf.getJam_masuk());
+        Log.d("Jam Keluar : ",shf.getJam_keluar());
 
         myViewHolder.nama_shift.setText (shf.getNama_shift());
-        myViewHolder.jam_masuk.setText  (shf.getJam_masuk().toString());
-        myViewHolder.jam_keluar.setText (shf.getJam_keluar().toString());
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat dateFormat2 = new SimpleDateFormat("HH:mm");
+        try {
+            Date date = dateFormat.parse(shf.getJam_masuk());
+            Date date2 = dateFormat.parse(shf.getJam_keluar());
+            jamMasuk = dateFormat2.format(date);
+            jamKeluar = dateFormat2.format(date2);
+            Log.d("Jam Masuk", jamMasuk);
+            Log.d("Jam Keluar", jamKeluar);
+        } catch (ParseException e) {
+        }
+        myViewHolder.jam_masuk.setText  (jamMasuk);
+        myViewHolder.jam_keluar.setText (jamKeluar);
     }
 
     @Override

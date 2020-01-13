@@ -97,9 +97,9 @@ public class tampil_data_shift extends AppCompatActivity {
         Retrofit retrofit=builder.build();
         ApiClient_Shift apiclientShift =retrofit.create(ApiClient_Shift.class);
 
-        Call<LD_Shift> kendaraanModelCall = apiclientShift.show();
+        Call<LD_Shift> shiftModelCall = apiclientShift.show();
 
-        kendaraanModelCall.enqueue(new Callback<LD_Shift>() {
+        shiftModelCall.enqueue(new Callback<LD_Shift>() {
             @Override
             public void onResponse (Call<LD_Shift> call, Response<LD_Shift> response) {
                 mListShift= response.body().getData();
