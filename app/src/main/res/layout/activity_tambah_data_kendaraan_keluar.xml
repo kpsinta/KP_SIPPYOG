@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".tampil_profil_saya">
+    tools:context=".View.Pegawai.KendaraanKeluar.tambah_data_kendaraan_keluar">
 
 </android.support.constraint.ConstraintLayout>

@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">SIPP YOG</string>
+
+
+    <string-array name="jenis_kendaraan">
+        <item> Motor </item>
+        <item> Mobil </item>
+        <item> Sepeda </item>
+    </string-array>
 </resources>

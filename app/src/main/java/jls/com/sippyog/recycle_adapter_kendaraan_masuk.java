@@ -3,11 +3,11 @@ package jls.com.sippyog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class tampil_profil_saya extends AppCompatActivity {
+public class recycle_adapter_kendaraan_masuk extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tampil_profil_saya);
+        setContentView(R.layout.activity_recycle_adapter_kendaraan_masuk);
     }
 }
