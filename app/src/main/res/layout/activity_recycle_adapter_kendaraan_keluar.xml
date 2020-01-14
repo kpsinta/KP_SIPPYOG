@@ -134,7 +134,7 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:background="@color/colorPegawai">
 
@@ -143,24 +143,24 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_gravity="left"
-                    android:layout_marginRight="30dp"
+                    android:layout_marginRight="70dp"
                     android:background="@color/colorPegawai">
                     <TextView
-                        android:id="@+id/judul_status_kendaraan"
+                        android:id="@+id/judul_status_parkir"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="  Status Kendaraan"
+                        android:text="  Status Parkir"
                         android:textSize="14dp"
                         android:textColor="@color/colorPegawai4"/>
 
                     <TextView
-                        android:id="@+id/status_kendaraan"
+                        android:id="@+id/status_parkir"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
                         android:textSize="16dp"
                         android:textStyle="bold"
-                        android:text="Status Kendaraan" />
+                        android:text="Status Parkir" />
 
 
                 </LinearLayout>
