@@ -109,7 +109,7 @@ public class Adapter_KendaraanMasuk  extends RecyclerView.Adapter<Adapter_Kendar
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.row_container:
-                    mListener.onRowClick(mRowContainer, getAdapterPosition());
+    //                mListener.onRowClick(mRowContainer, getAdapterPosition());
                     break;
                 default:
                     break;

@@ -28,7 +28,6 @@
         <activity android:name=".RecycleAdapter.recycle_adapter_shift" />
         <activity android:name=".View.Admin.admin_pengelolaan_data" />
         <activity android:name=".View.Admin.admin_main_menu">
-
         </activity>
         <activity android:name=".View.Admin.Kendaraan.edit_data_kendaraan" />
         <activity
@@ -50,13 +49,14 @@
         <activity android:name=".View.Admin.Shift.tambah_data_shift" />
         <activity android:name=".View.Pegawai.pegawai_main_menu"
             android:theme="@style/PegawaiMainTheme">
+        </activity>
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
