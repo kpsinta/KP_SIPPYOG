@@ -16,6 +16,10 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -30,9 +34,11 @@ import jls.com.sippyog.ListData.LD_Kendaraan;
 import jls.com.sippyog.ListData.LD_Shift;
 import jls.com.sippyog.Model.Model_Kendaraan;
 import jls.com.sippyog.Model.Model_KendaraanMasuk;
+import jls.com.sippyog.Model.Model_PegawaiOnDuty;
 import jls.com.sippyog.Model.Model_Shift;
 import jls.com.sippyog.R;
 import jls.com.sippyog.SessionManager.SessionManager;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -235,13 +241,50 @@ public class tambah_data_kendaraan_masuk extends AppCompatActivity {
                     .addConverterFactory(GsonConverterFactory.create(gson));
             Retrofit retrofit = builder.build();
             ApiClient_KendaraanMasuk apiClientKendaraanMasuk= retrofit.create(ApiClient_KendaraanMasuk.class);
-            Call<Model_KendaraanMasuk> kendaraanMasukDAOCall = apiClientKendaraanMasuk.create(outputDateStr,nomorPlat,selectedIDKendaraan);
-            kendaraanMasukDAOCall.enqueue(new Callback<Model_KendaraanMasuk>() {
+            Call<ResponseBody> kendaraanMasukDAOCall = apiClientKendaraanMasuk.create(outputDateStr,nomorPlat,selectedIDKendaraan);
+            kendaraanMasukDAOCall.enqueue(new Callback<ResponseBody>() {
                 @Override
-                public void onResponse(Call<Model_KendaraanMasuk> call, Response<Model_KendaraanMasuk> response) {
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if (response.code() == 201) {
-                        Toast.makeText(tambah_data_kendaraan_masuk.this, "Tambah Kendaraan Masuk Sukses!", Toast.LENGTH_SHORT).show();
-                        startIntent();
+                        try {
+                            JSONObject jsonresponse = new JSONObject(response.body().string());
+                            String idTiket = jsonresponse.getJSONObject("data").getString("id_tiket");
+                            Log.d( "ID Tiket: ",idTiket);
+
+                                Gson gson = new GsonBuilder()
+                                        .setLenient()
+                                        .create();
+                                Retrofit.Builder builder=new Retrofit.
+                                        Builder().baseUrl(ApiClient_KendaraanMasuk.baseURL).
+                                        addConverterFactory(GsonConverterFactory.create(gson));
+                                Retrofit retrofit=builder.build();
+                                ApiClient_KendaraanMasuk apiClientPODKendaraanMasuk = retrofit.create(ApiClient_KendaraanMasuk.class);
+                                Log.d("ID Pegawai : ",sessionManager.getKeyId());
+                                Call<ResponseBody> detilpengadaansparepartDAOCall = apiClientPODKendaraanMasuk.create_pod_kendaraan_masuk(
+                                        Integer.parseInt(idTiket),selectedIDShift,Integer.parseInt(sessionManager.getKeyId()));
+
+                                detilpengadaansparepartDAOCall.enqueue(new Callback<ResponseBody>() {
+                                    @Override
+                                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                        if (response.code() == 201) {
+                                            Toast.makeText(tambah_data_kendaraan_masuk.this, "Tambah Kendaraan Masuk Sukses!", Toast.LENGTH_SHORT).show();
+                                            startIntent();
+                                        }
+                                        else {
+                                            Toast.makeText(getApplicationContext(),response.message(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                    @Override
+                                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                        Toast.makeText(getApplicationContext(),t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                        }
+                        catch (JSONException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     } else {
                         Toast.makeText(getApplicationContext(),response.message(), Toast.LENGTH_SHORT).show();
                     }
@@ -249,7 +292,7 @@ public class tambah_data_kendaraan_masuk extends AppCompatActivity {
 
                 }
                 @Override
-                public void onFailure(Call<Model_KendaraanMasuk> call, Throwable t) {
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
                     Toast.makeText(tambah_data_kendaraan_masuk .this,  t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                 }
             });

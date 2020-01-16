@@ -4,6 +4,8 @@ import jls.com.sippyog.ListData.LD_Kendaraan;
 import jls.com.sippyog.ListData.LD_KendaraanMasuk;
 import jls.com.sippyog.Model.Model_Kendaraan;
 import jls.com.sippyog.Model.Model_KendaraanMasuk;
+import jls.com.sippyog.Model.Model_PegawaiOnDuty;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -19,10 +21,18 @@ public interface ApiClient_KendaraanMasuk {
 
     @POST("api/tiket")
     @FormUrlEncoded
-    Call<Model_KendaraanMasuk> create(
+    Call<ResponseBody> create(
             @Field("waktu_masuk")String waktu_masuk,
             @Field("no_plat")String no_plat,
             @Field("id_kendaraan_fk")Integer id_kendaraan_fk);
+
+    @POST("api/pegawaionduty/create_kendaraan_masuk")
+    @FormUrlEncoded
+    Call<ResponseBody> create_pod_kendaraan_masuk(
+            @Field("id_tiket_fk")Integer id_tiket_fk,
+            @Field("id_shift_fk")Integer id_shift_fk,
+            @Field("id_pegawai_fk")Integer id_pegawai_fk);
+
 
     // --------------------- C R E A T E --------------------- //
 
