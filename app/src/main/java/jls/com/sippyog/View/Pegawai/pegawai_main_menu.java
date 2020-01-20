@@ -7,6 +7,7 @@ import android.view.View;
 
 import jls.com.sippyog.R;
 import jls.com.sippyog.SessionManager.SessionManager;
+import jls.com.sippyog.View.Pegawai.KendaraanKeluar.tampil_data_kendaraan_keluar;
 import jls.com.sippyog.View.Pegawai.KendaraanMasuk.tampil_data_kendaraan_masuk;
 
 public class pegawai_main_menu extends AppCompatActivity {
@@ -25,6 +26,10 @@ public class pegawai_main_menu extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void kelola_kendaraan_keluar(View view) {
+        Intent i= new Intent(pegawai_main_menu.this, tampil_data_kendaraan_keluar.class);
+        startActivity(i);
+    }
     public void logout(View view) {
         session.logoutUser();
     }

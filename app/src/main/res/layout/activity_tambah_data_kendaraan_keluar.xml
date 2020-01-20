@@ -1,9 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".View.Pegawai.KendaraanKeluar.tambah_data_kendaraan_keluar">
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:padding="16dp"
+android:theme="@style/PegawaiMainTheme"
+android:background="@color/colorPegawai"
+tools:context=".View.Pegawai.KendaraanKeluar.tambah_data_kendaraan_keluar">
 
-</android.support.constraint.ConstraintLayout>
+<TextView
+    android:id="@+id/textView_Judul"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:text="Tambah Kendaraan Keluar"
+    android:textAlignment="center"
+    android:textSize="24sp"
+    android:layout_marginBottom="30dp"/>
+
+<TextView
+    android:id="@+id/textView_waktuKeluar"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Waktu Keluar"
+    android:textSize="24sp"
+    android:layout_marginBottom="15dp"/>
+
+<LinearLayout
+    android:layout_width="200dp"
+    android:layout_marginTop="20dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/textView_namaShift"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Waktu Shift"
+        android:textColor="@color/colorPegawai4" />
+
+    <Spinner
+        android:id="@+id/spinner_nama_shift"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        app:counterEnabled="true"
+        app:counterMaxLength="100"
+        app:errorEnabled="true">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/text_input_platKendaraan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nomor Plat Kendaraan"
+            android:inputType="text" />
+    </android.support.design.widget.TextInputLayout>
+    <ImageView
+        android:id="@+id/searchKendaraan"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="5dp"
+        android:src="@drawable/ic_search_black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/judul_jenis_kendaraan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  Jenis Kendaraan"
+                android:textColor="@color/colorPegawai4"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/jenis_kendaraan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="Jenis Kendaraan"
+                android:textColor="@color/colorAdmin4"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/judul_status_tiket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  Status Tiket"
+                android:textSize="14dp"
+                android:textColor="@color/colorPegawai4"/>
+            <RadioGroup
+                android:id="@+id/rgStatusTiket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rbStatusAda"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ada"
+                    android:textColor="@color/colorAdmin4"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+                <RadioButton
+                    android:id="@+id/rbStatusHilang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hilang"
+                    android:textColor="#FF0000"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+            </RadioGroup>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/judul_durasi_parkir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  Durasi Parkir"
+            android:textSize="14dp"
+            android:textColor="@color/colorPegawai4"/>
+
+        <TextView
+            android:id="@+id/durasi_parkir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorAdmin4"
+            android:text="Durasi Parkir" />
+
+    </LinearLayout>
+<Button
+    android:id="@+id/btnSimpan"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp"
+    android:layout_marginTop="50dp"
+    android:text="SIMPAN"
+    android:textColor="@color/colorPegawai"
+    android:background="@color/colorPegawai3"
+    android:textSize="14sp" />
+
+<Button
+    android:id="@+id/btnBatal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="BATAL"
+    android:textSize="14sp" />
+
+</LinearLayout>

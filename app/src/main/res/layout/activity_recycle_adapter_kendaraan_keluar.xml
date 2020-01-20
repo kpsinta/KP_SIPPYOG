@@ -40,6 +40,7 @@
                 android:layout_marginLeft="15dp"
                 android:textSize="16dp"
                 android:textStyle="bold"
+                android:textColor="@color/colorAdmin4"
                 android:text="Waktu Masuk" />
 
             <TextView
@@ -57,119 +58,144 @@
                 android:layout_marginLeft="15dp"
                 android:textSize="16dp"
                 android:textStyle="bold"
+                android:textColor="@color/colorAdmin4"
                 android:text="Waktu Keluar" />
-
-
-            <TextView
-                android:id="@+id/judul_kode_tiket"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="  Kode Tiket"
-                android:textSize="14dp"
-                android:textColor="@color/colorPegawai4"/>
-
-            <TextView
-                android:id="@+id/kode_tiket"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:text="Kode Tiket" />
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:background="@color/colorPegawai">
-
+            <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginRight="27dp"
+            android:background="@color/colorPegawai">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_gravity="left"
-                android:layout_marginRight="30dp"
                 android:background="@color/colorPegawai">
-                    <TextView
-                        android:id="@+id/judul_no_plat"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="  Nomor Plat Kendaraan"
-                        android:textSize="14dp"
-                        android:textColor="@color/colorPegawai4"/>
-
-                    <TextView
-                        android:id="@+id/no_plat"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:textSize="16dp"
-                        android:textStyle="bold"
-                        android:text="Nomor Plat" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@color/colorPegawai"
-                android:layout_gravity="right">
                 <TextView
-                    android:id="@+id/judul_jenis_kendaraan"
+                    android:id="@+id/judul_kode_tiket"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="  Jenis Kendaraan"
+                    android:text="  Kode Tiket"
                     android:textSize="14dp"
                     android:textColor="@color/colorPegawai4"/>
-
                 <TextView
-                    android:id="@+id/jenis_kendaraan"
+                    android:id="@+id/kode_tiket"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:textSize="16dp"
                     android:textStyle="bold"
-                    android:text="Jenis Kendaraan" />
+                    android:textColor="@color/colorAdmin4"
+                    android:text="Kode Tiket" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="left"
+                android:background="@color/colorPegawai">
+                <TextView
+                    android:id="@+id/judul_no_plat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  Nomor Plat Kendaraan"
+                    android:textSize="14dp"
+                    android:textColor="@color/colorPegawai4"/>
+                <TextView
+                    android:id="@+id/no_plat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAdmin4"
+                    android:text="Nomor Plat" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="left"
+                android:background="@color/colorPegawai">
+                <TextView
+                    android:id="@+id/judul_status_parkir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  Status Parkir"
+                    android:textSize="14dp"
+                    android:textColor="@color/colorPegawai4"/>
+                <TextView
+                    android:id="@+id/status_parkir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAdmin4"
+                    android:text="Status Parkir" />
             </LinearLayout>
         </LinearLayout>
-
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
                 android:background="@color/colorPegawai">
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_gravity="left"
-                    android:layout_marginRight="70dp"
                     android:background="@color/colorPegawai">
                     <TextView
-                        android:id="@+id/judul_status_parkir"
+                        android:id="@+id/judul_total_transaksi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="  Status Parkir"
+                        android:text="  Total Transaksi"
                         android:textSize="14dp"
                         android:textColor="@color/colorPegawai4"/>
-
                     <TextView
-                        android:id="@+id/status_parkir"
+                        android:id="@+id/total_transaksi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
                         android:textSize="16dp"
                         android:textStyle="bold"
-                        android:text="Status Parkir" />
-
-
+                        android:textColor="@color/colorAdmin4"
+                        android:text="Total Transaksi" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:background="@color/colorPegawai"
-                    android:layout_gravity="right">
+                    android:background="@color/colorPegawai">
+                    <TextView
+                        android:id="@+id/judul_jenis_kendaraan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="  Jenis Kendaraan"
+                        android:textSize="14dp"
+                        android:textColor="@color/colorPegawai4"/>
+                    <TextView
+                        android:id="@+id/jenis_kendaraan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorAdmin4"
+                        android:text="Jenis Kendaraan" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/colorPegawai">
                     <TextView
                         android:id="@+id/judul_status_tiket"
                         android:layout_width="wrap_content"
@@ -184,27 +210,11 @@
                         android:layout_marginLeft="15dp"
                         android:textSize="16dp"
                         android:textStyle="bold"
+                        android:textColor="@color/colorAdmin4"
                         android:text="Status Tiket" />
                 </LinearLayout>
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/judul_total_transaksi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="  Total Transaksi"
-                android:textSize="14dp"
-                android:textColor="@color/colorPegawai4"/>
-            <TextView
-                android:id="@+id/total_transaksi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:text="Total Transaksi" />
-
         </LinearLayout>
-    </android.support.v7.widget.CardView>
-
+    </LinearLayout>
+</android.support.v7.widget.CardView>
 </RelativeLayout>

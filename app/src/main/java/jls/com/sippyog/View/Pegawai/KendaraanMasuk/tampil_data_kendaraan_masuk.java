@@ -119,7 +119,9 @@ public class tampil_data_kendaraan_masuk extends AppCompatActivity {
         Retrofit retrofit=builder.build();
         ApiClient_KendaraanMasuk apiclientKendaraanMasuk =retrofit.create(ApiClient_KendaraanMasuk.class);
 
-        Call<LD_KendaraanMasuk> kendaraanMasukModelCall = apiclientKendaraanMasuk.show();
+        // status parkir 0 = sedang parkir
+
+        Call<LD_KendaraanMasuk> kendaraanMasukModelCall = apiclientKendaraanMasuk.showByStatusParkir(0);
 
         kendaraanMasukModelCall.enqueue(new Callback<LD_KendaraanMasuk>() {
             @Override

@@ -260,10 +260,10 @@ public class tambah_data_kendaraan_masuk extends AppCompatActivity {
                                 Retrofit retrofit=builder.build();
                                 ApiClient_KendaraanMasuk apiClientPODKendaraanMasuk = retrofit.create(ApiClient_KendaraanMasuk.class);
                                 Log.d("ID Pegawai : ",sessionManager.getKeyId());
-                                Call<ResponseBody> detilpengadaansparepartDAOCall = apiClientPODKendaraanMasuk.create_pod_kendaraan_masuk(
+                                Call<ResponseBody> tambah_pod_kendaraanmasukDAOCall = apiClientPODKendaraanMasuk.create_pod_kendaraan_masuk(
                                         Integer.parseInt(idTiket),selectedIDShift,Integer.parseInt(sessionManager.getKeyId()));
 
-                                detilpengadaansparepartDAOCall.enqueue(new Callback<ResponseBody>() {
+                            tambah_pod_kendaraanmasukDAOCall.enqueue(new Callback<ResponseBody>() {
                                     @Override
                                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                                         if (response.code() == 201) {
