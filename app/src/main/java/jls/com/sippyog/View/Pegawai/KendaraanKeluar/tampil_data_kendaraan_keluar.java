@@ -116,10 +116,7 @@ public class tampil_data_kendaraan_keluar extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create());
         Retrofit retrofit=builder.build();
         ApiClient_KendaraanKeluar apiclientKendaraanKeluar =retrofit.create(ApiClient_KendaraanKeluar.class);
-
-        // status parkir 0 = sedang parkir
-
-        Call<LD_KendaraanKeluar> kendaraanKeluarModelCall = apiclientKendaraanKeluar.show();
+        Call<LD_KendaraanKeluar> kendaraanKeluarModelCall = apiclientKendaraanKeluar.showToday();
 
         kendaraanKeluarModelCall.enqueue(new Callback<LD_KendaraanKeluar>() {
             @Override

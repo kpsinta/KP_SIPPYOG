@@ -7,4 +7,7 @@
         <item> Mobil </item>
         <item> Sepeda </item>
     </string-array>
+
+    <string name="rb_statusAda">Ada</string>
+    <string name="rb_statusHilang">Hilang</string>
 </resources>
