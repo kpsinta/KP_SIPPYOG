@@ -15,7 +15,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".RecycleAdapter.recycle_adapter_kendaraan_keluar"></activity>
         <activity android:name=".RecycleAdapter.recycle_adapter_kendaraan_masuk" />
-        <activity android:name=".View.Pegawai.KendaraanKeluar.tambah_data_kendaraan_keluar" />
+        <activity android:name=".View.Pegawai.KendaraanKeluar.tambah_data_kendaraan_keluar"/>
         <activity android:name=".View.Pegawai.KendaraanMasuk.tambah_data_kendaraan_masuk" />
         <activity android:name=".View.Pegawai.KendaraanMasuk.tampil_data_kendaraan_masuk"
             android:label="Data Kendaraan Masuk"

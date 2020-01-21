@@ -3,8 +3,9 @@ package jls.com.sippyog.Model;
 public class Model_KendaraanMasuk {
     Integer id_tiket, id_kendaraan_fk;
     String kode_tiket, waktu_masuk, waktu_keluar, no_plat, status_parkir, status_tiket, jenis_kendaraan;
+    Double biaya_parkir, biaya_denda;
 
-    public Model_KendaraanMasuk(Integer id_tiket, Integer id_kendaraan_fk, String kode_tiket, String waktu_masuk, String waktu_keluar, String no_plat, String status_parkir, String status_tiket, String jenis_kendaraan) {
+    public Model_KendaraanMasuk(Integer id_tiket, Integer id_kendaraan_fk, String kode_tiket, String waktu_masuk, String waktu_keluar, String no_plat, String status_parkir, String status_tiket, String jenis_kendaraan, Double biaya_parkir, Double biaya_denda) {
         this.id_tiket = id_tiket;
         this.id_kendaraan_fk = id_kendaraan_fk;
         this.kode_tiket = kode_tiket;
@@ -14,6 +15,8 @@ public class Model_KendaraanMasuk {
         this.status_parkir = status_parkir;
         this.status_tiket = status_tiket;
         this.jenis_kendaraan = jenis_kendaraan;
+        this.biaya_parkir = biaya_parkir;
+        this.biaya_denda = biaya_denda;
     }
 
     public Integer getId_tiket() {
@@ -87,4 +90,21 @@ public class Model_KendaraanMasuk {
     public void setJenis_kendaraan(String jenis_kendaraan) {
         this.jenis_kendaraan = jenis_kendaraan;
     }
+
+    public Double getBiaya_parkir() {
+        return biaya_parkir;
+    }
+
+    public void setBiaya_parkir(Double biaya_parkir) {
+        this.biaya_parkir = biaya_parkir;
+    }
+
+    public Double getBiaya_denda() {
+        return biaya_denda;
+    }
+
+    public void setBiaya_denda(Double biaya_denda) {
+        this.biaya_denda = biaya_denda;
+    }
 }
+
