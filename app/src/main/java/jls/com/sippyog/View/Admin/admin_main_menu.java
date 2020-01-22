@@ -7,6 +7,7 @@ import android.view.View;
 
 import jls.com.sippyog.R;
 import jls.com.sippyog.SessionManager.SessionManager;
+import jls.com.sippyog.View.Admin.KapasitasParkir.admin_tampil_kapasitas_parkir;
 
 public class admin_main_menu extends AppCompatActivity {
 
@@ -23,7 +24,10 @@ public class admin_main_menu extends AppCompatActivity {
         Intent i= new Intent(admin_main_menu.this, admin_pengelolaan_data.class);
         startActivity(i);
     }
-
+    public void tampil_kapasitas_parkir(View view) {
+        Intent i= new Intent(admin_main_menu.this, admin_tampil_kapasitas_parkir.class);
+        startActivity(i);
+    }
     public void logout(View view) {
         session.logoutUser();
     }
