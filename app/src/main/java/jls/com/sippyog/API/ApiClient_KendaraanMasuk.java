@@ -53,5 +53,8 @@ public interface ApiClient_KendaraanMasuk {
     Call<LD_KendaraanMasuk> showByStatusTiket(
             @Path("status")Integer status);
 
+    @GET("api/tiket/showByKendaraanWhereStatusSedangParkir/{id}")
+    Call<LD_KendaraanMasuk> showByKendaraanWhereStatusSedangParkir(
+            @Path("id")Integer id);
     // ----------------------- R E A D ----------------------- //
 }
