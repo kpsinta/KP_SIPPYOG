@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import jls.com.sippyog.API.ApiClient_KendaraanKeluar;
 import jls.com.sippyog.API.ApiClient_KendaraanMasuk;
 import jls.com.sippyog.API.ApiClient_Shift;
 import jls.com.sippyog.Adapter.Adapter_KendaraanMasuk;
@@ -50,6 +51,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Field;
 
 public class tambah_data_kendaraan_keluar extends AppCompatActivity {
     RadioGroup rgStatusTiket;
@@ -57,7 +59,7 @@ public class tambah_data_kendaraan_keluar extends AppCompatActivity {
 
     Spinner spinner_nama_shift;
     TextInputEditText nomor_plat, uang_pembayaran;
-    Integer selectedIDRG, selectedIDShift;
+    Integer selectedIDRG, selectedIDShift, selectedIDTiket;
     Button btnSimpan, btnBatal;
     ImageView ivSearch;
     TextView waktu_keluar, jenis_kendaraan, durasi_parkir, biaya_parkir, kode_tiket;
@@ -69,7 +71,7 @@ public class tambah_data_kendaraan_keluar extends AppCompatActivity {
     List<String> string_noPlat = new ArrayList<>();
     private List<Model_KendaraanMasuk> mListKendaraanMasuk = new ArrayList<>();
     String nomorPlat, waktuMasuk, waktuKeluar;
-    Double uangPembayaran;
+    Double uangPembayaran, biayaDenda=0.0, biayaParkir=0.0, biayaParkirDenda=0.0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +80,8 @@ public class tambah_data_kendaraan_keluar extends AppCompatActivity {
         sessionManager = new SessionManager(getApplicationContext());
         spinner_nama_shift = findViewById(R.id.spinner_nama_shift);
         rgStatusTiket = findViewById(R.id.rgStatusTiket);
+        selectedIDRG = rgStatusTiket.getCheckedRadioButtonId();
+        rbStatusTiket = findViewById(selectedIDRG);
         nomor_plat = findViewById(R.id.text_input_platKendaraan);
         jenis_kendaraan = findViewById(R.id.jenis_kendaraan);
         durasi_parkir = findViewById(R.id.durasi_parkir);
@@ -145,10 +149,6 @@ public class tambah_data_kendaraan_keluar extends AppCompatActivity {
         btnSimpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectedIDRG = rgStatusTiket.getCheckedRadioButtonId();
-                rbStatusTiket = findViewById(selectedIDRG);
-//                Toast.makeText(tambah_data_kendaraan_keluar.this, "Status Tiket : "
-//                        + rbStatusTiket.getText(), Toast.LENGTH_SHORT).show();
                 onClickRegister();
             }
         });
@@ -233,9 +233,35 @@ public class tambah_data_kendaraan_keluar extends AppCompatActivity {
                 Toast.makeText(tambah_data_kendaraan_keluar.this, "No Plat Ditemukan", Toast.LENGTH_SHORT).show();
                 jenis_kendaraan.setText(mListKendaraanMasuk.get(i).getJenis_kendaraan());
                 kode_tiket.setText(mListKendaraanMasuk.get(i).getKode_tiket());
+                biayaDenda=mListKendaraanMasuk.get(i).getBiaya_denda();
+                biayaParkir=mListKendaraanMasuk.get(i).getBiaya_parkir();
                 biaya_parkir.setText(String.format("%.0f",mListKendaraanMasuk.get(i).getBiaya_parkir()));
                 waktuKeluar = waktu_keluar.getText().toString();
                 waktuMasuk = mListKendaraanMasuk.get(i).getWaktu_masuk();
+                selectedIDTiket = mListKendaraanMasuk.get(i).getId_tiket();
+                rgStatusTiket.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                        if (checkedId == R.id.rbStatusAda) {
+                            //do work when radioButton1 is active
+                            if(!durasi_parkir.getText().toString().equals("-") || !durasi_parkir.getText().equals("Durasi Parkir"))
+                            {
+                                biaya_parkir.setText(String.format("%.0f",biayaParkir));
+                            }
+                            Toast.makeText(tambah_data_kendaraan_keluar.this, "Ada kakaa", Toast.LENGTH_SHORT).show();
+                        } else  if (checkedId == R.id.rbStatusHilang) {
+                            //do work when radioButton2 is active
+                            if(!durasi_parkir.getText().toString().equals("-") || !durasi_parkir.getText().equals("Durasi Parkir"))
+                            {
+                                biayaParkirDenda=0.0;
+                                biayaParkirDenda = Double.parseDouble(biaya_parkir.getText().toString())+biayaDenda;
+                                biaya_parkir.setText(String.format("%.0f",biayaParkirDenda));
+                            }
+                            Toast.makeText(tambah_data_kendaraan_keluar.this, "Gaada kakaa", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
                 final DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 final DateFormat inputFormat2 = new SimpleDateFormat("EEE, d MMM yyyy\t\tHH:mm:ss");
                 final DateFormat outputFormat =  new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
@@ -287,9 +313,10 @@ public class tambah_data_kendaraan_keluar extends AppCompatActivity {
             durasi_parkir.setText("-");
         }
     }
-    private void onClickRegister() {
+    public void onClickRegister() {
 
         nomorPlat = nomor_plat.getText().toString();
+
         if (nomorPlat.isEmpty() || uang_pembayaran.getText().toString().isEmpty())
         {
             Toast.makeText(this, "Semua Field harus diisi!", Toast.LENGTH_SHORT).show();
@@ -303,6 +330,19 @@ public class tambah_data_kendaraan_keluar extends AppCompatActivity {
             Toast.makeText(this, "Uang Pembayaran Kurang!", Toast.LENGTH_SHORT).show();
         }
         else {
+            final DateFormat inputFormat =  new SimpleDateFormat("EEE, d MMM yyyy\t\tHH:mm:ss");
+            final DateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+
+            final String inputDateStr=waktuKeluar;
+            Date date = null;
+            try
+            {
+                date = inputFormat.parse(inputDateStr);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            final String outputDateStr = outputFormat.format(date);
             // Build an AlertDialog
             AlertDialog.Builder builder = new AlertDialog.Builder(tambah_data_kendaraan_keluar.this);
 
@@ -321,7 +361,78 @@ public class tambah_data_kendaraan_keluar extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     // Do something when user clicked the Yes button
+                    Gson gson = new GsonBuilder()
+                            .setLenient()
+                            .create();
+                    Retrofit.Builder builder = new Retrofit
+                            .Builder()
+                            .baseUrl(ApiClient_KendaraanKeluar.baseURL)
+                            .addConverterFactory(GsonConverterFactory.create(gson));
+                    Retrofit retrofit = builder.build();
+                    ApiClient_KendaraanKeluar apiClientKendaraanKeluar= retrofit.create(ApiClient_KendaraanKeluar.class);
 
+                    Log.d("Status Tiket : ",rbStatusTiket.getText().toString());
+                    Log.d("Selected ID Tiket : ",selectedIDTiket.toString());
+                    Log.d("Biaya Parkir : ",biaya_parkir.getText().toString());
+                    Log.d("Waktu Transaksi : ",outputDateStr);
+
+                    Double biayaParkir = Double.parseDouble(biaya_parkir.getText().toString());
+
+                    Call<ResponseBody> kendaraanKeluarDAOCall = apiClientKendaraanKeluar.create(selectedIDTiket,outputDateStr,biayaParkir,rbStatusTiket.getText().toString());
+                    kendaraanKeluarDAOCall.enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            if (response.code() == 201) {
+                                try {
+                                    JSONObject jsonresponse = new JSONObject(response.body().string());
+                                    String idTransaksi = jsonresponse.getJSONObject("data").getString("id_transaksi");
+                                    Log.d( "ID Transaksi: ",idTransaksi);
+
+                                    Gson gson = new GsonBuilder()
+                                            .setLenient()
+                                            .create();
+                                    Retrofit.Builder builder=new Retrofit.
+                                            Builder().baseUrl(ApiClient_KendaraanKeluar.baseURL).
+                                            addConverterFactory(GsonConverterFactory.create(gson));
+                                    Retrofit retrofit=builder.build();
+                                    ApiClient_KendaraanKeluar apiClientPODKendaraanKeluar = retrofit.create(ApiClient_KendaraanKeluar.class);
+                                    Log.d("ID Pegawai : ",sessionManager.getKeyId());
+                                    Call<ResponseBody> tambah_pod_kendaraankeluarDAOCall = apiClientPODKendaraanKeluar.create_pod_kendaraan_keluar(
+                                            selectedIDTiket,selectedIDShift,Integer.parseInt(sessionManager.getKeyId()),Integer.parseInt(idTransaksi));
+
+                                    tambah_pod_kendaraankeluarDAOCall.enqueue(new Callback<ResponseBody>() {
+                                        @Override
+                                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                            if (response.code() == 201) {
+                                                Toast.makeText(tambah_data_kendaraan_keluar.this, "Tambah Kendaraan Keluar Sukses!", Toast.LENGTH_SHORT).show();
+                                                startIntent();
+                                            }
+                                            else {
+                                                Toast.makeText(getApplicationContext(),response.message(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                        @Override
+                                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                            Toast.makeText(getApplicationContext(),t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                }
+                                catch (JSONException e) {
+                                    e.printStackTrace();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                Toast.makeText(getApplicationContext(),response.message(), Toast.LENGTH_SHORT).show();
+                            }
+                            Log.d("on respon : ",String.valueOf(response.code()));
+
+                        }
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            Toast.makeText(tambah_data_kendaraan_keluar .this,  t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
                 }
             });
@@ -338,70 +449,10 @@ public class tambah_data_kendaraan_keluar extends AppCompatActivity {
             // Display the alert dialog on interface
             dialog.show();
 
-//            Gson gson = new GsonBuilder()
-//                    .setLenient()
-//                    .create();
-//            Retrofit.Builder builder = new Retrofit
-//                    .Builder()
-//                    .baseUrl(ApiClient_KendaraanMasuk.baseURL)
-//                    .addConverterFactory(GsonConverterFactory.create(gson));
-//            Retrofit retrofit = builder.build();
-//            ApiClient_KendaraanMasuk apiClientKendaraanMasuk= retrofit.create(ApiClient_KendaraanMasuk.class);
-//            Call<ResponseBody> kendaraanMasukDAOCall = apiClientKendaraanMasuk.create(outputDateStr,nomorPlat,selectedIDKendaraan);
-//            kendaraanMasukDAOCall.enqueue(new Callback<ResponseBody>() {
-//                @Override
-//                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                    if (response.code() == 201) {
-//                        try {
-//                            JSONObject jsonresponse = new JSONObject(response.body().string());
-//                            String idTiket = jsonresponse.getJSONObject("data").getString("id_tiket");
-//                            Log.d( "ID Tiket: ",idTiket);
-//
-//                            Gson gson = new GsonBuilder()
-//                                    .setLenient()
-//                                    .create();
-//                            Retrofit.Builder builder=new Retrofit.
-//                                    Builder().baseUrl(ApiClient_KendaraanMasuk.baseURL).
-//                                    addConverterFactory(GsonConverterFactory.create(gson));
-//                            Retrofit retrofit=builder.build();
-//                            ApiClient_KendaraanMasuk apiClientPODKendaraanMasuk = retrofit.create(ApiClient_KendaraanMasuk.class);
-//                            Log.d("ID Pegawai : ",sessionManager.getKeyId());
-//                            Call<ResponseBody> tambah_pod_kendaraanmasukDAOCall = apiClientPODKendaraanMasuk.create_pod_kendaraan_masuk(
-//                                    Integer.parseInt(idTiket),selectedIDShift,Integer.parseInt(sessionManager.getKeyId()));
-//
-//                            tambah_pod_kendaraanmasukDAOCall.enqueue(new Callback<ResponseBody>() {
-//                                @Override
-//                                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                                    if (response.code() == 201) {
-//                                        Toast.makeText(tambah_data_kendaraan_masuk.this, "Tambah Kendaraan Masuk Sukses!", Toast.LENGTH_SHORT).show();
-//                                        startIntent();
-//                                    }
-//                                    else {
-//                                        Toast.makeText(getApplicationContext(),response.message(), Toast.LENGTH_SHORT).show();
-//                                    }
-//                                }
-//                                @Override
-//                                public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                                    Toast.makeText(getApplicationContext(),t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-//                                }
-//                            });
-//                        }
-//                        catch (JSONException e) {
-//                            e.printStackTrace();
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
-//                    } else {
-//                        Toast.makeText(getApplicationContext(),response.message(), Toast.LENGTH_SHORT).show();
-//                    }
-//                    Log.d("on respon : ",String.valueOf(response.code()));
-//
-//                }
-//                @Override
-//                public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                    Toast.makeText(tambah_data_kendaraan_masuk .this,  t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-//                }
-//            });
         }
+    }
+    private void startIntent() {
+        Intent intent = new Intent(getApplicationContext(), tampil_data_kendaraan_keluar.class);
+        startActivity(intent);
     }
 }

@@ -24,7 +24,7 @@ public interface ApiClient_KendaraanKeluar {
 
     @POST("api/pegawaionduty/create_kendaraan_keluar")
     @FormUrlEncoded
-    Call<ResponseBody> create_kendaraan_keluar(
+    Call<ResponseBody> create_pod_kendaraan_keluar(
             @Field("id_tiket_fk")Integer id_tiket_fk,
             @Field("id_shift_fk")Integer id_shift_fk,
             @Field("id_pegawai_fk")Integer id_pegawai_fk,
