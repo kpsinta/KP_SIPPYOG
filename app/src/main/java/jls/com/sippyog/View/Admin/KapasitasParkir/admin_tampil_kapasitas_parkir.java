@@ -60,19 +60,14 @@ public class admin_tampil_kapasitas_parkir extends AppCompatActivity {
 
             recyclerView.setItemAnimator(new DefaultItemAnimator());
             recyclerView.setAdapter(adapterKapasitasParkir);
-//            listener = new Adapter_KapasitasParkir.RecyclerViewClickListener() {
-//                @Override
-//                public void onRowClick(View view, final int position) {
-//                    Intent intent = new Intent(getApplicationContext(), edit_data_kendaraan.class);
-//                    intent.putExtra("id_kendaraan", mListKendaraan.get(position).getId_kendaraan());
-//                    intent.putExtra("jenis_kendaraan", mListKendaraan.get(position).getJenis_kendaraan());
-//                    intent.putExtra("kapasitas_maksimum", mListKendaraan.get(position).getKapasitas_maksimum());
-//                    intent.putExtra("biaya_parkir", mListKendaraan.get(position).getBiaya_parkir());
-//                    intent.putExtra("biaya_denda", mListKendaraan.get(position).getBiaya_denda());
-//
-//                    startActivity(intent);
-//                }
-//            };
+            listener = new Adapter_KapasitasParkir.RecyclerViewClickListener() {
+                @Override
+                public void onRowClick(View view, final int position) {
+                    Intent intent = new Intent(getApplicationContext(), tampil_detil_kendaraan_parkir.class);
+                    intent.putExtra("id_kendaraan", mListKendaraan.get(position).getId_kendaraan());
+                    startActivity(intent);
+                }
+            };
 
         }
         public boolean onCreateOptionsMenu(Menu menu) {

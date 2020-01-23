@@ -1,5 +1,7 @@
 package jls.com.sippyog.View.Pegawai.KendaraanMasuk;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
@@ -52,7 +54,7 @@ public class tambah_data_kendaraan_masuk extends AppCompatActivity {
     Integer selectedIDKendaraan, selectedIDShift;
     TextInputEditText nomor_plat;
     Button btnSimpan, btnBatal;
-    String nomorPlat, waktuMasuk;
+    String nomorPlat, waktuMasuk, jenisKendaraan;
     SessionManager sessionManager;
     //ini untuk load data
     List<Model_Kendaraan> spinnerJenisKendaraanArray = new ArrayList<>();
@@ -94,11 +96,13 @@ public class tambah_data_kendaraan_masuk extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 selectedIDKendaraan = Integer.parseInt(spinner_IDKendaraan.get(position)); //Mendapatkan id dari dropdown yang dipilih
+                jenisKendaraan = string_jenisKendaraan.get(position);
                 Log.d("Selected ID Ken : ",selectedIDKendaraan.toString());
             }
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
                 selectedIDKendaraan=1;
+                jenisKendaraan = string_jenisKendaraan.get(selectedIDKendaraan);
                 Log.d("Selected ID Ken : ",selectedIDKendaraan.toString());
             }
         });
@@ -232,70 +236,98 @@ public class tambah_data_kendaraan_masuk extends AppCompatActivity {
         {
             Toast.makeText(this, "Semua Field harus diisi!", Toast.LENGTH_SHORT).show();
         } else {
-            Gson gson = new GsonBuilder()
-                    .setLenient()
-                    .create();
-            Retrofit.Builder builder = new Retrofit
-                    .Builder()
-                    .baseUrl(ApiClient_KendaraanMasuk.baseURL)
-                    .addConverterFactory(GsonConverterFactory.create(gson));
-            Retrofit retrofit = builder.build();
-            ApiClient_KendaraanMasuk apiClientKendaraanMasuk= retrofit.create(ApiClient_KendaraanMasuk.class);
-            Call<ResponseBody> kendaraanMasukDAOCall = apiClientKendaraanMasuk.create(outputDateStr,nomorPlat,selectedIDKendaraan);
-            kendaraanMasukDAOCall.enqueue(new Callback<ResponseBody>() {
+            // Build an AlertDialog
+            AlertDialog.Builder builder = new AlertDialog.Builder(tambah_data_kendaraan_masuk.this);
+
+            // Set a title for alert dialog
+            builder.setTitle("Konfirmasi Kendaraan Masuk Plat " + nomorPlat);
+
+            // Ask the final question
+            builder.setMessage("Waktu Masuk :\t\t" +waktuMasuk+
+                    "\nJenis Kendaraan  :\t\t" +jenisKendaraan+
+                    "\n\nKonfirmasi Kendaraan Masuk?");
+            // Set the alert dialog yes button click listener
+            builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                 @Override
-                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    if (response.code() == 201) {
-                        try {
-                            JSONObject jsonresponse = new JSONObject(response.body().string());
-                            String idTiket = jsonresponse.getJSONObject("data").getString("id_tiket");
-                            Log.d( "ID Tiket: ",idTiket);
+                public void onClick(DialogInterface dialog, int which) {
+                Gson gson = new GsonBuilder()
+                        .setLenient()
+                        .create();
+                Retrofit.Builder builder = new Retrofit
+                        .Builder()
+                        .baseUrl(ApiClient_KendaraanMasuk.baseURL)
+                        .addConverterFactory(GsonConverterFactory.create(gson));
+                Retrofit retrofit = builder.build();
+                ApiClient_KendaraanMasuk apiClientKendaraanMasuk= retrofit.create(ApiClient_KendaraanMasuk.class);
+                Call<ResponseBody> kendaraanMasukDAOCall = apiClientKendaraanMasuk.create(outputDateStr,nomorPlat,selectedIDKendaraan);
+                kendaraanMasukDAOCall.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.code() == 201) {
+                            try {
+                                JSONObject jsonresponse = new JSONObject(response.body().string());
+                                String idTiket = jsonresponse.getJSONObject("data").getString("id_tiket");
+                                Log.d( "ID Tiket: ",idTiket);
 
-                                Gson gson = new GsonBuilder()
-                                        .setLenient()
-                                        .create();
-                                Retrofit.Builder builder=new Retrofit.
-                                        Builder().baseUrl(ApiClient_KendaraanMasuk.baseURL).
-                                        addConverterFactory(GsonConverterFactory.create(gson));
-                                Retrofit retrofit=builder.build();
-                                ApiClient_KendaraanMasuk apiClientPODKendaraanMasuk = retrofit.create(ApiClient_KendaraanMasuk.class);
-                                Log.d("ID Pegawai : ",sessionManager.getKeyId());
-                                Call<ResponseBody> tambah_pod_kendaraanmasukDAOCall = apiClientPODKendaraanMasuk.create_pod_kendaraan_masuk(
-                                        Integer.parseInt(idTiket),selectedIDShift,Integer.parseInt(sessionManager.getKeyId()));
+                                    Gson gson = new GsonBuilder()
+                                            .setLenient()
+                                            .create();
+                                    Retrofit.Builder builder=new Retrofit.
+                                            Builder().baseUrl(ApiClient_KendaraanMasuk.baseURL).
+                                            addConverterFactory(GsonConverterFactory.create(gson));
+                                    Retrofit retrofit=builder.build();
+                                    ApiClient_KendaraanMasuk apiClientPODKendaraanMasuk = retrofit.create(ApiClient_KendaraanMasuk.class);
+                                    Log.d("ID Pegawai : ",sessionManager.getKeyId());
+                                    Call<ResponseBody> tambah_pod_kendaraanmasukDAOCall = apiClientPODKendaraanMasuk.create_pod_kendaraan_masuk(
+                                            Integer.parseInt(idTiket),selectedIDShift,Integer.parseInt(sessionManager.getKeyId()));
 
-                            tambah_pod_kendaraanmasukDAOCall.enqueue(new Callback<ResponseBody>() {
-                                    @Override
-                                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                        if (response.code() == 201) {
-                                            Toast.makeText(tambah_data_kendaraan_masuk.this, "Tambah Kendaraan Masuk Sukses!", Toast.LENGTH_SHORT).show();
-                                            startIntent();
+                                tambah_pod_kendaraanmasukDAOCall.enqueue(new Callback<ResponseBody>() {
+                                        @Override
+                                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                            if (response.code() == 201) {
+                                                Toast.makeText(tambah_data_kendaraan_masuk.this, "Tambah Kendaraan Masuk Sukses!", Toast.LENGTH_SHORT).show();
+                                                startIntent();
+                                            }
+                                            else {
+                                                Toast.makeText(getApplicationContext(),response.message(), Toast.LENGTH_SHORT).show();
+                                            }
                                         }
-                                        else {
-                                            Toast.makeText(getApplicationContext(),response.message(), Toast.LENGTH_SHORT).show();
+                                        @Override
+                                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                            Toast.makeText(getApplicationContext(),t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                                         }
-                                    }
-                                    @Override
-                                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-                                        Toast.makeText(getApplicationContext(),t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                                    }
-                                });
+                                    });
+                            }
+                            catch (JSONException e) {
+                                e.printStackTrace();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            Toast.makeText(getApplicationContext(),response.message(), Toast.LENGTH_SHORT).show();
                         }
-                        catch (JSONException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    } else {
-                        Toast.makeText(getApplicationContext(),response.message(), Toast.LENGTH_SHORT).show();
+                        Log.d("on respon : ",String.valueOf(response.code()));
+
                     }
-                    Log.d("on respon : ",String.valueOf(response.code()));
-
-                }
-                @Override
-                public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    Toast.makeText(tambah_data_kendaraan_masuk .this,  t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Toast.makeText(tambah_data_kendaraan_masuk .this,  t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
                 }
             });
+            // Set the alert dialog no button click listener
+            builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    // Do something when No button clicked
+                    dialog.cancel();
+                }
+            });
+
+            AlertDialog dialog = builder.create();
+            // Display the alert dialog on interface
+            dialog.show();
         }
     }
 }
