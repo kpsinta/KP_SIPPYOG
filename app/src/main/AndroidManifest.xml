@@ -13,8 +13,19 @@
         android:supportsRtl="true"
         android:theme="@style/AdminMainTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".RecycleAdapter.recycle_adapter_kapasitas_parkir"></activity>
-        <activity android:name=".View.Admin.KapasitasParkir.admin_tampil_kapasitas_parkir"
+        <activity android:name=".View.Admin.admin_laporan_tkp"></activity>
+        <activity android:name=".View.Admin.Laporan.tampil_laporan_tahunan"
+            android:label="Tampil Laporan Tahunan"
+            android:theme="@style/AdminViewTheme" />
+        <activity android:name=".View.Admin.Laporan.tampil_laporan_bulanan"
+            android:label="Tampil Laporan Bulanan"
+            android:theme="@style/AdminViewTheme" />
+        <activity android:name=".View.Admin.Laporan.tampil_laporan_harian"
+            android:label="Tampil Laporan Harian"
+            android:theme="@style/AdminViewTheme"/>
+        <activity android:name=".RecycleAdapter.recycle_adapter_kapasitas_parkir" />
+        <activity
+            android:name=".View.Admin.KapasitasParkir.admin_tampil_kapasitas_parkir"
             android:label="Tampil Kapasitas Parkir"
             android:theme="@style/AdminViewTheme" />
         <activity android:name=".RecycleAdapter.recycle_adapter_kendaraan_keluar" />

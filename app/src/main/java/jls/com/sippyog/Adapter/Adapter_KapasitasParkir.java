@@ -81,7 +81,7 @@ public class Adapter_KapasitasParkir extends RecyclerView.Adapter<Adapter_Kapasi
                 myViewHolder.terisi.setText(terisi.toString());
                 Integer sisa_slot=knd.getKapasitas_maksimum()-terisi;
                 myViewHolder.sisa_slot.setText(sisa_slot.toString());
-                Toast.makeText(context, "Load parkir bisa", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Load Data Kendaraan Sukses!", Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onFailure(Call<LD_KendaraanMasuk> call, Throwable t) {

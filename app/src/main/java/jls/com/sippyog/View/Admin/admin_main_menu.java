@@ -21,16 +21,22 @@ public class admin_main_menu extends AppCompatActivity {
     }
 
     public void pengelolaan_data(View view) {
-        Intent i= new Intent(admin_main_menu.this, admin_pengelolaan_data.class);
+        Intent i = new Intent(admin_main_menu.this, admin_pengelolaan_data.class);
         startActivity(i);
     }
+
     public void tampil_kapasitas_parkir(View view) {
-        Intent i= new Intent(admin_main_menu.this, admin_tampil_kapasitas_parkir.class);
+        Intent i = new Intent(admin_main_menu.this, admin_tampil_kapasitas_parkir.class);
+        startActivity(i);
+    }
+    public void laporan_tkp(View view) {
+        Intent i = new Intent(admin_main_menu.this, admin_laporan_tkp.class);
         startActivity(i);
     }
     public void logout(View view) {
         session.logoutUser();
     }
+
     @Override
     public void onBackPressed() {
         Intent a = new Intent(Intent.ACTION_MAIN);
