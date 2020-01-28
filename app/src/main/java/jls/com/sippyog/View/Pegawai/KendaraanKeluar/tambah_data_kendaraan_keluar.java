@@ -70,7 +70,7 @@ public class tambah_data_kendaraan_keluar extends AppCompatActivity {
     List<String> spinner_IDKendaraan = new ArrayList<>();
     List<String> string_noPlat = new ArrayList<>();
     private List<Model_KendaraanMasuk> mListKendaraanMasuk = new ArrayList<>();
-    String nomorPlat, waktuMasuk, waktuKeluar;
+    String nomorPlat, waktuMasuk, waktuKeluar, statusTiket;
     Double uangPembayaran, biayaDenda=0.0, biayaParkir=0.0, biayaParkirDenda=0.0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -248,8 +248,9 @@ public class tambah_data_kendaraan_keluar extends AppCompatActivity {
                             if(!durasi_parkir.getText().toString().equals("-") || !durasi_parkir.getText().equals("Durasi Parkir"))
                             {
                                 biaya_parkir.setText(String.format("%.0f",biayaParkir));
+                                statusTiket = "Ada";
                             }
-                            Toast.makeText(tambah_data_kendaraan_keluar.this, "Ada kakaa", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(tambah_data_kendaraan_keluar.this, "Tiket kendaraan ada", Toast.LENGTH_SHORT).show();
                         } else  if (checkedId == R.id.rbStatusHilang) {
                             //do work when radioButton2 is active
                             if(!durasi_parkir.getText().toString().equals("-") || !durasi_parkir.getText().equals("Durasi Parkir"))
@@ -257,8 +258,9 @@ public class tambah_data_kendaraan_keluar extends AppCompatActivity {
                                 biayaParkirDenda=0.0;
                                 biayaParkirDenda = Double.parseDouble(biaya_parkir.getText().toString())+biayaDenda;
                                 biaya_parkir.setText(String.format("%.0f",biayaParkirDenda));
+                                statusTiket = "Hilang";
                             }
-                            Toast.makeText(tambah_data_kendaraan_keluar.this, "Gaada kakaa", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(tambah_data_kendaraan_keluar.this, "Tiket kendaraan hilang", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -378,7 +380,7 @@ public class tambah_data_kendaraan_keluar extends AppCompatActivity {
 
                     Double biayaParkir = Double.parseDouble(biaya_parkir.getText().toString());
 
-                    Call<ResponseBody> kendaraanKeluarDAOCall = apiClientKendaraanKeluar.create(selectedIDTiket,outputDateStr,biayaParkir,rbStatusTiket.getText().toString());
+                    Call<ResponseBody> kendaraanKeluarDAOCall = apiClientKendaraanKeluar.create(selectedIDTiket,outputDateStr,biayaParkir,statusTiket);
                     kendaraanKeluarDAOCall.enqueue(new Callback<ResponseBody>() {
                         @Override
                         public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

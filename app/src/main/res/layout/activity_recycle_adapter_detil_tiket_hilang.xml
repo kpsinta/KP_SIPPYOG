@@ -24,22 +24,22 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@color/colorAdmin">
-            <TextView
-                android:id="@+id/judul_waktu_masuk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="  Waktu Masuk"
-                android:textSize="14dp"
-                android:textColor="@color/colorAdmin3"/>
+            <!--<TextView-->
+                <!--android:id="@+id/judul_waktu_masuk"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="  Waktu Masuk"-->
+                <!--android:textSize="14dp"-->
+                <!--android:textColor="@color/colorAdmin3"/>-->
 
-            <TextView
-                android:id="@+id/waktu_masuk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:text="Waktu Masuk"
-                android:textSize="16dp"
-                android:textStyle="bold" />
+            <!--<TextView-->
+                <!--android:id="@+id/waktu_masuk"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="15dp"-->
+                <!--android:text="Waktu Masuk"-->
+                <!--android:textSize="16dp"-->
+                <!--android:textStyle="bold" />-->
             <TextView
                 android:id="@+id/judul_waktu_keluar"
                 android:layout_width="wrap_content"

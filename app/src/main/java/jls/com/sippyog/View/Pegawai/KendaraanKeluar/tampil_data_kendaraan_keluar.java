@@ -122,11 +122,18 @@ public class tampil_data_kendaraan_keluar extends AppCompatActivity {
             @Override
             public void onResponse (Call<LD_KendaraanKeluar> call, Response<LD_KendaraanKeluar> response) {
                 mListKendaraanKeluar= response.body().getData();
-                Log.i(tampil_data_kendaraan_keluar.class.getSimpleName(), response.body().toString());
-                adapterKendaraanKeluar = new Adapter_KendaraanKeluar(mListKendaraanKeluar,tampil_data_kendaraan_keluar.this,listener);
-                recyclerView.setAdapter(adapterKendaraanKeluar);
-                adapterKendaraanKeluar.notifyDataSetChanged();
-                Toast.makeText(tampil_data_kendaraan_keluar.this,"Welcome", Toast.LENGTH_SHORT).show();
+                if(mListKendaraanKeluar.isEmpty())
+                {
+                    Toast.makeText(tampil_data_kendaraan_keluar.this,"Belum ada transaksi hari ini", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Log.i(tampil_data_kendaraan_keluar.class.getSimpleName(), response.body().toString());
+                    adapterKendaraanKeluar = new Adapter_KendaraanKeluar(mListKendaraanKeluar,tampil_data_kendaraan_keluar.this,listener);
+                    recyclerView.setAdapter(adapterKendaraanKeluar);
+                    adapterKendaraanKeluar.notifyDataSetChanged();
+                    Toast.makeText(tampil_data_kendaraan_keluar.this,"Welcome", Toast.LENGTH_SHORT).show();
+                }
             }
             @Override
             public void onFailure(Call<LD_KendaraanKeluar> call, Throwable t) {
