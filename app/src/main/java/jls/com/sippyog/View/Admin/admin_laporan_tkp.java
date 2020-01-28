@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import jls.com.sippyog.R;
-import jls.com.sippyog.View.Admin.Laporan.tampil_laporan_bulanan;
-import jls.com.sippyog.View.Admin.Laporan.tampil_laporan_harian;
-import jls.com.sippyog.View.Admin.Laporan.tampil_laporan_tahunan;
+import jls.com.sippyog.View.Admin.Laporan.laporan_pendapatan_tkp;
 
 public class admin_laporan_tkp extends AppCompatActivity {
 
@@ -17,18 +15,25 @@ public class admin_laporan_tkp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_laporan_tkp);
     }
+
     public void laporan_harian(View view) {
-        Intent i = new Intent(admin_laporan_tkp.this, tampil_laporan_harian.class);
+        Intent i = new Intent(this, laporan_pendapatan_tkp.class);
+        String waktu_laporan = "Harian";
+        i.putExtra("WAKTU_LAPORAN",waktu_laporan);
         startActivity(i);
     }
 
     public void laporan_bulanan(View view) {
-        Intent i = new Intent(admin_laporan_tkp.this, tampil_laporan_bulanan.class);
+        Intent i = new Intent(this, laporan_pendapatan_tkp.class);
+        String waktu_laporan = "Bulanan";
+        i.putExtra("WAKTU_LAPORAN",waktu_laporan);
         startActivity(i);
     }
 
     public void laporan_tahunan(View view) {
-        Intent i = new Intent(admin_laporan_tkp.this, tampil_laporan_tahunan.class);
+        Intent i = new Intent(this, laporan_pendapatan_tkp.class);
+        String waktu_laporan = "Tahunan";
+        i.putExtra("WAKTU_LAPORAN",waktu_laporan);
         startActivity(i);
     }
 }

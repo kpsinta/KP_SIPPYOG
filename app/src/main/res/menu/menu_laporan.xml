@@ -2,6 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item
+        android:id="@+id/action_pendapatan"
+        android:orderInCategory="100"
+        android:title="Pendapatan TKP"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_jumlah_kendaraan"
+        android:orderInCategory="100"
+        android:title="Jumlah Kendaraan"
+        app:showAsAction="never" /><item
+    android:id="@+id/action_tiket_hilang"
+    android:orderInCategory="100"
+    android:title="Tiket Hilang"
+    app:showAsAction="never" />
 
     <item
         android:id="@+id/action_settings"
