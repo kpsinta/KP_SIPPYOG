@@ -32,12 +32,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import jls.com.sippyog.API.ApiClient_Kendaraan;
 import jls.com.sippyog.API.ApiClient_KendaraanMasuk;
 import jls.com.sippyog.API.ApiClient_Laporan;
 import jls.com.sippyog.Adapter.Adapter_DetilKendaraanParkir;
 import jls.com.sippyog.Adapter.Adapter_DetilPendapatanTKP;
+import jls.com.sippyog.ListData.LD_Kendaraan;
 import jls.com.sippyog.ListData.LD_KendaraanKeluar;
 import jls.com.sippyog.ListData.LD_KendaraanMasuk;
+import jls.com.sippyog.Model.Model_Kendaraan;
 import jls.com.sippyog.Model.Model_KendaraanKeluar;
 import jls.com.sippyog.Model.Model_KendaraanMasuk;
 import jls.com.sippyog.R;
@@ -60,6 +63,7 @@ public class laporan_pendapatan_tkp extends AppCompatActivity {
     LinearLayout laporan_harian, laporan_bulanan, laporan_tahunan;
     Double pendapatan=0.0;
     private List<Model_KendaraanKeluar> mListKendaraan = new ArrayList<>();
+    private List<Model_Kendaraan> mListJenisKendaraan = new ArrayList<>();
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     public Adapter_DetilPendapatanTKP adapterListKendaraan;
@@ -302,7 +306,7 @@ public class laporan_pendapatan_tkp extends AppCompatActivity {
                     pendapatan=0.0;
                     Toast.makeText(laporan_pendapatan_tkp.this,"Welcome", Toast.LENGTH_SHORT).show();
                     final DateFormat inputFormat =  new SimpleDateFormat("yyyy-MM-dd");
-                    final DateFormat outputFormat = new SimpleDateFormat("EEE, d MMM yyyy");
+                    final DateFormat outputFormat = new SimpleDateFormat("EEEE, d MMMM yyyy");
                     Date date2 = null;
                     try
                     {
@@ -435,6 +439,32 @@ public class laporan_pendapatan_tkp extends AppCompatActivity {
             }
             @Override
             public void onFailure(Call<LD_KendaraanKeluar> call, Throwable t) {
+                Toast.makeText(laporan_pendapatan_tkp.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    public void loadJenisKendaraan() {
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+        Retrofit.Builder builder = new Retrofit
+                .Builder()
+                .baseUrl(ApiClient_Kendaraan.baseURL)
+                .addConverterFactory(GsonConverterFactory.create());
+        Retrofit retrofit=builder.build();
+        ApiClient_Kendaraan apiclientKendaraan =retrofit.create(ApiClient_Kendaraan.class);
+
+        Call<LD_Kendaraan> kendaraanModelCall = apiclientKendaraan.show();
+
+        kendaraanModelCall.enqueue(new Callback<LD_Kendaraan>() {
+            @Override
+            public void onResponse (Call<LD_Kendaraan> call, Response<LD_Kendaraan> response) {
+                mListJenisKendaraan= response.body().getData();
+                Log.i(laporan_jumlah_kendaraan.class.getSimpleName(), response.body().toString());
+
+            }
+            @Override
+            public void onFailure(Call<LD_Kendaraan> call, Throwable t) {
                 Toast.makeText(laporan_pendapatan_tkp.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });

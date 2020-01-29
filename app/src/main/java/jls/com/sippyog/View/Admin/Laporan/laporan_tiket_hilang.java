@@ -27,9 +27,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import jls.com.sippyog.API.ApiClient_Kendaraan;
 import jls.com.sippyog.API.ApiClient_Laporan;
 import jls.com.sippyog.Adapter.Adapter_DetilTiketHilang;
+import jls.com.sippyog.ListData.LD_Kendaraan;
 import jls.com.sippyog.ListData.LD_KendaraanMasuk;
+import jls.com.sippyog.Model.Model_Kendaraan;
 import jls.com.sippyog.Model.Model_KendaraanMasuk;
 import jls.com.sippyog.R;
 import jls.com.sippyog.View.Admin.admin_main_menu;
@@ -47,6 +50,7 @@ public class laporan_tiket_hilang extends AppCompatActivity {
     String waktu_laporan, date;
     LinearLayout laporan_harian, laporan_bulanan, laporan_tahunan;
     private List<Model_KendaraanMasuk> mListKendaraan = new ArrayList<>();
+    private List<Model_Kendaraan> mListJenisKendaraan = new ArrayList<>();
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     public Adapter_DetilTiketHilang adapterListKendaraan;
@@ -255,7 +259,7 @@ public class laporan_tiket_hilang extends AppCompatActivity {
                     total_hilang=0;
                     Toast.makeText(laporan_tiket_hilang.this,"Welcome", Toast.LENGTH_SHORT).show();
                     final DateFormat inputFormat =  new SimpleDateFormat("yyyy-MM-dd");
-                    final DateFormat outputFormat = new SimpleDateFormat("EEE, d MMM yyyy");
+                    final DateFormat outputFormat = new SimpleDateFormat("EEEE, d MMMM yyyy");
                     Date date2 = null;
                     try
                     {
@@ -379,6 +383,32 @@ public class laporan_tiket_hilang extends AppCompatActivity {
             @Override
             public void onFailure(Call<LD_KendaraanMasuk> call, Throwable t) {
                 Toast.makeText(laporan_tiket_hilang.this,t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    public void loadJenisKendaraan() {
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+        Retrofit.Builder builder = new Retrofit
+                .Builder()
+                .baseUrl(ApiClient_Kendaraan.baseURL)
+                .addConverterFactory(GsonConverterFactory.create());
+        Retrofit retrofit=builder.build();
+        ApiClient_Kendaraan apiclientKendaraan =retrofit.create(ApiClient_Kendaraan.class);
+
+        Call<LD_Kendaraan> kendaraanModelCall = apiclientKendaraan.show();
+
+        kendaraanModelCall.enqueue(new Callback<LD_Kendaraan>() {
+            @Override
+            public void onResponse (Call<LD_Kendaraan> call, Response<LD_Kendaraan> response) {
+                mListJenisKendaraan= response.body().getData();
+                Log.i(laporan_jumlah_kendaraan.class.getSimpleName(), response.body().toString());
+
+            }
+            @Override
+            public void onFailure(Call<LD_Kendaraan> call, Throwable t) {
+                Toast.makeText(laporan_tiket_hilang.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
