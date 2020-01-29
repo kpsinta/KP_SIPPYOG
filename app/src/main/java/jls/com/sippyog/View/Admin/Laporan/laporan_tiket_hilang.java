@@ -51,7 +51,6 @@ public class laporan_tiket_hilang extends AppCompatActivity {
     ImageView searchLaporan;
     String waktu_laporan, date;
     LinearLayout laporan_harian, laporan_bulanan, laporan_tahunan;
-    Spinner spinner_bulan;
     private List<Model_KendaraanMasuk> mListKendaraan = new ArrayList<>();
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
@@ -120,12 +119,37 @@ public class laporan_tiket_hilang extends AppCompatActivity {
         {
             laporan_harian.setVisibility(View.GONE);
             laporan_tahunan.setVisibility(View.GONE);
-            spinner_bulan = findViewById(R.id.spinner_bulan_laporan);
+            waktuLaporan = findViewById(R.id.text_input_bulanLaporan);
             setTanggal = findViewById(R.id.tanggal_laporan_bulanan);
             String date_now = new SimpleDateFormat("MMMM yyyy", Locale.getDefault()).format(new Date());
             setTanggal.setText(date_now);
             date = new SimpleDateFormat("MM", Locale.getDefault()).format(new Date());
             setRecycleViewLaporanTiketHilangBulanan();
+            searchLaporan = findViewById(R.id.searchBulan);
+            searchLaporan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (waktuLaporan.getText().toString().isEmpty())
+                    {
+                        Toast.makeText(laporan_tiket_hilang.this, "Masukan bulan dan tahun terlebih dahulu!", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+//                        final DateFormat inputFormat =  new SimpleDateFormat("MM/yyyy");
+//                        final DateFormat outputFormat = new SimpleDateFormat("yyyy-MM");
+//                        final String inputDateStr=waktuLaporan.getText().toString();
+//                        Date date2 = null;
+//                        try
+//                        {
+//                            date2 = inputFormat.parse(inputDateStr);
+//                        } catch (ParseException e) {
+//                            e.printStackTrace();
+//                        }
+//                        date = outputFormat.format(date2);
+//                        setRecycleViewLaporanPendapatanTKPBulanan();
+                    }
+                }
+            });
         }
         else if(waktu_laporan.equals("Tahunan"))
         {
@@ -162,7 +186,6 @@ public class laporan_tiket_hilang extends AppCompatActivity {
                     }
                 }
             });
-
         }
     }
     public boolean onCreateOptionsMenu(Menu menu) {

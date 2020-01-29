@@ -28,7 +28,6 @@ public class laporan_jumlah_kendaraan extends AppCompatActivity {
     ImageView searchLaporan;
     String waktu_laporan, date;
     LinearLayout laporan_harian, laporan_bulanan, laporan_tahunan;
-    Spinner spinner_bulan,spinner_tahun;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +62,6 @@ public class laporan_jumlah_kendaraan extends AppCompatActivity {
         {
             laporan_harian.setVisibility(View.GONE);
             laporan_tahunan.setVisibility(View.GONE);
-            spinner_bulan = findViewById(R.id.spinner_bulan_laporan);
             setTanggal = findViewById(R.id.tanggal_laporan_bulanan);
             String date_now = new SimpleDateFormat("MMMM yyyy", Locale.getDefault()).format(new Date());
             setTanggal.setText(date_now);
