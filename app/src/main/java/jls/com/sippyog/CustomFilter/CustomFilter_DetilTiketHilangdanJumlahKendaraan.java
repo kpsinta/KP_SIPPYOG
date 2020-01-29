@@ -4,16 +4,16 @@ import android.widget.Filter;
 
 import java.util.ArrayList;
 
-import jls.com.sippyog.Adapter.Adapter_DetilPendapatanTKP;
-import jls.com.sippyog.Model.Model_KendaraanKeluar;
+import jls.com.sippyog.Adapter.Adapter_DetilTiketHilangdanJumlahKendaraan;
+import jls.com.sippyog.Model.Model_KendaraanMasuk;
 
-public class CustomFilter_DetilPendapatanTKP extends Filter {
-    Adapter_DetilPendapatanTKP adapterDetilPendapatanTKP;
-    ArrayList<Model_KendaraanKeluar> filterList;
+public class CustomFilter_DetilTiketHilangdanJumlahKendaraan extends Filter {
+    Adapter_DetilTiketHilangdanJumlahKendaraan adapterDetilTiketHilangdanJumlahKendaraan;
+    ArrayList<Model_KendaraanMasuk> filterList;
 
-    public CustomFilter_DetilPendapatanTKP(ArrayList<Model_KendaraanKeluar> filterList, Adapter_DetilPendapatanTKP adapterDetilPendapatanTKP)
+    public CustomFilter_DetilTiketHilangdanJumlahKendaraan(ArrayList<Model_KendaraanMasuk> filterList, Adapter_DetilTiketHilangdanJumlahKendaraan adapterDetilTiketHilangdanJumlahKendaraan)
     {
-        this.adapterDetilPendapatanTKP = adapterDetilPendapatanTKP;
+        this.adapterDetilTiketHilangdanJumlahKendaraan = adapterDetilTiketHilangdanJumlahKendaraan;
         this.filterList=filterList;
     }
 
@@ -27,7 +27,7 @@ public class CustomFilter_DetilPendapatanTKP extends Filter {
             //CHANGE TO UPPER
             constraint=constraint.toString().toUpperCase();
             //STORE OUR FILTERED PLAYERS
-            ArrayList<Model_KendaraanKeluar> filteredKndMsk =new ArrayList<>();
+            ArrayList<Model_KendaraanMasuk> filteredKndMsk =new ArrayList<>();
 
             for (int i=0;i<filterList.size();i++)
             {
@@ -54,10 +54,11 @@ public class CustomFilter_DetilPendapatanTKP extends Filter {
     @Override
     protected void publishResults(CharSequence constraint, Filter.FilterResults results) {
 
-        adapterDetilPendapatanTKP.detilpendapatantkp= (ArrayList<Model_KendaraanKeluar>) results.values;
+        adapterDetilTiketHilangdanJumlahKendaraan.kendaraan= (ArrayList<Model_KendaraanMasuk>) results.values;
 
         //REFRESH
-        adapterDetilPendapatanTKP.notifyDataSetChanged();
+        adapterDetilTiketHilangdanJumlahKendaraan.notifyDataSetChanged();
 
     }
 }
+

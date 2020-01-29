@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,8 +26,9 @@ public class laporan_jumlah_kendaraan extends AppCompatActivity {
     Intent i;
     TextInputEditText waktuLaporan;
     ImageView searchLaporan;
-    String waktu_laporan;
+    String waktu_laporan, date;
     LinearLayout laporan_harian, laporan_bulanan, laporan_tahunan;
+    Spinner spinner_bulan,spinner_tahun;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,19 +63,21 @@ public class laporan_jumlah_kendaraan extends AppCompatActivity {
         {
             laporan_harian.setVisibility(View.GONE);
             laporan_tahunan.setVisibility(View.GONE);
+            spinner_bulan = findViewById(R.id.spinner_bulan_laporan);
             setTanggal = findViewById(R.id.tanggal_laporan_bulanan);
-            String date_now = new SimpleDateFormat("EEE, d MMM yyyy", Locale.getDefault()).format(new Date());
-            //set it as current date.
+            String date_now = new SimpleDateFormat("MMMM yyyy", Locale.getDefault()).format(new Date());
             setTanggal.setText(date_now);
+            date = new SimpleDateFormat("MM", Locale.getDefault()).format(new Date());
+
         }
         else if(waktu_laporan.equals("Tahunan"))
         {
             laporan_harian.setVisibility(View.GONE);
             laporan_bulanan.setVisibility(View.GONE);
             setTanggal = findViewById(R.id.tanggal_laporan_tahunan);
-            String date_now = new SimpleDateFormat("EEE, d MMM yyyy", Locale.getDefault()).format(new Date());
-            //set it as current date.
+            String date_now = new SimpleDateFormat("yyyy", Locale.getDefault()).format(new Date());
             setTanggal.setText(date_now);
+            date = new SimpleDateFormat("yyyy", Locale.getDefault()).format(new Date());
         }
     }
     public boolean onCreateOptionsMenu(Menu menu) {
