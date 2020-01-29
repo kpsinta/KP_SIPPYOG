@@ -92,7 +92,7 @@ public class laporan_pendapatan_tkp extends AppCompatActivity {
             waktuLaporan = findViewById(R.id.text_input_tanggalLaporan);
             searchLaporan = findViewById(R.id.searchTanggal);
             //create a date string.
-            String date_now = new SimpleDateFormat("EEE, d MMM yyyy", Locale.getDefault()).format(new Date());
+            String date_now = new SimpleDateFormat("EEEE, d MMMM yyyy", Locale.getDefault()).format(new Date());
             date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
             //set it as current date.
             setTanggal.setText(date_now);
@@ -131,7 +131,7 @@ public class laporan_pendapatan_tkp extends AppCompatActivity {
             waktuLaporan = findViewById(R.id.text_input_bulanLaporan);
             String date_now = new SimpleDateFormat("MMMM yyyy", Locale.getDefault()).format(new Date());
             setTanggal.setText(date_now);
-            date = new SimpleDateFormat("MM", Locale.getDefault()).format(new Date());
+            date = new SimpleDateFormat("yyyy-MM", Locale.getDefault()).format(new Date());
             setRecycleViewLaporanPendapatanTKPBulanan();
             searchLaporan = findViewById(R.id.searchBulan);
             searchLaporan.setOnClickListener(new View.OnClickListener() {
@@ -143,18 +143,18 @@ public class laporan_pendapatan_tkp extends AppCompatActivity {
                     }
                     else
                     {
-//                        final DateFormat inputFormat =  new SimpleDateFormat("MM/yyyy");
-//                        final DateFormat outputFormat = new SimpleDateFormat("yyyy-MM");
-//                        final String inputDateStr=waktuLaporan.getText().toString();
-//                        Date date2 = null;
-//                        try
-//                        {
-//                            date2 = inputFormat.parse(inputDateStr);
-//                        } catch (ParseException e) {
-//                            e.printStackTrace();
-//                        }
-//                        date = outputFormat.format(date2);
-//                        setRecycleViewLaporanPendapatanTKPBulanan();
+                        final DateFormat inputFormat =  new SimpleDateFormat("MM/yyyy");
+                        final DateFormat outputFormat = new SimpleDateFormat("yyyy-MM");
+                        final String inputDateStr=waktuLaporan.getText().toString();
+                        Date date2 = null;
+                        try
+                        {
+                            date2 = inputFormat.parse(inputDateStr);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        date = outputFormat.format(date2);
+                        setRecycleViewLaporanPendapatanTKPBulanan();
                     }
                 }
             });
@@ -361,16 +361,16 @@ public class laporan_pendapatan_tkp extends AppCompatActivity {
                     totalPendapatan.setText(formatRupiah.format(pendapatan));
                     pendapatan=0.0;
                     Toast.makeText(laporan_pendapatan_tkp.this,"Welcome", Toast.LENGTH_SHORT).show();
-//                    final DateFormat inputFormat =  new SimpleDateFormat("yyyy-MM-dd");
-//                    final DateFormat outputFormat = new SimpleDateFormat("EEE, d MMM yyyy");
-//                    Date date2 = null;
-//                    try
-//                    {
-//                        date2 = inputFormat.parse(date);
-//                    } catch (ParseException e) {
-//                        e.printStackTrace();
-//                    }
-//                    setTanggal.setText(outputFormat.format(date2));
+                    final DateFormat inputFormat =  new SimpleDateFormat("yyyy-MM");
+                    final DateFormat outputFormat = new SimpleDateFormat("MMMM yyyy");
+                    Date date2 = null;
+                    try
+                    {
+                        date2 = inputFormat.parse(date);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    setTanggal.setText(outputFormat.format(date2));
                 }
             }
             @Override

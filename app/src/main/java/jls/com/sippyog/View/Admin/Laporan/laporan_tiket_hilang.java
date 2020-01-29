@@ -85,7 +85,7 @@ public class laporan_tiket_hilang extends AppCompatActivity {
             waktuLaporan = findViewById(R.id.text_input_tanggalLaporan);
             searchLaporan = findViewById(R.id.searchTanggal);
             //create a date string.
-            String date_now = new SimpleDateFormat("EEE, d MMM yyyy", Locale.getDefault()).format(new Date());
+            String date_now = new SimpleDateFormat("EEEE, d MMMM yyyy", Locale.getDefault()).format(new Date());
             date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
             //set it as current date.
             setTanggal.setText(date_now);
@@ -123,7 +123,7 @@ public class laporan_tiket_hilang extends AppCompatActivity {
             setTanggal = findViewById(R.id.tanggal_laporan_bulanan);
             String date_now = new SimpleDateFormat("MMMM yyyy", Locale.getDefault()).format(new Date());
             setTanggal.setText(date_now);
-            date = new SimpleDateFormat("MM", Locale.getDefault()).format(new Date());
+            date = new SimpleDateFormat("yyyy-MM", Locale.getDefault()).format(new Date());
             setRecycleViewLaporanTiketHilangBulanan();
             searchLaporan = findViewById(R.id.searchBulan);
             searchLaporan.setOnClickListener(new View.OnClickListener() {
@@ -135,18 +135,18 @@ public class laporan_tiket_hilang extends AppCompatActivity {
                     }
                     else
                     {
-//                        final DateFormat inputFormat =  new SimpleDateFormat("MM/yyyy");
-//                        final DateFormat outputFormat = new SimpleDateFormat("yyyy-MM");
-//                        final String inputDateStr=waktuLaporan.getText().toString();
-//                        Date date2 = null;
-//                        try
-//                        {
-//                            date2 = inputFormat.parse(inputDateStr);
-//                        } catch (ParseException e) {
-//                            e.printStackTrace();
-//                        }
-//                        date = outputFormat.format(date2);
-//                        setRecycleViewLaporanPendapatanTKPBulanan();
+                        final DateFormat inputFormat =  new SimpleDateFormat("MM/yyyy");
+                        final DateFormat outputFormat = new SimpleDateFormat("yyyy-MM");
+                        final String inputDateStr=waktuLaporan.getText().toString();
+                        Date date2 = null;
+                        try
+                        {
+                            date2 = inputFormat.parse(inputDateStr);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        date = outputFormat.format(date2);
+                        setRecycleViewLaporanTiketHilangBulanan();
                     }
                 }
             });

@@ -48,7 +48,7 @@ public class laporan_jumlah_kendaraan extends AppCompatActivity {
             waktuLaporan = findViewById(R.id.text_input_tanggalLaporan);
             searchLaporan = findViewById(R.id.searchTanggal);
             //create a date string.
-            String date_now = new SimpleDateFormat("EEE, d MMM yyyy", Locale.getDefault()).format(new Date());
+            String date_now = new SimpleDateFormat("EEEE, d MMMM yyyy", Locale.getDefault()).format(new Date());
             //set it as current date.
             setTanggal.setText(date_now);
             searchLaporan.setOnClickListener(new View.OnClickListener() {
