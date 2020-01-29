@@ -219,7 +219,7 @@ tools:context=".View.Admin.Laporan.laporan_jumlah_kendaraan">
             android:textStyle="bold" />
     </LinearLayout>
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view_laporan_pendapatan_tkp"
+        android:id="@+id/recycler_view_laporan_jumlah_kendaraan"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="5dp"

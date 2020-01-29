@@ -421,16 +421,16 @@ public class laporan_pendapatan_tkp extends AppCompatActivity {
                     totalPendapatan.setText(formatRupiah.format(pendapatan));
                     pendapatan=0.0;
                     Toast.makeText(laporan_pendapatan_tkp.this,"Welcome", Toast.LENGTH_SHORT).show();
-//                    final DateFormat inputFormat =  new SimpleDateFormat("yyyy-MM-dd");
-//                    final DateFormat outputFormat = new SimpleDateFormat("EEE, d MMM yyyy");
-//                    Date date2 = null;
-//                    try
-//                    {
-//                        date2 = inputFormat.parse(date);
-//                    } catch (ParseException e) {
-//                        e.printStackTrace();
-//                    }
-//                    setTanggal.setText(outputFormat.format(date2));
+                    final DateFormat inputFormat =  new SimpleDateFormat("yyyy");
+                    final DateFormat outputFormat = new SimpleDateFormat("yyyy");
+                    Date date2 = null;
+                    try
+                    {
+                        date2 = inputFormat.parse(date);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    setTanggal.setText(outputFormat.format(date2));
                 }
             }
             @Override

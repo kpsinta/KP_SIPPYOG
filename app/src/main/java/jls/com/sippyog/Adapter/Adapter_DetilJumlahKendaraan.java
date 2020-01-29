@@ -19,18 +19,18 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import jls.com.sippyog.CustomFilter.CustomFilter_DetilTiketHilangdanJumlahKendaraan;
-import jls.com.sippyog.Model.Model_KendaraanMasuk;
+import jls.com.sippyog.CustomFilter.CustomFilter_DetilJumlahKendaraan;
+import jls.com.sippyog.Model.Model_KendaraanKeluar;
 import jls.com.sippyog.R;
 
-public class Adapter_DetilTiketHilangdanJumlahKendaraan extends RecyclerView.Adapter<Adapter_DetilTiketHilangdanJumlahKendaraan.MyViewHolder> implements Filterable {
-    public List<Model_KendaraanMasuk> kndFilter;
-    public List<Model_KendaraanMasuk> kendaraan = new ArrayList<>();
+public class Adapter_DetilJumlahKendaraan extends RecyclerView.Adapter<Adapter_DetilJumlahKendaraan.MyViewHolder> implements Filterable {
+    public List<Model_KendaraanKeluar> kndFilter;
+    public List<Model_KendaraanKeluar> kendaraan = new ArrayList<>();
     private Context context;
-    private Adapter_DetilTiketHilangdanJumlahKendaraan.RecyclerViewClickListener mListener;
-    CustomFilter_DetilTiketHilangdanJumlahKendaraan filter_kendaraan;
+    private Adapter_DetilJumlahKendaraan.RecyclerViewClickListener mListener;
+    CustomFilter_DetilJumlahKendaraan filter_kendaraan;
 
-    public Adapter_DetilTiketHilangdanJumlahKendaraan(List<Model_KendaraanMasuk> kendaraan, Context context, Adapter_DetilTiketHilangdanJumlahKendaraan.RecyclerViewClickListener mListener) {
+    public Adapter_DetilJumlahKendaraan(List<Model_KendaraanKeluar> kendaraan, Context context, Adapter_DetilJumlahKendaraan.RecyclerViewClickListener mListener) {
         this.kndFilter = kendaraan;
         this.kendaraan = kendaraan;
         this.context = context;
@@ -39,15 +39,15 @@ public class Adapter_DetilTiketHilangdanJumlahKendaraan extends RecyclerView.Ada
 
     @NonNull
     @Override
-    public Adapter_DetilTiketHilangdanJumlahKendaraan.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public Adapter_DetilJumlahKendaraan.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(context).inflate(R.layout.activity_recycle_adapter_detil_tiket_hilang_dan_jumlah_kendaraan, viewGroup, false);
-        return new Adapter_DetilTiketHilangdanJumlahKendaraan.MyViewHolder(v, mListener);
+        return new Adapter_DetilJumlahKendaraan.MyViewHolder(v, mListener);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Adapter_DetilTiketHilangdanJumlahKendaraan.MyViewHolder myViewHolder, int i) {
-        final Model_KendaraanMasuk knd = kendaraan.get(i);
-        Log.d("ID KendaraanMasuk : ", knd.getId_tiket().toString());
+    public void onBindViewHolder(@NonNull Adapter_DetilJumlahKendaraan.MyViewHolder myViewHolder, int i) {
+        final Model_KendaraanKeluar knd = kendaraan.get(i);
+        Log.d("ID Transaksi : ", knd.getId_transaksi().toString());
         Log.d("Jenis Kendaraan : ", knd.getJenis_kendaraan());
         Log.d("No Plat : ", knd.getNo_plat());
         Log.d("Waktu Keluar : ", knd.getWaktu_keluar());
@@ -77,17 +77,17 @@ public class Adapter_DetilTiketHilangdanJumlahKendaraan extends RecyclerView.Ada
     @Override
     public Filter getFilter() {
         if (filter_kendaraan == null) {
-            filter_kendaraan = new CustomFilter_DetilTiketHilangdanJumlahKendaraan((ArrayList<Model_KendaraanMasuk>) kndFilter, this);
+            filter_kendaraan = new CustomFilter_DetilJumlahKendaraan((ArrayList<Model_KendaraanKeluar>) kndFilter, this);
         }
         return filter_kendaraan;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private Adapter_DetilTiketHilangdanJumlahKendaraan.RecyclerViewClickListener mListener;
+        private Adapter_DetilJumlahKendaraan.RecyclerViewClickListener mListener;
         protected TextView waktu_keluar, no_plat, jenis_kendaraan;
         private RelativeLayout mRowContainer;
 
-        public MyViewHolder(@NonNull View itemView, Adapter_DetilTiketHilangdanJumlahKendaraan.RecyclerViewClickListener listener) {
+        public MyViewHolder(@NonNull View itemView, Adapter_DetilJumlahKendaraan.RecyclerViewClickListener listener) {
             super(itemView);
             waktu_keluar = (TextView) itemView.findViewById(R.id.waktu_keluar);
             no_plat = (TextView) itemView.findViewById(R.id.no_plat);
@@ -110,7 +110,7 @@ public class Adapter_DetilTiketHilangdanJumlahKendaraan extends RecyclerView.Ada
     }
 
     public interface RecyclerViewClickListener {
-       // void onRowClick(View view, int position);
+        // void onRowClick(View view, int position);
     }
 }
     

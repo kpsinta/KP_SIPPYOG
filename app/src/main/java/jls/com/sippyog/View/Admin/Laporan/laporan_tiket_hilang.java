@@ -13,7 +13,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +20,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.text.DateFormat;
-import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,11 +28,8 @@ import java.util.List;
 import java.util.Locale;
 
 import jls.com.sippyog.API.ApiClient_Laporan;
-import jls.com.sippyog.Adapter.Adapter_DetilPendapatanTKP;
-import jls.com.sippyog.Adapter.Adapter_DetilTiketHilangdanJumlahKendaraan;
+import jls.com.sippyog.Adapter.Adapter_DetilTiketHilang;
 import jls.com.sippyog.ListData.LD_KendaraanMasuk;
-import jls.com.sippyog.ListData.LD_KendaraanMasuk;
-import jls.com.sippyog.Model.Model_KendaraanKeluar;
 import jls.com.sippyog.Model.Model_KendaraanMasuk;
 import jls.com.sippyog.R;
 import jls.com.sippyog.View.Admin.admin_main_menu;
@@ -54,8 +49,8 @@ public class laporan_tiket_hilang extends AppCompatActivity {
     private List<Model_KendaraanMasuk> mListKendaraan = new ArrayList<>();
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
-    public Adapter_DetilTiketHilangdanJumlahKendaraan adapterListKendaraan;
-    Adapter_DetilTiketHilangdanJumlahKendaraan.RecyclerViewClickListener listener;
+    public Adapter_DetilTiketHilang adapterListKendaraan;
+    Adapter_DetilTiketHilang.RecyclerViewClickListener listener;
     Integer total_hilang=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -249,7 +244,7 @@ public class laporan_tiket_hilang extends AppCompatActivity {
                 {
                     recyclerView.setVisibility(View.VISIBLE);
                     Log.i(laporan_pendapatan_tkp.class.getSimpleName(), response.body().toString());
-                    adapterListKendaraan = new Adapter_DetilTiketHilangdanJumlahKendaraan(mListKendaraan, laporan_tiket_hilang.this,listener);
+                    adapterListKendaraan = new Adapter_DetilTiketHilang(mListKendaraan, laporan_tiket_hilang.this,listener);
                     recyclerView.setAdapter(adapterListKendaraan);
                     adapterListKendaraan.notifyDataSetChanged();
                     for (int i = 0; i < mListKendaraan.size(); i++) {
@@ -304,7 +299,7 @@ public class laporan_tiket_hilang extends AppCompatActivity {
                 {
                     recyclerView.setVisibility(View.VISIBLE);
                     Log.i(laporan_pendapatan_tkp.class.getSimpleName(), response.body().toString());
-                    adapterListKendaraan = new Adapter_DetilTiketHilangdanJumlahKendaraan(mListKendaraan, laporan_tiket_hilang.this,listener);
+                    adapterListKendaraan = new Adapter_DetilTiketHilang(mListKendaraan, laporan_tiket_hilang.this,listener);
                     recyclerView.setAdapter(adapterListKendaraan);
                     adapterListKendaraan.notifyDataSetChanged();
                     for (int i = 0; i < mListKendaraan.size(); i++) {
@@ -314,16 +309,16 @@ public class laporan_tiket_hilang extends AppCompatActivity {
                     tiketHilang.setText(total_hilang.toString());
                     total_hilang=0;
                     Toast.makeText(laporan_tiket_hilang.this,"Welcome", Toast.LENGTH_SHORT).show();
-//                    final DateFormat inputFormat =  new SimpleDateFormat("yyyy-MM-dd");
-//                    final DateFormat outputFormat = new SimpleDateFormat("EEE, d MMM yyyy");
-//                    Date date2 = null;
-//                    try
-//                    {
-//                        date2 = inputFormat.parse(date);
-//                    } catch (ParseException e) {
-//                        e.printStackTrace();
-//                    }
-//                    setTanggal.setText(outputFormat.format(date2));
+                    final DateFormat inputFormat =  new SimpleDateFormat("yyyy-MM");
+                    final DateFormat outputFormat = new SimpleDateFormat("MMMM yyyy");
+                    Date date2 = null;
+                    try
+                    {
+                        date2 = inputFormat.parse(date);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    setTanggal.setText(outputFormat.format(date2));
                 }
             }
             @Override
@@ -359,7 +354,7 @@ public class laporan_tiket_hilang extends AppCompatActivity {
                 {
                     recyclerView.setVisibility(View.VISIBLE);
                     Log.i(laporan_pendapatan_tkp.class.getSimpleName(), response.body().toString());
-                    adapterListKendaraan = new Adapter_DetilTiketHilangdanJumlahKendaraan(mListKendaraan, laporan_tiket_hilang.this,listener);
+                    adapterListKendaraan = new Adapter_DetilTiketHilang(mListKendaraan, laporan_tiket_hilang.this,listener);
                     recyclerView.setAdapter(adapterListKendaraan);
                     adapterListKendaraan.notifyDataSetChanged();
                     for (int i = 0; i < mListKendaraan.size(); i++) {
@@ -369,16 +364,16 @@ public class laporan_tiket_hilang extends AppCompatActivity {
                     tiketHilang.setText(total_hilang.toString());
                     total_hilang=0;
                     Toast.makeText(laporan_tiket_hilang.this,"Welcome", Toast.LENGTH_SHORT).show();
-//                    final DateFormat inputFormat =  new SimpleDateFormat("yyyy-MM-dd");
-//                    final DateFormat outputFormat = new SimpleDateFormat("EEE, d MMM yyyy");
-//                    Date date2 = null;
-//                    try
-//                    {
-//                        date2 = inputFormat.parse(date);
-//                    } catch (ParseException e) {
-//                        e.printStackTrace();
-//                    }
-//                    setTanggal.setText(outputFormat.format(date2));
+                    final DateFormat inputFormat =  new SimpleDateFormat("yyyy");
+                    final DateFormat outputFormat = new SimpleDateFormat("yyyy");
+                    Date date2 = null;
+                    try
+                    {
+                        date2 = inputFormat.parse(date);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    setTanggal.setText(outputFormat.format(date2));
                 }
             }
             @Override
