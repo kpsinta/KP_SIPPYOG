@@ -23,7 +23,6 @@ public class Adapter_DetilKendaraanLaporan extends RecyclerView.Adapter<Adapter_
     private Context context;
     private Adapter_DetilKendaraanLaporan.RecyclerViewClickListener mListener;
     List<String> list_JumlahKendaraan = new ArrayList<>();
-    Integer counter;
     public Adapter_DetilKendaraanLaporan(List<Model_Kendaraan> kendaraan, Context context, Adapter_DetilKendaraanLaporan.RecyclerViewClickListener mListener, List<String> total) {
         this.kendaraan = kendaraan;
         this.context = context;

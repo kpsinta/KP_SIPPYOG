@@ -11,7 +11,7 @@ android:theme="@style/AdminViewTheme"
 android:background="@color/colorAdmin"
 tools:context=".View.Admin.Kendaraan.edit_data_kendaraan">
 
-    <TextView
+<TextView
         android:id="@+id/textView_Judul"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,51 +20,55 @@ tools:context=".View.Admin.Kendaraan.edit_data_kendaraan">
         android:text="Edit Kendaraan"
         android:textAlignment="center"
         android:textSize="24sp" />
-<android.support.design.widget.TextInputLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:counterEnabled="true"
-    app:counterMaxLength="30"
-    app:errorEnabled="true">
-    <android.support.design.widget.TextInputEditText
-        android:id="@+id/text_input_jenisKendaraan"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/text_layout_jenisKendaraan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Jenis Kendaraan"
-        android:inputType="text"/>
-</android.support.design.widget.TextInputLayout>
-
-<android.support.design.widget.TextInputLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:counterEnabled="true"
-    app:counterMaxLength="5"
-    app:errorEnabled="true">
-
-    <android.support.design.widget.TextInputEditText
-        android:id="@+id/text_input_jumlahKapasitasKendaraan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Jumlah Kapasitas Kendaraan"
-        android:inputType="number"/>
-</android.support.design.widget.TextInputLayout>
-
-<android.support.design.widget.TextInputLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:counterEnabled="true"
-    app:counterMaxLength="6"
-    app:errorEnabled="true">
-
-    <android.support.design.widget.TextInputEditText
-        android:id="@+id/text_input_biayaParkir"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Biaya Parkir"
-        android:inputType="number"/>
-</android.support.design.widget.TextInputLayout>
+        app:counterEnabled="true"
+        app:counterMaxLength="30"
+        app:errorEnabled="true">
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/text_input_jenisKendaraan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Jenis Kendaraan"
+            android:inputType="text"/>
+    </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
+        android:id="@+id/text_layout_jumlahKapasitasKendaraan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:counterEnabled="true"
+        app:counterMaxLength="5"
+        app:errorEnabled="true">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/text_input_jumlahKapasitasKendaraan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Jumlah Kapasitas Kendaraan"
+            android:inputType="number"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/text_layout_biayaParkir"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:counterEnabled="true"
+        app:counterMaxLength="6"
+        app:errorEnabled="true">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/text_input_biayaParkir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Biaya Parkir"
+            android:inputType="number"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/text_layout_biayaDenda"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:counterEnabled="true"
