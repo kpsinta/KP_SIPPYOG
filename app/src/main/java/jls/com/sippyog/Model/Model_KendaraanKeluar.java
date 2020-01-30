@@ -1,13 +1,14 @@
 package jls.com.sippyog.Model;
 
 public class Model_KendaraanKeluar {
-    Integer id_transaksi, id_tiket_fk;
+    Integer id_transaksi, id_tiket_fk, id_kendaraan_fk;
     String waktu_transaksi, jenis_kendaraan, kode_tiket, waktu_masuk, waktu_keluar, no_plat, status_parkir, status_tiket;
     Double total_transaksi;
 
-    public Model_KendaraanKeluar(Integer id_transaksi, Integer id_tiket_fk, String waktu_transaksi, String jenis_kendaraan, String kode_tiket, String waktu_masuk, String waktu_keluar, String no_plat, String status_parkir, String status_tiket, Double total_transaksi) {
+    public Model_KendaraanKeluar(Integer id_transaksi, Integer id_tiket_fk, Integer id_kendaraan_fk, String waktu_transaksi, String jenis_kendaraan, String kode_tiket, String waktu_masuk, String waktu_keluar, String no_plat, String status_parkir, String status_tiket, Double total_transaksi) {
         this.id_transaksi = id_transaksi;
         this.id_tiket_fk = id_tiket_fk;
+        this.id_kendaraan_fk = id_kendaraan_fk;
         this.waktu_transaksi = waktu_transaksi;
         this.jenis_kendaraan = jenis_kendaraan;
         this.kode_tiket = kode_tiket;
@@ -33,6 +34,14 @@ public class Model_KendaraanKeluar {
 
     public void setId_tiket_fk(Integer id_tiket_fk) {
         this.id_tiket_fk = id_tiket_fk;
+    }
+
+    public Integer getId_kendaraan_fk() {
+        return id_kendaraan_fk;
+    }
+
+    public void setId_kendaraan_fk(Integer id_kendaraan_fk) {
+        this.id_kendaraan_fk = id_kendaraan_fk;
     }
 
     public String getWaktu_transaksi() {

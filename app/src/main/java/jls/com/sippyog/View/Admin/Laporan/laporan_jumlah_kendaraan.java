@@ -30,6 +30,8 @@ import java.util.Locale;
 import jls.com.sippyog.API.ApiClient_Kendaraan;
 import jls.com.sippyog.API.ApiClient_Laporan;
 import jls.com.sippyog.Adapter.Adapter_DetilJumlahKendaraan;
+import jls.com.sippyog.Adapter.Adapter_DetilKendaraanLaporan;
+import jls.com.sippyog.Adapter.Adapter_Kendaraan;
 import jls.com.sippyog.ListData.LD_Kendaraan;
 import jls.com.sippyog.ListData.LD_KendaraanKeluar;
 import jls.com.sippyog.Model.Model_Kendaraan;
@@ -50,12 +52,17 @@ public class laporan_jumlah_kendaraan extends AppCompatActivity {
     ImageView searchLaporan;
     String waktu_laporan, date;
     LinearLayout laporan_harian, laporan_bulanan, laporan_tahunan;
-    private List<Model_KendaraanKeluar> mListKendaraan = new ArrayList<>();
-    private List<Model_Kendaraan> mListJenisKendaraan = new ArrayList<>();
-    private RecyclerView recyclerView;
-    private RecyclerView.LayoutManager layoutManager;
+    List<Model_KendaraanKeluar> mListKendaraan = new ArrayList<>();
+    List<Model_Kendaraan> mListJenisKendaraan = new ArrayList<>();
+    List<String> list_IDKendaraan = new ArrayList<>();
+    List<String> list_JumlahKendaraan = new ArrayList<>();
+    private RecyclerView recyclerView,recyclerView2;
+    private RecyclerView.LayoutManager layoutManager,layoutManager2;
     public Adapter_DetilJumlahKendaraan adapterListKendaraan;
     Adapter_DetilJumlahKendaraan.RecyclerViewClickListener listener;
+    public Adapter_DetilKendaraanLaporan adapterKendaraan;
+    public Adapter_DetilKendaraanLaporan.RecyclerViewClickListener listener2;
+
     Integer total_kendaraan = 0;
 
     @Override
@@ -73,10 +80,14 @@ public class laporan_jumlah_kendaraan extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view_laporan_jumlah_kendaraan);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapterListKendaraan);
-        loadJenisKendaraan();
+
+        recyclerView2 = findViewById(R.id.recycler_view_detil_kendaraan_laporan);
+        layoutManager2 = new LinearLayoutManager(this);
+        recyclerView2.setLayoutManager(layoutManager2);
+        recyclerView2.setItemAnimator(new DefaultItemAnimator());
+        recyclerView2.setAdapter(adapterKendaraan);
         if(waktu_laporan.equals("Harian"))
         {
             laporan_bulanan.setVisibility(View.GONE);
@@ -246,24 +257,22 @@ public class laporan_jumlah_kendaraan extends AppCompatActivity {
                 if(mListKendaraan.isEmpty())
                 {
                     recyclerView.setVisibility(View.GONE);
+                    recyclerView2.setVisibility(View.GONE);
                     totalKendaraan.setText(total_kendaraan.toString());
                     Toast.makeText(laporan_jumlah_kendaraan.this,"Tidak ada kendaraan pada tanggal tersebut", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
                     recyclerView.setVisibility(View.VISIBLE);
+                    recyclerView2.setVisibility(View.VISIBLE);
                     Log.i(laporan_pendapatan_tkp.class.getSimpleName(), response.body().toString());
                     adapterListKendaraan = new Adapter_DetilJumlahKendaraan(mListKendaraan, laporan_jumlah_kendaraan.this,listener);
                     recyclerView.setAdapter(adapterListKendaraan);
                     adapterListKendaraan.notifyDataSetChanged();
-//                    for (int i = 0; i < mListKendaraan.size(); i++) {
-//                        pendapatan = pendapatan+mListKendaraan.get(i).getTotal_transaksi();
-//                        Log.d("Total Transaksi : ",mListKendaraan.get(i).getTotal_transaksi().toString());
-//                        Log.d("Pendapatan : ",pendapatan.toString());
-//                    }
                     total_kendaraan = mListKendaraan.size();
                     totalKendaraan.setText(total_kendaraan.toString());
                     total_kendaraan=0;
+
                     Toast.makeText(laporan_jumlah_kendaraan.this,"Welcome", Toast.LENGTH_SHORT).show();
                     final DateFormat inputFormat =  new SimpleDateFormat("yyyy-MM-dd");
                     final DateFormat outputFormat = new SimpleDateFormat("EEEE, d MMMM yyyy");
@@ -275,6 +284,51 @@ public class laporan_jumlah_kendaraan extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     setTanggal.setText(outputFormat.format(date2));
+
+                    // show by Jenis Kendaraan
+                    Gson gson = new GsonBuilder()
+                            .setLenient()
+                            .create();
+                    Retrofit.Builder builder = new Retrofit
+                            .Builder()
+                            .baseUrl(ApiClient_Kendaraan.baseURL)
+                            .addConverterFactory(GsonConverterFactory.create());
+                    Retrofit retrofit=builder.build();
+                    ApiClient_Kendaraan apiclientKendaraan =retrofit.create(ApiClient_Kendaraan.class);
+
+                    Call<LD_Kendaraan> kendaraanModelCall = apiclientKendaraan.show();
+                    kendaraanModelCall.enqueue(new Callback<LD_Kendaraan>() {
+                        @Override
+                        public void onResponse (Call<LD_Kendaraan> call, Response<LD_Kendaraan> response) {
+                            mListJenisKendaraan= response.body().getData();
+
+                            for (int i = 0; i < mListJenisKendaraan.size(); i++)
+                            {
+                                list_IDKendaraan.add(mListJenisKendaraan.get(i).getId_kendaraan().toString());
+                                Log.d("ID Kendaraan Load : ",list_IDKendaraan.get(i));
+                                Integer counter=0;
+                                for (int j = 0; j < mListKendaraan.size(); j++) {
+                                    if (list_IDKendaraan.get(i).equals(mListKendaraan.get(j).getId_kendaraan_fk().toString()))
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                Log.d("Jenis Kendaraan : ",mListJenisKendaraan.get(i).getJenis_kendaraan());
+                                Log.d("Total : ",counter.toString());
+                                list_JumlahKendaraan.add(counter.toString());
+                                Log.d("=========","========");
+                                adapterKendaraan = new Adapter_DetilKendaraanLaporan(mListJenisKendaraan, laporan_jumlah_kendaraan.this,listener2, list_JumlahKendaraan);
+                                recyclerView2.setAdapter(adapterKendaraan);
+                                adapterKendaraan.notifyDataSetChanged();
+                                Log.d("b00m","test");
+                            }
+                            list_JumlahKendaraan = new ArrayList<>();
+                        }
+                        @Override
+                        public void onFailure(Call<LD_Kendaraan> call, Throwable t) {
+                            Toast.makeText(laporan_jumlah_kendaraan.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
             }
             @Override
@@ -303,21 +357,18 @@ public class laporan_jumlah_kendaraan extends AppCompatActivity {
                 if(mListKendaraan.isEmpty())
                 {
                     recyclerView.setVisibility(View.GONE);
+                    recyclerView2.setVisibility(View.GONE);
                     totalKendaraan.setText(total_kendaraan.toString());
                     Toast.makeText(laporan_jumlah_kendaraan.this,"Tidak ada kendaraan pada bulan dan tahun tersebut", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
                     recyclerView.setVisibility(View.VISIBLE);
+                    recyclerView2.setVisibility(View.VISIBLE);
                     Log.i(laporan_pendapatan_tkp.class.getSimpleName(), response.body().toString());
                     adapterListKendaraan = new Adapter_DetilJumlahKendaraan(mListKendaraan, laporan_jumlah_kendaraan.this,listener);
                     recyclerView.setAdapter(adapterListKendaraan);
                     adapterListKendaraan.notifyDataSetChanged();
-//                    for (int i = 0; i < mListKendaraan.size(); i++) {
-//                        pendapatan = pendapatan+mListKendaraan.get(i).getTotal_transaksi();
-//                        Log.d("Total Transaksi : ",mListKendaraan.get(i).getTotal_transaksi().toString());
-//                        Log.d("Pendapatan : ",pendapatan.toString());
-//                    }
                     total_kendaraan = mListKendaraan.size();
                     totalKendaraan.setText(total_kendaraan.toString());
                     total_kendaraan=0;
@@ -332,6 +383,51 @@ public class laporan_jumlah_kendaraan extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     setTanggal.setText(outputFormat.format(date2));
+
+                    // show by Jenis Kendaraan
+                    Gson gson = new GsonBuilder()
+                            .setLenient()
+                            .create();
+                    Retrofit.Builder builder = new Retrofit
+                            .Builder()
+                            .baseUrl(ApiClient_Kendaraan.baseURL)
+                            .addConverterFactory(GsonConverterFactory.create());
+                    Retrofit retrofit=builder.build();
+                    ApiClient_Kendaraan apiclientKendaraan =retrofit.create(ApiClient_Kendaraan.class);
+
+                    Call<LD_Kendaraan> kendaraanModelCall = apiclientKendaraan.show();
+                    kendaraanModelCall.enqueue(new Callback<LD_Kendaraan>() {
+                        @Override
+                        public void onResponse (Call<LD_Kendaraan> call, Response<LD_Kendaraan> response) {
+                            mListJenisKendaraan= response.body().getData();
+
+                            for (int i = 0; i < mListJenisKendaraan.size(); i++)
+                            {
+                                list_IDKendaraan.add(mListJenisKendaraan.get(i).getId_kendaraan().toString());
+                                Log.d("ID Kendaraan Load : ",list_IDKendaraan.get(i));
+                                Integer counter=0;
+                                for (int j = 0; j < mListKendaraan.size(); j++) {
+                                    if (list_IDKendaraan.get(i).equals(mListKendaraan.get(j).getId_kendaraan_fk().toString()))
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                Log.d("Jenis Kendaraan : ",mListJenisKendaraan.get(i).getJenis_kendaraan());
+                                Log.d("Total : ",counter.toString());
+                                list_JumlahKendaraan.add(counter.toString());
+                                Log.d("=========","========");
+                                adapterKendaraan = new Adapter_DetilKendaraanLaporan(mListJenisKendaraan, laporan_jumlah_kendaraan.this,listener2, list_JumlahKendaraan);
+                                recyclerView2.setAdapter(adapterKendaraan);
+                                adapterKendaraan.notifyDataSetChanged();
+                                Log.d("b00m","test");
+                            }
+                            list_JumlahKendaraan = new ArrayList<>();
+                        }
+                        @Override
+                        public void onFailure(Call<LD_Kendaraan> call, Throwable t) {
+                            Toast.makeText(laporan_jumlah_kendaraan.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
             }
             @Override
@@ -360,21 +456,18 @@ public class laporan_jumlah_kendaraan extends AppCompatActivity {
                 if(mListKendaraan.isEmpty())
                 {
                     recyclerView.setVisibility(View.GONE);
+                    recyclerView2.setVisibility(View.GONE);
                     totalKendaraan.setText(total_kendaraan.toString());
                     Toast.makeText(laporan_jumlah_kendaraan.this,"Tidak ada kendaraan pada tahun tersebut", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
                     recyclerView.setVisibility(View.VISIBLE);
+                    recyclerView2.setVisibility(View.VISIBLE);
                     Log.i(laporan_pendapatan_tkp.class.getSimpleName(), response.body().toString());
                     adapterListKendaraan = new Adapter_DetilJumlahKendaraan(mListKendaraan, laporan_jumlah_kendaraan.this,listener);
                     recyclerView.setAdapter(adapterListKendaraan);
                     adapterListKendaraan.notifyDataSetChanged();
-//                    for (int i = 0; i < mListKendaraan.size(); i++) {
-//                        pendapatan = pendapatan+mListKendaraan.get(i).getTotal_transaksi();
-//                        Log.d("Total Transaksi : ",mListKendaraan.get(i).getTotal_transaksi().toString());
-//                        Log.d("Pendapatan : ",pendapatan.toString());
-//                    }
                     total_kendaraan = mListKendaraan.size();
                     totalKendaraan.setText(total_kendaraan.toString());
                     total_kendaraan=0;
@@ -389,36 +482,55 @@ public class laporan_jumlah_kendaraan extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     setTanggal.setText(outputFormat.format(date2));
+
+                    // show by Jenis Kendaraan
+                    Gson gson = new GsonBuilder()
+                            .setLenient()
+                            .create();
+                    Retrofit.Builder builder = new Retrofit
+                            .Builder()
+                            .baseUrl(ApiClient_Kendaraan.baseURL)
+                            .addConverterFactory(GsonConverterFactory.create());
+                    Retrofit retrofit=builder.build();
+                    ApiClient_Kendaraan apiclientKendaraan =retrofit.create(ApiClient_Kendaraan.class);
+
+                    Call<LD_Kendaraan> kendaraanModelCall = apiclientKendaraan.show();
+                    kendaraanModelCall.enqueue(new Callback<LD_Kendaraan>() {
+                        @Override
+                        public void onResponse (Call<LD_Kendaraan> call, Response<LD_Kendaraan> response) {
+                            mListJenisKendaraan= response.body().getData();
+
+                            for (int i = 0; i < mListJenisKendaraan.size(); i++)
+                            {
+                                list_IDKendaraan.add(mListJenisKendaraan.get(i).getId_kendaraan().toString());
+                                Log.d("ID Kendaraan Load : ",list_IDKendaraan.get(i));
+                                Integer counter=0;
+                                for (int j = 0; j < mListKendaraan.size(); j++) {
+                                    if (list_IDKendaraan.get(i).equals(mListKendaraan.get(j).getId_kendaraan_fk().toString()))
+                                    {
+                                        counter++;
+                                    }
+                                }
+                                Log.d("Jenis Kendaraan : ",mListJenisKendaraan.get(i).getJenis_kendaraan());
+                                Log.d("Total : ",counter.toString());
+                                list_JumlahKendaraan.add(counter.toString());
+                                Log.d("=========","========");
+                                adapterKendaraan = new Adapter_DetilKendaraanLaporan(mListJenisKendaraan, laporan_jumlah_kendaraan.this,listener2, list_JumlahKendaraan);
+                                recyclerView2.setAdapter(adapterKendaraan);
+                                adapterKendaraan.notifyDataSetChanged();
+                                Log.d("b00m","test");
+                            }
+                            list_JumlahKendaraan = new ArrayList<>();
+                        }
+                        @Override
+                        public void onFailure(Call<LD_Kendaraan> call, Throwable t) {
+                            Toast.makeText(laporan_jumlah_kendaraan.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
             }
             @Override
             public void onFailure(Call<LD_KendaraanKeluar> call, Throwable t) {
-                Toast.makeText(laporan_jumlah_kendaraan.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-    public void loadJenisKendaraan() {
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
-        Retrofit.Builder builder = new Retrofit
-                .Builder()
-                .baseUrl(ApiClient_Kendaraan.baseURL)
-                .addConverterFactory(GsonConverterFactory.create());
-        Retrofit retrofit=builder.build();
-        ApiClient_Kendaraan apiclientKendaraan =retrofit.create(ApiClient_Kendaraan.class);
-
-        Call<LD_Kendaraan> kendaraanModelCall = apiclientKendaraan.show();
-
-        kendaraanModelCall.enqueue(new Callback<LD_Kendaraan>() {
-            @Override
-            public void onResponse (Call<LD_Kendaraan> call, Response<LD_Kendaraan> response) {
-                mListJenisKendaraan= response.body().getData();
-                Log.i(laporan_jumlah_kendaraan.class.getSimpleName(), response.body().toString());
-
-            }
-            @Override
-            public void onFailure(Call<LD_Kendaraan> call, Throwable t) {
                 Toast.makeText(laporan_jumlah_kendaraan.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });

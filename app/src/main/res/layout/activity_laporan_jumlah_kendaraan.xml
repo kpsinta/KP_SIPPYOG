@@ -22,7 +22,7 @@ tools:context=".View.Admin.Laporan.laporan_jumlah_kendaraan">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="10dp"
             android:orientation="vertical">
 
             <TextView
@@ -218,12 +218,19 @@ tools:context=".View.Admin.Laporan.laporan_jumlah_kendaraan">
             android:textSize="16dp"
             android:textStyle="bold" />
     </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_detil_kendaraan_laporan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:scrollbars="vertical" />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_laporan_jumlah_kendaraan"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:scrollbars="vertical" />
 
 </LinearLayout>

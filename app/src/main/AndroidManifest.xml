@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AdminMainTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".RecycleAdapter.recycle_adapter_detil_tiket_hilang_dan_jumlah_kendaraan"></activity>
+        <activity android:name=".RecycleAdapter.recycle_adapter_detil_kendaraan_laporan"></activity>
+        <activity android:name=".RecycleAdapter.recycle_adapter_detil_tiket_hilang_dan_jumlah_kendaraan" />
         <activity android:name=".RecycleAdapter.recycle_adapter_detil_pendapatan_tkp" />
         <activity
             android:name=".View.Admin.Laporan.laporan_tiket_hilang"
