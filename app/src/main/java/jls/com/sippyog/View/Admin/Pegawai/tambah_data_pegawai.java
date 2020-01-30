@@ -1,7 +1,9 @@
 package jls.com.sippyog.View.Admin.Pegawai;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class tambah_data_pegawai extends AppCompatActivity {
     private Button btnBatal, btnSimpan;
+    private TextInputLayout textInputUsername, textInputPassword, textInputNama, textInputNIP;
     private TextInputEditText nama_pegawai,nip_pegawai,username_pegawai,password_pegawai;
     private Integer id_role_fk;
     private String namaPegawai,nipPegawai,usernamePegawai,passwordPegawai;
@@ -31,6 +34,11 @@ public class tambah_data_pegawai extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tambah_data_pegawai);
+
+        textInputNama = findViewById(R.id.text_input_nama);
+        textInputNIP = findViewById(R.id.text_input_nip);
+        textInputUsername = findViewById(R.id.text_input_username);
+        textInputPassword = findViewById(R.id.text_input_password);
 
         nama_pegawai = findViewById(R.id.text_input_namaPegawai);
         nip_pegawai = findViewById(R.id.text_input_NIPPegawai);
@@ -60,16 +68,79 @@ public class tambah_data_pegawai extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), tampil_data_pegawai.class);
         startActivity(intent);
     }
+    private boolean validateNama() {
+        String namaInput = nama_pegawai.getText().toString();
+        if (namaInput.isEmpty()) {
+            textInputNama.setError("Field tidak boleh kosong!");
 
+            return false;
+        } else if (namaInput.length() > 100) {
+            textInputNama.setError("Maksimal 100 karakter!");
+            return false;
+        } else {
+            textInputNama.setError(null);
+            return true;
+        }
+    }
+    private boolean validateNIP() {
+        String nipInput = nip_pegawai.getText().toString();
+        if (nipInput.isEmpty()) {
+            textInputNIP.setError("Field tidak boleh kosong!");
+
+            return false;
+        } else if (nipInput.length() > 30) {
+            textInputNIP.setError("Maksimal 30 karakter!");
+            return false;
+        } else {
+            textInputNIP.setError(null);
+            return true;
+        }
+    }
+    private boolean validateUsername() {
+        String usernameInput = username_pegawai.getText().toString();
+        if (usernameInput.isEmpty()) {
+            textInputUsername.setError("Field tidak boleh kosong!");
+
+            return false;
+        } else if (usernameInput.length() > 15 || usernameInput.length() < 6) {
+            textInputUsername.setError("Username terdiri dari 6-15 karakter!");
+            return false;
+        } else {
+            textInputUsername.setError(null);
+            return true;
+        }
+    }
+    private boolean validatePassword() {
+        String passwordInput = password_pegawai.getText().toString();
+        if (passwordInput.isEmpty()) {
+            textInputPassword.setError("Field tidak boleh kosong!");
+            return false;
+        } else if (passwordInput.length() > 15 || passwordInput.length() < 6) {
+            textInputPassword.setError("Password terdiri dari 6-15 karakter!");
+            return false;
+        } else {
+            textInputPassword.setError(null);
+            return true;
+        }
+    }
     private void onClickRegister() {
         namaPegawai = nama_pegawai.getText().toString();
         nipPegawai = nip_pegawai.getText().toString();
         usernamePegawai = username_pegawai.getText().toString();
         passwordPegawai = password_pegawai.getText().toString();
 
-        if (namaPegawai.isEmpty() || nipPegawai.isEmpty() || usernamePegawai.isEmpty() || passwordPegawai.isEmpty())
-        {
-            Toast.makeText(this,"Semua Field harus diisi", Toast.LENGTH_SHORT).show();
+        if (!validateNama() | !validateNIP() | !validateUsername() | !validatePassword()) {
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    textInputNama.setError(null);
+                    textInputNIP.setError(null);
+                    textInputUsername.setError(null);
+                    textInputPassword.setError(null);
+                }
+            }, 2000);
+            return;
         } else {
             Gson gson = new GsonBuilder()
                     .setLenient()

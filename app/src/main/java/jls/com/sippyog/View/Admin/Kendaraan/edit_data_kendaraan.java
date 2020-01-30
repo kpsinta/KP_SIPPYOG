@@ -44,7 +44,6 @@ public class edit_data_kendaraan extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 UpdateKendaraan();
-                startIntent();
             }
         });
         btnBatal = findViewById(R.id.btnBatal);
@@ -110,6 +109,7 @@ public class edit_data_kendaraan extends AppCompatActivity {
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if (response.code() == 201) {
                         Toast.makeText(getApplicationContext(), "Success Update", Toast.LENGTH_SHORT).show();
+                        startIntent();
                     } else {
                         Toast.makeText(getApplicationContext(), "Failed Update", Toast.LENGTH_SHORT).show();
                     }
