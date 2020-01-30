@@ -69,14 +69,18 @@ public class laporan_jumlah_kendaraan extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_laporan_jumlah_kendaraan);
-        laporan_harian = findViewById(R.id.laporan_harian);
-        laporan_bulanan = findViewById(R.id.laporan_bulanan);
-        laporan_tahunan = findViewById(R.id.laporan_tahunan);
+
         i = getIntent();
         waktu_laporan = i.getStringExtra("WAKTU_LAPORAN");
         setTitle("Jumlah Kendaraan " +waktu_laporan);
+
+        laporan_harian = findViewById(R.id.laporan_harian);
+        laporan_bulanan = findViewById(R.id.laporan_bulanan);
+        laporan_tahunan = findViewById(R.id.laporan_tahunan);
+
         totalKendaraan = findViewById(R.id.total_kendaraan);
         totalKendaraan.setText(total_kendaraan.toString());
+
         recyclerView = findViewById(R.id.recycler_view_laporan_jumlah_kendaraan);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -88,6 +92,7 @@ public class laporan_jumlah_kendaraan extends AppCompatActivity {
         recyclerView2.setLayoutManager(layoutManager2);
         recyclerView2.setItemAnimator(new DefaultItemAnimator());
         recyclerView2.setAdapter(adapterKendaraan);
+
         if(waktu_laporan.equals("Harian"))
         {
             laporan_bulanan.setVisibility(View.GONE);
@@ -254,6 +259,16 @@ public class laporan_jumlah_kendaraan extends AppCompatActivity {
             @Override
             public void onResponse (Call<LD_KendaraanKeluar> call, Response<LD_KendaraanKeluar> response) {
                 mListKendaraan= response.body().getData();
+                final DateFormat inputFormat =  new SimpleDateFormat("yyyy-MM-dd");
+                final DateFormat outputFormat = new SimpleDateFormat("EEEE, d MMMM yyyy");
+                Date date2 = null;
+                try
+                {
+                    date2 = inputFormat.parse(date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                setTanggal.setText(outputFormat.format(date2));
                 if(mListKendaraan.isEmpty())
                 {
                     recyclerView.setVisibility(View.GONE);
@@ -274,17 +289,6 @@ public class laporan_jumlah_kendaraan extends AppCompatActivity {
                     total_kendaraan=0;
 
                     Toast.makeText(laporan_jumlah_kendaraan.this,"Welcome", Toast.LENGTH_SHORT).show();
-                    final DateFormat inputFormat =  new SimpleDateFormat("yyyy-MM-dd");
-                    final DateFormat outputFormat = new SimpleDateFormat("EEEE, d MMMM yyyy");
-                    Date date2 = null;
-                    try
-                    {
-                        date2 = inputFormat.parse(date);
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                    setTanggal.setText(outputFormat.format(date2));
-
                     // show by Jenis Kendaraan
                     Gson gson = new GsonBuilder()
                             .setLenient()
@@ -354,11 +358,22 @@ public class laporan_jumlah_kendaraan extends AppCompatActivity {
             @Override
             public void onResponse (Call<LD_KendaraanKeluar> call, Response<LD_KendaraanKeluar> response) {
                 mListKendaraan= response.body().getData();
+                final DateFormat inputFormat =  new SimpleDateFormat("yyyy-MM");
+                final DateFormat outputFormat = new SimpleDateFormat("MMMM yyyy");
+                Date date2 = null;
+                try
+                {
+                    date2 = inputFormat.parse(date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                setTanggal.setText(outputFormat.format(date2));
                 if(mListKendaraan.isEmpty())
                 {
                     recyclerView.setVisibility(View.GONE);
                     recyclerView2.setVisibility(View.GONE);
                     totalKendaraan.setText(total_kendaraan.toString());
+
                     Toast.makeText(laporan_jumlah_kendaraan.this,"Tidak ada kendaraan pada bulan dan tahun tersebut", Toast.LENGTH_SHORT).show();
                 }
                 else
@@ -373,17 +388,6 @@ public class laporan_jumlah_kendaraan extends AppCompatActivity {
                     totalKendaraan.setText(total_kendaraan.toString());
                     total_kendaraan=0;
                     Toast.makeText(laporan_jumlah_kendaraan.this,"Welcome", Toast.LENGTH_SHORT).show();
-                    final DateFormat inputFormat =  new SimpleDateFormat("yyyy-MM");
-                    final DateFormat outputFormat = new SimpleDateFormat("MMMM yyyy");
-                    Date date2 = null;
-                    try
-                    {
-                        date2 = inputFormat.parse(date);
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                    setTanggal.setText(outputFormat.format(date2));
-
                     // show by Jenis Kendaraan
                     Gson gson = new GsonBuilder()
                             .setLenient()
@@ -452,6 +456,18 @@ public class laporan_jumlah_kendaraan extends AppCompatActivity {
         laporanModelCall.enqueue(new Callback<LD_KendaraanKeluar>() {
             @Override
             public void onResponse (Call<LD_KendaraanKeluar> call, Response<LD_KendaraanKeluar> response) {
+
+                final DateFormat inputFormat =  new SimpleDateFormat("yyyy");
+                final DateFormat outputFormat = new SimpleDateFormat("yyyy");
+                Date date2 = null;
+                try
+                {
+                    date2 = inputFormat.parse(date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                setTanggal.setText(outputFormat.format(date2));
+
                 mListKendaraan= response.body().getData();
                 if(mListKendaraan.isEmpty())
                 {
@@ -472,17 +488,6 @@ public class laporan_jumlah_kendaraan extends AppCompatActivity {
                     totalKendaraan.setText(total_kendaraan.toString());
                     total_kendaraan=0;
                     Toast.makeText(laporan_jumlah_kendaraan.this,"Welcome", Toast.LENGTH_SHORT).show();
-                    final DateFormat inputFormat =  new SimpleDateFormat("yyyy");
-                    final DateFormat outputFormat = new SimpleDateFormat("yyyy");
-                    Date date2 = null;
-                    try
-                    {
-                        date2 = inputFormat.parse(date);
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                    setTanggal.setText(outputFormat.format(date2));
-
                     // show by Jenis Kendaraan
                     Gson gson = new GsonBuilder()
                             .setLenient()
