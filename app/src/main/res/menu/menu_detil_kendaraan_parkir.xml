@@ -12,9 +12,4 @@ tools:context=".View.Admin.KapasitasParkir.tampil_detil_kendaraan_parkir">
     app:showAsAction="collapseActionView|always"
     android:icon="@drawable/ic_search_black"
     android:theme="@android:style/Theme.Holo.Light"/>
-<item
-    android:id="@+id/action_settings"
-    android:orderInCategory="100"
-    android:title="Admin Main Menu"
-    app:showAsAction="never" />
 </menu>

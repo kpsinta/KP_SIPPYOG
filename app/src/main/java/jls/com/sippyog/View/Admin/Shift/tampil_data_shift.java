@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -44,6 +45,9 @@ public class tampil_data_shift extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tampil_data_shift);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         recyclerView = findViewById(R.id.recycler_view_shift);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -71,19 +75,12 @@ public class tampil_data_shift extends AppCompatActivity {
             }
         });
     }
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_kendaraan, menu);
-        return true;
-    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            Intent i = new Intent(tampil_data_shift.this, admin_main_menu.class);
-            startActivity(i);
-            return true;
+        if (item.getItemId() == android.R.id.home) {
+            Intent intent = new Intent(tampil_data_shift.this, admin_pengelolaan_data.class);
+            startActivity(intent);
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }

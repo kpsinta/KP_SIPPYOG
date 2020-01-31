@@ -45,6 +45,9 @@ public class tampil_data_kendaraan extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tampil_data_kendaraan);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         recyclerView = findViewById(R.id.recycler_view_kendaraan);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -73,19 +76,12 @@ public class tampil_data_kendaraan extends AppCompatActivity {
             }
         });
     }
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_kendaraan, menu);
-       return true;
-    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            Intent i = new Intent(tampil_data_kendaraan.this, admin_main_menu.class);
-            startActivity(i);
-            return true;
+        if (item.getItemId() == android.R.id.home) {
+            Intent intent = new Intent(tampil_data_kendaraan.this, admin_pengelolaan_data.class);
+            startActivity(intent);
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }

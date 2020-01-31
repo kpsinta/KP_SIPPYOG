@@ -54,6 +54,9 @@ public class admin_tampil_kapasitas_parkir extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_admin_tampil_kapasitas_parkir);
 
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+
             recyclerView = findViewById(R.id.recycler_view_tampil_kapasitas_parkir);
             layoutManager = new LinearLayoutManager(this);
             recyclerView.setLayoutManager(layoutManager);
@@ -70,22 +73,16 @@ public class admin_tampil_kapasitas_parkir extends AppCompatActivity {
             };
 
         }
-        public boolean onCreateOptionsMenu(Menu menu) {
-            getMenuInflater().inflate(R.menu.menu_kendaraan, menu);
-            return true;
-        }
-        @Override
-        public boolean onOptionsItemSelected(MenuItem item) {
 
-            int id = item.getItemId();
-
-            if (id == R.id.action_settings) {
-                Intent i = new Intent(admin_tampil_kapasitas_parkir.this, admin_main_menu.class);
-                startActivity(i);
-                return true;
-            }
-            return super.onOptionsItemSelected(item);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            Intent i = new Intent(admin_tampil_kapasitas_parkir.this, admin_main_menu.class);
+            startActivity(i);
+            finish();
         }
+        return super.onOptionsItemSelected(item);
+    }
         public void setRecycleViewKendaraan() {
             Gson gson = new GsonBuilder()
                     .setLenient()
