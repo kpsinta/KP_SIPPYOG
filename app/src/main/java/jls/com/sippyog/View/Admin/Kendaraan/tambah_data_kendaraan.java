@@ -69,7 +69,7 @@ public class tambah_data_kendaraan extends AppCompatActivity {
     private boolean validateJenisKendaraan() {
         String jenisInput = jenis_kendaraan.getText().toString();
         if (jenisInput.isEmpty()) {
-            textInputJenis.setError("Field tidak boleh kosong!");
+            textInputJenis.setError("Harus diisi!");
 
             return false;
         } else if (jenisInput.length() > 30) {
@@ -83,7 +83,7 @@ public class tambah_data_kendaraan extends AppCompatActivity {
     private boolean validateKapasitasKendaraan() {
         String kapasitasInput = kapasitas_maksimum.getText().toString();
         if (kapasitasInput.isEmpty()) {
-            textInputKapasitas.setError("Field tidak boleh kosong!");
+            textInputKapasitas.setError("Harus diisi!");
 
             return false;
         } else if (kapasitasInput.length() > 5) {
@@ -97,7 +97,7 @@ public class tambah_data_kendaraan extends AppCompatActivity {
     private boolean validateBiayaParkir() {
         String parkirInput = biaya_parkir.getText().toString();
         if (parkirInput.isEmpty()) {
-            textInputParkir.setError("Field tidak boleh kosong!");
+            textInputParkir.setError("Harus diisi!");
 
             return false;
         } else if (parkirInput.length() > 6) {
@@ -111,7 +111,7 @@ public class tambah_data_kendaraan extends AppCompatActivity {
     private boolean validateBiayaDenda() {
         String dendaInput = biaya_denda.getText().toString();
         if (dendaInput.isEmpty()) {
-            textInputDenda.setError("Field tidak boleh kosong!");
+            textInputDenda.setError("Harus diisi!");
 
             return false;
         } else if (dendaInput.length() > 6) {
@@ -154,8 +154,15 @@ public class tambah_data_kendaraan extends AppCompatActivity {
             kendaraanDAOCall.enqueue(new Callback<Model_Kendaraan>() {
                 @Override
                 public void onResponse(Call<Model_Kendaraan> call, Response<Model_Kendaraan> response) {
-                    Toast.makeText(tambah_data_kendaraan.this, "Tambah Kendaraan Sukses!", Toast.LENGTH_SHORT).show();
-                    startIntent();
+                    Toast.makeText(tambah_data_kendaraan.this, "Berhasil Tambah Kendaraan!", Toast.LENGTH_SHORT).show();
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            startIntent();
+                        }
+                    }, 700);
+                    return;
                 }
                 @Override
                 public void onFailure(Call<Model_Kendaraan> call, Throwable t) {

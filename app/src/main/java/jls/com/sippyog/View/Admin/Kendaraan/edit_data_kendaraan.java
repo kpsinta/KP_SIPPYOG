@@ -1,5 +1,7 @@
 package jls.com.sippyog.View.Admin.Kendaraan;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.design.widget.TextInputEditText;
@@ -66,8 +68,24 @@ public class edit_data_kendaraan extends AppCompatActivity {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DeleteKendaraan();
-                startIntent();
+                AlertDialog.Builder builder = new AlertDialog.Builder(edit_data_kendaraan.this);
+                builder.setTitle("Hapus Kendaraan " +jenis_kendaraan.getText().toString());
+                builder.setMessage("Apakah anda yakin untuk hapus kendaraan?");
+                builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        DeleteKendaraan();
+                    }
+                });
+                builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                dialog.setIcon(R.drawable.icon_kapasitas_3);
             }
         });
 
@@ -91,7 +109,7 @@ public class edit_data_kendaraan extends AppCompatActivity {
     private boolean validateJenisKendaraan() {
         String jenisInput = jenis_kendaraan.getText().toString();
         if (jenisInput.isEmpty()) {
-            textInputJenis.setError("Field tidak boleh kosong!");
+            textInputJenis.setError("Harus diisi!");
 
             return false;
         } else if (jenisInput.length() > 30) {
@@ -105,7 +123,7 @@ public class edit_data_kendaraan extends AppCompatActivity {
     private boolean validateKapasitasKendaraan() {
         String kapasitasInput = kapasitas_maksimum.getText().toString();
         if (kapasitasInput.isEmpty()) {
-            textInputKapasitas.setError("Field tidak boleh kosong!");
+            textInputKapasitas.setError("Harus diisi!");
 
             return false;
         } else if (kapasitasInput.length() > 5) {
@@ -119,7 +137,8 @@ public class edit_data_kendaraan extends AppCompatActivity {
     private boolean validateBiayaParkir() {
         String parkirInput = biaya_parkir.getText().toString();
         if (parkirInput.isEmpty()) {
-            textInputParkir.setError("Field tidak boleh kosong!");
+            textInputParkir.setError("Harus diisi!");
+
             return false;
         } else if (parkirInput.length() > 6) {
             textInputParkir.setError("Maksimal 6 digit!");
@@ -132,7 +151,7 @@ public class edit_data_kendaraan extends AppCompatActivity {
     private boolean validateBiayaDenda() {
         String dendaInput = biaya_denda.getText().toString();
         if (dendaInput.isEmpty()) {
-            textInputDenda.setError("Field tidak boleh kosong!");
+            textInputDenda.setError("Harus diisi!");
 
             return false;
         } else if (dendaInput.length() > 6) {
@@ -177,10 +196,16 @@ public class edit_data_kendaraan extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if (response.code() == 201) {
-                        Toast.makeText(getApplicationContext(), "Success Update", Toast.LENGTH_SHORT).show();
-                        startIntent();
+                        Toast.makeText(getApplicationContext(), "Berhasil Edit Kendaraan!", Toast.LENGTH_SHORT).show();
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                startIntent();
+                            }
+                        }, 700);
                     } else {
-                        Toast.makeText(getApplicationContext(), "Failed Update", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Gagal Edit Kendaraan!", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -208,9 +233,16 @@ public class edit_data_kendaraan extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.code() == 201) {
-                    Toast.makeText(getApplicationContext(), "Success Delete", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Berhasil Hapus Kendaraan!", Toast.LENGTH_SHORT).show();
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            startIntent();
+                        }
+                    }, 700);
                 } else {
-                    Toast.makeText(getApplicationContext(), "Failed Delete", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Gagal Hapus Kendaraan!", Toast.LENGTH_SHORT).show();
                 }
             }
             @Override

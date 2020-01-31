@@ -28,6 +28,7 @@ import jls.com.sippyog.ListData.LD_Pegawai;
 import jls.com.sippyog.Model.Model_Pegawai;
 import jls.com.sippyog.R;
 import jls.com.sippyog.View.Admin.admin_main_menu;
+import jls.com.sippyog.View.Admin.admin_pengelolaan_data;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -153,5 +154,12 @@ public class tampil_data_pegawai extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         setRecycleViewPegawai();
+    }
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(tampil_data_pegawai.this, admin_pengelolaan_data.class);
+        startActivity(intent);
+        finish();
     }
 }

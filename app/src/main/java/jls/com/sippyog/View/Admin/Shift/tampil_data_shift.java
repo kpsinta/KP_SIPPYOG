@@ -25,6 +25,7 @@ import jls.com.sippyog.ListData.LD_Shift;
 import jls.com.sippyog.Model.Model_Shift;
 import jls.com.sippyog.R;
 import jls.com.sippyog.View.Admin.admin_main_menu;
+import jls.com.sippyog.View.Admin.admin_pengelolaan_data;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -119,5 +120,12 @@ public class tampil_data_shift extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         setRecycleViewShift();
+    }
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(tampil_data_shift.this, admin_pengelolaan_data.class);
+        startActivity(intent);
+        finish();
     }
 }

@@ -25,6 +25,7 @@ import jls.com.sippyog.ListData.LD_Kendaraan;
 import jls.com.sippyog.Model.Model_Kendaraan;
 import jls.com.sippyog.R;
 import jls.com.sippyog.View.Admin.admin_main_menu;
+import jls.com.sippyog.View.Admin.admin_pengelolaan_data;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -109,7 +110,7 @@ public class tampil_data_kendaraan extends AppCompatActivity {
                 adapterKendaraan = new Adapter_Kendaraan(mListKendaraan,tampil_data_kendaraan.this,listener);
                 recyclerView.setAdapter(adapterKendaraan);
                 adapterKendaraan.notifyDataSetChanged();
-                Toast.makeText(tampil_data_kendaraan.this,"Welcome", Toast.LENGTH_SHORT).show();
+                Toast.makeText(tampil_data_kendaraan.this,"Berhasil Memuat Data Kendaraan!", Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onFailure(Call<LD_Kendaraan> call, Throwable t) {
@@ -121,6 +122,13 @@ public class tampil_data_kendaraan extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         setRecycleViewKendaraan();
+    }
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(tampil_data_kendaraan.this, admin_pengelolaan_data.class);
+        startActivity(intent);
+        finish();
     }
 }
 
