@@ -76,7 +76,7 @@ public class tampil_data_kendaraan_keluar extends AppCompatActivity {
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName())
         );
-        searchView.setQueryHint("Search Kendaraan Keluar");
+        searchView.setQueryHint("Cari Kendaraan Keluar");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(final String query) {
@@ -124,7 +124,7 @@ public class tampil_data_kendaraan_keluar extends AppCompatActivity {
                 mListKendaraanKeluar= response.body().getData();
                 if(mListKendaraanKeluar.isEmpty())
                 {
-                    Toast.makeText(tampil_data_kendaraan_keluar.this,"Belum ada transaksi hari ini", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(tampil_data_kendaraan_keluar.this,"Belum Ada Transaksi Hari Ini!", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
@@ -132,7 +132,7 @@ public class tampil_data_kendaraan_keluar extends AppCompatActivity {
                     adapterKendaraanKeluar = new Adapter_KendaraanKeluar(mListKendaraanKeluar,tampil_data_kendaraan_keluar.this,listener);
                     recyclerView.setAdapter(adapterKendaraanKeluar);
                     adapterKendaraanKeluar.notifyDataSetChanged();
-                    Toast.makeText(tampil_data_kendaraan_keluar.this,"Welcome", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(tampil_data_kendaraan_keluar.this,"Berhasil Memuat Transaksi Hari Ini!", Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
@@ -145,5 +145,12 @@ public class tampil_data_kendaraan_keluar extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         setRecycleViewKendaraanKeluar();
+    }
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(tampil_data_kendaraan_keluar.this, pegawai_main_menu.class);
+        startActivity(intent);
+        finish();
     }
 }

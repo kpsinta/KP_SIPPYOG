@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -88,6 +89,7 @@ public class tambah_data_kendaraan_keluar extends AppCompatActivity {
         biaya_parkir = findViewById(R.id.biaya_parkir);
         kode_tiket = findViewById(R.id.kode_tiket);
         uang_pembayaran = findViewById(R.id.text_input_uangPembayaran);
+        statusTiket = "Ada";
         Thread t = new Thread() {
             @Override
             public void run() {
@@ -374,6 +376,7 @@ public class tambah_data_kendaraan_keluar extends AppCompatActivity {
                     ApiClient_KendaraanKeluar apiClientKendaraanKeluar= retrofit.create(ApiClient_KendaraanKeluar.class);
 
                     Log.d("Status Tiket : ",rbStatusTiket.getText().toString());
+                    Log.d("Status Tiket Test : ",statusTiket);
                     Log.d("Selected ID Tiket : ",selectedIDTiket.toString());
                     Log.d("Biaya Parkir : ",biaya_parkir.getText().toString());
                     Log.d("Waktu Transaksi : ",outputDateStr);
@@ -407,7 +410,14 @@ public class tambah_data_kendaraan_keluar extends AppCompatActivity {
                                         public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                                             if (response.code() == 201) {
                                                 Toast.makeText(tambah_data_kendaraan_keluar.this, "Tambah Kendaraan Keluar Sukses!", Toast.LENGTH_SHORT).show();
-                                                startIntent();
+                                                final Handler handler = new Handler();
+                                                handler.postDelayed(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        startIntent();
+                                                    }
+                                                }, 700);
+                                                return;
                                             }
                                             else {
                                                 Toast.makeText(getApplicationContext(),response.message(), Toast.LENGTH_SHORT).show();

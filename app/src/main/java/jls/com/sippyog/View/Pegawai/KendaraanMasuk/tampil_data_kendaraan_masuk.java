@@ -77,7 +77,7 @@ public class tampil_data_kendaraan_masuk extends AppCompatActivity {
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName())
         );
-        searchView.setQueryHint("Search Kendaraan Masuk");
+        searchView.setQueryHint("Cari Kendaraan Masuk");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(final String query) {
@@ -127,11 +127,18 @@ public class tampil_data_kendaraan_masuk extends AppCompatActivity {
             @Override
             public void onResponse (Call<LD_KendaraanMasuk> call, Response<LD_KendaraanMasuk> response) {
                 mListKendaraanMasuk= response.body().getData();
-                Log.i(tampil_data_kendaraan_masuk.class.getSimpleName(), response.body().toString());
-                adapterKendaraanMasuk = new Adapter_KendaraanMasuk(mListKendaraanMasuk,tampil_data_kendaraan_masuk.this,listener);
-                recyclerView.setAdapter(adapterKendaraanMasuk);
-                adapterKendaraanMasuk.notifyDataSetChanged();
-                Toast.makeText(tampil_data_kendaraan_masuk.this,"Welcome", Toast.LENGTH_SHORT).show();
+                if(mListKendaraanMasuk.isEmpty())
+                {
+                    Toast.makeText(tampil_data_kendaraan_masuk.this,"Belum ada Kendaraan Terparkir!", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Log.i(tampil_data_kendaraan_masuk.class.getSimpleName(), response.body().toString());
+                    adapterKendaraanMasuk = new Adapter_KendaraanMasuk(mListKendaraanMasuk,tampil_data_kendaraan_masuk.this,listener);
+                    recyclerView.setAdapter(adapterKendaraanMasuk);
+                    adapterKendaraanMasuk.notifyDataSetChanged();
+                    Toast.makeText(tampil_data_kendaraan_masuk.this,"Berhasil Memuat Kendaraan Terparkir!", Toast.LENGTH_SHORT).show();
+                }
             }
             @Override
             public void onFailure(Call<LD_KendaraanMasuk> call, Throwable t) {
@@ -143,5 +150,12 @@ public class tampil_data_kendaraan_masuk extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         setRecycleViewKendaraanMasuk();
+    }
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(tampil_data_kendaraan_masuk.this, pegawai_main_menu.class);
+        startActivity(intent);
+        finish();
     }
 }

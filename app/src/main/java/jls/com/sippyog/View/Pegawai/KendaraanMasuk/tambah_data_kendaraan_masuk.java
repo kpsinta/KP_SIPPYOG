@@ -3,6 +3,7 @@ package jls.com.sippyog.View.Pegawai.KendaraanMasuk;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -286,7 +287,14 @@ public class tambah_data_kendaraan_masuk extends AppCompatActivity {
                                         public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                                             if (response.code() == 201) {
                                                 Toast.makeText(tambah_data_kendaraan_masuk.this, "Tambah Kendaraan Masuk Sukses!", Toast.LENGTH_SHORT).show();
-                                                startIntent();
+                                                final Handler handler = new Handler();
+                                                handler.postDelayed(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        startIntent();
+                                                    }
+                                                }, 700);
+                                                return;
                                             }
                                             else {
                                                 Toast.makeText(getApplicationContext(),response.message(), Toast.LENGTH_SHORT).show();
