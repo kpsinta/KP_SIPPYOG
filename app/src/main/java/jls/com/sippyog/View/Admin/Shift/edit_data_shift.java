@@ -1,7 +1,11 @@
 package jls.com.sippyog.View.Admin.Shift;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,16 +35,14 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class edit_data_shift extends AppCompatActivity implements TimePickerFragment.TimePickerListener {
-
+    TextInputLayout textInputNama;
     TextInputEditText nama_shift;
     TextView showJamMasuk, showJamKeluar;
     ImageView addJamMasuk, addJamKeluar;
     Button btnEdit, btnBatal, btnDelete;
     String namaShift, jamMasuk, jamKeluar;
-
-    Calendar currentTime;
-    int jam, menit,id=0;
-    Integer id_shift, Jam, Menit;
+    int id=0;
+    Integer id_shift;
     Intent i;
 
     @Override
@@ -48,6 +50,7 @@ public class edit_data_shift extends AppCompatActivity implements TimePickerFrag
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_data_shift);
 
+        textInputNama = findViewById(R.id.text_layout_namaShift);
         nama_shift = findViewById(R.id.text_input_namaShift);
         showJamMasuk = findViewById(R.id.textView_tampilJamMasuk);
         showJamKeluar = findViewById(R.id.textView_tampilJamKeluar);
@@ -59,6 +62,14 @@ public class edit_data_shift extends AppCompatActivity implements TimePickerFrag
             @Override
             public void onClick(View v) {
                 UpdateShift();
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        startIntent();
+                    }
+                }, 700);
+                return;
             }
         });
         btnBatal = findViewById(R.id.btnBatal);
@@ -73,8 +84,43 @@ public class edit_data_shift extends AppCompatActivity implements TimePickerFrag
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DeleteShift();
-                startIntent();
+                // Build an AlertDialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(edit_data_shift.this);
+
+                // Set a title for alert dialog
+                builder.setTitle("Hapus Shift " +nama_shift.getText().toString());
+
+                // Ask the final question
+                builder.setMessage("Apakah anda yakin untuk hapus shift?");
+                // Set the alert dialog yes button click listener
+                builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        DeleteShift();
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                startIntent();
+                            }
+                        }, 700);
+                        return;
+                    }
+                });
+                // Set the alert dialog no button click listener
+                builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do something when No button clicked
+                        dialog.cancel();
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                // Display the alert dialog on interface
+                dialog.show();
+                dialog.setIcon(R.drawable.icon_kapasitas_3);
+
             }
         });
 
@@ -132,7 +178,20 @@ public class edit_data_shift extends AppCompatActivity implements TimePickerFrag
         Intent intent= new Intent(getApplicationContext(), tampil_data_shift.class);
         startActivity(intent);
     }
+    private boolean validateNama() {
+        String namaShift = nama_shift.getText().toString();
+        if (namaShift.isEmpty()) {
+            textInputNama.setError("Harus diisi!");
 
+            return false;
+        } else if (namaShift.length() > 50) {
+            textInputNama.setError("Maksimal 50 karakter!");
+            return false;
+        } else {
+            textInputNama.setError(null);
+            return true;
+        }
+    }
     private void UpdateShift()
     {
         namaShift = nama_shift.getText().toString();
@@ -148,10 +207,16 @@ public class edit_data_shift extends AppCompatActivity implements TimePickerFrag
         } catch (ParseException e) {
         }
 
-        if (namaShift.isEmpty()) {
-            Toast.makeText(this, "Semua Field harus diisi", Toast.LENGTH_SHORT).show();
+        if (!validateNama()) {
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    textInputNama.setError(null);
+                }
+            }, 2000);
+            return;
         }
-
         else
         {
             Retrofit.Builder builder=new Retrofit
@@ -167,10 +232,9 @@ public class edit_data_shift extends AppCompatActivity implements TimePickerFrag
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if (response.code() == 201) {
-                        Toast.makeText(getApplicationContext(), "Success Update", Toast.LENGTH_SHORT).show();
-                        startIntent();
+                        Toast.makeText(getApplicationContext(), "Berhasil Update Shift!", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(getApplicationContext(), "Failed Update", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Gagal Update Shift!", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -198,9 +262,9 @@ public class edit_data_shift extends AppCompatActivity implements TimePickerFrag
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.code() == 201) {
-                    Toast.makeText(getApplicationContext(), "Success Delete", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Berhasil Hapus Shift!", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Failed Delete", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Gagal Hapus Shift!", Toast.LENGTH_SHORT).show();
                 }
             }
             @Override

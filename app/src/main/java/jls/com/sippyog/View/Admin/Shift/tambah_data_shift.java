@@ -2,7 +2,9 @@ package jls.com.sippyog.View.Admin.Shift;
 
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,7 +36,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class tambah_data_shift extends AppCompatActivity implements TimePickerFragment.TimePickerListener {
-
+    TextInputLayout textInputNama;
     TextInputEditText nama_shift;
     TextView showJamMasuk, showJamKeluar;
     ImageView addJamMasuk, addJamKeluar;
@@ -42,12 +44,12 @@ public class tambah_data_shift extends AppCompatActivity implements TimePickerFr
     String namaShift,jamKeluar, jamMasuk;
     Calendar currentTime;
     int jam, menit,id=0;
-    Integer id_shift;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tambah_data_shift);
 
+        textInputNama = findViewById(R.id.text_layout_namaShift);
         nama_shift = findViewById(R.id.text_input_namaShift);
         showJamMasuk = findViewById(R.id.textView_tampilJamMasuk);
         showJamKeluar = findViewById(R.id.textView_tampilJamKeluar);
@@ -59,6 +61,14 @@ public class tambah_data_shift extends AppCompatActivity implements TimePickerFr
             @Override
             public void onClick(View v) {
                 onClickRegister();
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        startIntent();
+                    }
+                }, 700);
+                return;
             }
         });
         btnBatal = findViewById(R.id.btnBatal);
@@ -111,7 +121,20 @@ public class tambah_data_shift extends AppCompatActivity implements TimePickerFr
         Intent intent = new Intent(getApplicationContext(), tampil_data_shift.class);
         startActivity(intent);
     }
+    private boolean validateNama() {
+        String namaShift = nama_shift.getText().toString();
+        if (namaShift.isEmpty()) {
+            textInputNama.setError("Harus diisi!");
 
+            return false;
+        } else if (namaShift.length() > 50) {
+            textInputNama.setError("Maksimal 50 karakter!");
+            return false;
+        } else {
+            textInputNama.setError(null);
+            return true;
+        }
+    }
     private void onClickRegister() {
         namaShift = nama_shift.getText().toString();
         SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
@@ -125,10 +148,18 @@ public class tambah_data_shift extends AppCompatActivity implements TimePickerFr
             Log.d("Jam Keluar", jamKeluar);
         } catch (ParseException e) {
         }
-        if (namaShift.isEmpty())
-        {
-            Toast.makeText(this,"Semua Field harus diisi", Toast.LENGTH_SHORT).show();
-        } else {
+
+        if (!validateNama()) {
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    textInputNama.setError(null);
+                }
+            }, 2000);
+            return;
+        }
+        else {
             Gson gson = new GsonBuilder()
                     .setLenient()
                     .create();
@@ -142,8 +173,7 @@ public class tambah_data_shift extends AppCompatActivity implements TimePickerFr
             shiftDAOCall.enqueue(new Callback<Model_Shift>() {
                 @Override
                 public void onResponse(Call<Model_Shift> call, Response<Model_Shift> response) {
-                    Toast.makeText(tambah_data_shift.this, "Tambah Shift Sukses!", Toast.LENGTH_SHORT).show();
-                    startIntent();
+                    Toast.makeText(tambah_data_shift.this, "Berhasil Tambah Shift!", Toast.LENGTH_SHORT).show();
                 }
                 @Override
                 public void onFailure(Call<Model_Shift> call, Throwable t) {

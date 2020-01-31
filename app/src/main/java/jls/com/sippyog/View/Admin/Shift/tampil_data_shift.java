@@ -107,7 +107,7 @@ public class tampil_data_shift extends AppCompatActivity {
                 adapterShift = new Adapter_Shift(mListShift,tampil_data_shift.this,listener);
                 recyclerView.setAdapter(adapterShift);
                 adapterShift.notifyDataSetChanged();
-                Toast.makeText(tampil_data_shift.this,"Welcome", Toast.LENGTH_SHORT).show();
+                Toast.makeText(tampil_data_shift.this,"Berhasil Memuat Data Shift!", Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onFailure(Call<LD_Shift> call, Throwable t) {
