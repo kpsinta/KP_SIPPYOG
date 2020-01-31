@@ -61,14 +61,6 @@ public class tambah_data_shift extends AppCompatActivity implements TimePickerFr
             @Override
             public void onClick(View v) {
                 onClickRegister();
-                final Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        startIntent();
-                    }
-                }, 700);
-                return;
             }
         });
         btnBatal = findViewById(R.id.btnBatal);
@@ -174,6 +166,14 @@ public class tambah_data_shift extends AppCompatActivity implements TimePickerFr
                 @Override
                 public void onResponse(Call<Model_Shift> call, Response<Model_Shift> response) {
                     Toast.makeText(tambah_data_shift.this, "Berhasil Tambah Shift!", Toast.LENGTH_SHORT).show();
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            startIntent();
+                        }
+                    }, 700);
+                    return;
                 }
                 @Override
                 public void onFailure(Call<Model_Shift> call, Throwable t) {

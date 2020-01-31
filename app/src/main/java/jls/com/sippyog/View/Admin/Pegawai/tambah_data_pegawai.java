@@ -71,7 +71,7 @@ public class tambah_data_pegawai extends AppCompatActivity {
     private boolean validateNama() {
         String namaInput = nama_pegawai.getText().toString();
         if (namaInput.isEmpty()) {
-            textInputNama.setError("Field tidak boleh kosong!");
+            textInputNama.setError("Harus diisi!!");
 
             return false;
         } else if (namaInput.length() > 100) {
@@ -85,7 +85,7 @@ public class tambah_data_pegawai extends AppCompatActivity {
     private boolean validateNIP() {
         String nipInput = nip_pegawai.getText().toString();
         if (nipInput.isEmpty()) {
-            textInputNIP.setError("Field tidak boleh kosong!");
+            textInputNIP.setError("Harus diisi!!");
 
             return false;
         } else if (nipInput.length() > 30) {
@@ -99,7 +99,7 @@ public class tambah_data_pegawai extends AppCompatActivity {
     private boolean validateUsername() {
         String usernameInput = username_pegawai.getText().toString();
         if (usernameInput.isEmpty()) {
-            textInputUsername.setError("Field tidak boleh kosong!");
+            textInputUsername.setError("Harus diisi!!");
 
             return false;
         } else if (usernameInput.length() > 15 || usernameInput.length() < 6) {
@@ -113,7 +113,7 @@ public class tambah_data_pegawai extends AppCompatActivity {
     private boolean validatePassword() {
         String passwordInput = password_pegawai.getText().toString();
         if (passwordInput.isEmpty()) {
-            textInputPassword.setError("Field tidak boleh kosong!");
+            textInputPassword.setError("Harus diisi!!");
             return false;
         } else if (passwordInput.length() > 15 || passwordInput.length() < 6) {
             textInputPassword.setError("Password terdiri dari 6-15 karakter!");
@@ -155,8 +155,15 @@ public class tambah_data_pegawai extends AppCompatActivity {
             pegawaiDAOCall.enqueue(new Callback<Model_Pegawai>() {
                 @Override
                 public void onResponse(Call<Model_Pegawai> call, Response<Model_Pegawai> response) {
-                    Toast.makeText(tambah_data_pegawai.this, "Tambah Pegawai Sukses!", Toast.LENGTH_SHORT).show();
-                    startIntent();
+                    Toast.makeText(tambah_data_pegawai.this, "Berhasil Tambah Pegawai!", Toast.LENGTH_SHORT).show();
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            startIntent();
+                        }
+                    }, 700);
+                    return;
                 }
                 @Override
                 public void onFailure(Call<Model_Pegawai> call, Throwable t) {

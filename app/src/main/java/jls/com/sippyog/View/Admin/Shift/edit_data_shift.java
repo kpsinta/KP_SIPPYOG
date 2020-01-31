@@ -62,14 +62,6 @@ public class edit_data_shift extends AppCompatActivity implements TimePickerFrag
             @Override
             public void onClick(View v) {
                 UpdateShift();
-                final Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        startIntent();
-                    }
-                }, 700);
-                return;
             }
         });
         btnBatal = findViewById(R.id.btnBatal);
@@ -97,14 +89,6 @@ public class edit_data_shift extends AppCompatActivity implements TimePickerFrag
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         DeleteShift();
-                        final Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                startIntent();
-                            }
-                        }, 700);
-                        return;
                     }
                 });
                 // Set the alert dialog no button click listener
@@ -232,9 +216,17 @@ public class edit_data_shift extends AppCompatActivity implements TimePickerFrag
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if (response.code() == 201) {
-                        Toast.makeText(getApplicationContext(), "Berhasil Update Shift!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Berhasil Edit Shift!", Toast.LENGTH_SHORT).show();
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                startIntent();
+                            }
+                        }, 700);
+                        return;
                     } else {
-                        Toast.makeText(getApplicationContext(), "Gagal Update Shift!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Gagal Edit Shift!", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -263,6 +255,14 @@ public class edit_data_shift extends AppCompatActivity implements TimePickerFrag
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.code() == 201) {
                     Toast.makeText(getApplicationContext(), "Berhasil Hapus Shift!", Toast.LENGTH_SHORT).show();
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            startIntent();
+                        }
+                    }, 700);
+                    return;
                 } else {
                     Toast.makeText(getApplicationContext(), "Gagal Hapus Shift!", Toast.LENGTH_SHORT).show();
                 }

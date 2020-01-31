@@ -1,5 +1,7 @@
 package jls.com.sippyog.View.Admin.Pegawai;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.design.widget.TextInputEditText;
@@ -88,7 +90,6 @@ public class edit_data_pegawai extends AppCompatActivity {
                 {
                     UpdatePegawai();
                 }
-
             }
         });
         btnBatal = findViewById(R.id.btnBatal);
@@ -103,8 +104,35 @@ public class edit_data_pegawai extends AppCompatActivity {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DeletePegawai();
-                startIntent();
+
+                // Build an AlertDialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(edit_data_pegawai.this);
+
+                // Set a title for alert dialog
+                builder.setTitle("Hapus Pegawai " +nama_pegawai.getText().toString());
+
+                // Ask the final question
+                builder.setMessage("Apakah anda yakin untuk hapus pegawai?");
+                // Set the alert dialog yes button click listener
+                builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        DeletePegawai();
+                    }
+                });
+                // Set the alert dialog no button click listener
+                builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do something when No button clicked
+                        dialog.cancel();
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                // Display the alert dialog on interface
+                dialog.show();
+                dialog.setIcon(R.drawable.icon_kapasitas_3);
             }
         });
 
@@ -123,7 +151,7 @@ public class edit_data_pegawai extends AppCompatActivity {
     private boolean validateNama() {
         String namaInput = nama_pegawai.getText().toString();
         if (namaInput.isEmpty()) {
-            textInputNama.setError("Field tidak boleh kosong!");
+            textInputNama.setError("Harus diisi!!");
 
             return false;
         } else if (namaInput.length() > 100) {
@@ -137,7 +165,7 @@ public class edit_data_pegawai extends AppCompatActivity {
     private boolean validateNIP() {
         String nipInput = nip_pegawai.getText().toString();
         if (nipInput.isEmpty()) {
-            textInputNIP.setError("Field tidak boleh kosong!");
+            textInputNIP.setError("Harus diisi!!");
 
             return false;
         } else if (nipInput.length() > 30) {
@@ -151,7 +179,7 @@ public class edit_data_pegawai extends AppCompatActivity {
     private boolean validateUsername() {
         String usernameInput = username_pegawai.getText().toString();
         if (usernameInput.isEmpty()) {
-            textInputUsername.setError("Field tidak boleh kosong!");
+            textInputUsername.setError("Harus diisi!!");
 
             return false;
         } else if (usernameInput.length() > 15 || usernameInput.length() < 6) {
@@ -165,7 +193,7 @@ public class edit_data_pegawai extends AppCompatActivity {
     private boolean validatePasswordLama() {
         String passwordInput = password_pegawai_lama.getText().toString();
         if (passwordInput.isEmpty()) {
-            til_password_pegawai_lama.setError("Field tidak boleh kosong!");
+            til_password_pegawai_lama.setError("Harus diisi!");
             return false;
         } else if (passwordInput.length() > 15 || passwordInput.length() < 6) {
             til_password_pegawai_lama.setError("Password terdiri dari 6-15 karakter!");
@@ -178,7 +206,7 @@ public class edit_data_pegawai extends AppCompatActivity {
     private boolean validatePasswordBaru() {
         String passwordInput = password_pegawai_baru.getText().toString();
         if (passwordInput.isEmpty()) {
-            til_password_pegawai_baru.setError("Field tidak boleh kosong!");
+            til_password_pegawai_baru.setError("Harus diisi!");
             return false;
         } else if (passwordInput.length() > 15 || passwordInput.length() < 6) {
             til_password_pegawai_baru.setError("Password terdiri dari 6-15 karakter!");
@@ -237,8 +265,6 @@ public class edit_data_pegawai extends AppCompatActivity {
         }
     }
 
-
-
     private void UpdatePegawai()
     {
         namaPegawai = nama_pegawai.getText().toString();
@@ -272,9 +298,16 @@ public class edit_data_pegawai extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if (response.code() == 201) {
-                        Toast.makeText(getApplicationContext(), "Success Update", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Berhasil Edit Pegawai!", Toast.LENGTH_SHORT).show();
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                startIntent();
+                            }
+                        }, 700);
                     } else {
-                        Toast.makeText(getApplicationContext(), "Failed Update", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Gagal Edit Pegawai!", Toast.LENGTH_SHORT).show();
                     }
                 }
                 @Override
@@ -282,7 +315,6 @@ public class edit_data_pegawai extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                 }
             });
-            startIntent();
         }
     }
     private void DeletePegawai() {
@@ -301,9 +333,17 @@ public class edit_data_pegawai extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.code() == 201) {
-                    Toast.makeText(getApplicationContext(), "Success Delete", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Berhasil Hapus Pegawai!", Toast.LENGTH_SHORT).show();
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            startIntent();
+                        }
+                    }, 700);
+                    return;
                 } else {
-                    Toast.makeText(getApplicationContext(), "Failed Delete", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Gagal Hapus Pegawai!", Toast.LENGTH_SHORT).show();
                 }
             }
             @Override

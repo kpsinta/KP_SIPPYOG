@@ -88,7 +88,7 @@ public class tampil_data_pegawai extends AppCompatActivity {
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName())
         );
-        searchView.setQueryHint("Search Pegawai");
+        searchView.setQueryHint("Cari Pegawai");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(final String query) {
@@ -141,7 +141,7 @@ public class tampil_data_pegawai extends AppCompatActivity {
                 adapterPegawai = new Adapter_Pegawai(mListPegawai,tampil_data_pegawai.this,listener);
                 recyclerView.setAdapter(adapterPegawai);
                 adapterPegawai.notifyDataSetChanged();
-                Toast.makeText(tampil_data_pegawai.this,"Welcome", Toast.LENGTH_SHORT).show();
+                Toast.makeText(tampil_data_pegawai.this,"Berhasil Memuat Data Pegawai!", Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onFailure(Call<LD_Pegawai> call, Throwable t) {
