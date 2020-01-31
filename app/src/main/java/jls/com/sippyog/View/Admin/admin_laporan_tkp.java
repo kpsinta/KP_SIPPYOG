@@ -36,4 +36,10 @@ public class admin_laporan_tkp extends AppCompatActivity {
         i.putExtra("WAKTU_LAPORAN",waktu_laporan);
         startActivity(i);
     }
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(admin_laporan_tkp.this, admin_main_menu.class);
+        startActivity(intent);
+        finish();
+    }
 }

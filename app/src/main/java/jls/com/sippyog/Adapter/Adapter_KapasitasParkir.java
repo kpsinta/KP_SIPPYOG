@@ -70,7 +70,7 @@ public class Adapter_KapasitasParkir extends RecyclerView.Adapter<Adapter_Kapasi
         Retrofit retrofit=builder.build();
         ApiClient_KendaraanMasuk apiclientKendaraanMasuk =retrofit.create(ApiClient_KendaraanMasuk.class);
         Call<LD_KendaraanMasuk> kendaraanMasukModelCall = apiclientKendaraanMasuk.showByKendaraanWhereStatusSedangParkir(knd.getId_kendaraan());
-        Toast.makeText(context, "ID : " +knd.getId_kendaraan(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, "ID : " +knd.getId_kendaraan(), Toast.LENGTH_SHORT).show();
         kendaraanMasukModelCall.enqueue(new Callback<LD_KendaraanMasuk>() {
             @Override
             public void onResponse (Call<LD_KendaraanMasuk> call, Response<LD_KendaraanMasuk> response) {
@@ -81,7 +81,7 @@ public class Adapter_KapasitasParkir extends RecyclerView.Adapter<Adapter_Kapasi
                 myViewHolder.terisi.setText(terisi.toString());
                 Integer sisa_slot=knd.getKapasitas_maksimum()-terisi;
                 myViewHolder.sisa_slot.setText(sisa_slot.toString());
-                Toast.makeText(context, "Load Data Kendaraan Sukses!", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "Load Data Kendaraan Sukses!", Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onFailure(Call<LD_KendaraanMasuk> call, Throwable t) {

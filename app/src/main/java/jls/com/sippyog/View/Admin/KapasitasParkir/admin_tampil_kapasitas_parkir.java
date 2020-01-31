@@ -107,7 +107,7 @@ public class admin_tampil_kapasitas_parkir extends AppCompatActivity {
                     adapterKapasitasParkir = new Adapter_KapasitasParkir(mListKendaraan,admin_tampil_kapasitas_parkir.this,listener);
                     recyclerView.setAdapter(adapterKapasitasParkir);
                     adapterKapasitasParkir.notifyDataSetChanged();
-                    Toast.makeText(admin_tampil_kapasitas_parkir.this,"Welcome", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(admin_tampil_kapasitas_parkir.this,"Berhasil Memuat Kapasitas Parkir!", Toast.LENGTH_SHORT).show();
                 }
                 @Override
                 public void onFailure(Call<LD_Kendaraan> call, Throwable t) {

@@ -32,4 +32,11 @@ public class admin_pengelolaan_data extends AppCompatActivity {
         Intent i = new Intent(admin_pengelolaan_data.this, tampil_data_pegawai.class);
         startActivity(i);
     }
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(admin_pengelolaan_data.this, admin_main_menu.class);
+        startActivity(intent);
+        finish();
+    }
 }
