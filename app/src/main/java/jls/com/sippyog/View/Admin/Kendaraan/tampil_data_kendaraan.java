@@ -102,6 +102,9 @@ public class tampil_data_kendaraan extends AppCompatActivity {
             @Override
             public void onResponse (Call<LD_Kendaraan> call, Response<LD_Kendaraan> response) {
                 mListKendaraan= response.body().getData();
+                adapterKendaraan = new Adapter_Kendaraan(mListKendaraan,tampil_data_kendaraan.this,listener);
+                recyclerView.setAdapter(adapterKendaraan);
+                adapterKendaraan.notifyDataSetChanged();
                 if(mListKendaraan.isEmpty())
                 {
 
@@ -110,9 +113,6 @@ public class tampil_data_kendaraan extends AppCompatActivity {
                 else
                 {
                     Log.i(tampil_data_kendaraan.class.getSimpleName(), response.body().toString());
-                    adapterKendaraan = new Adapter_Kendaraan(mListKendaraan,tampil_data_kendaraan.this,listener);
-                    recyclerView.setAdapter(adapterKendaraan);
-                    adapterKendaraan.notifyDataSetChanged();
                     Toast.makeText(tampil_data_kendaraan.this,"Berhasil Memuat Data Kendaraan!", Toast.LENGTH_SHORT).show();
                 }
             }

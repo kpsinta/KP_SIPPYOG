@@ -138,6 +138,9 @@ public class tampil_data_pegawai extends AppCompatActivity {
             @Override
             public void onResponse (Call<LD_Pegawai> call, Response<LD_Pegawai> response) {
                 mListPegawai= response.body().getData();
+                adapterPegawai = new Adapter_Pegawai(mListPegawai,tampil_data_pegawai.this,listener);
+                recyclerView.setAdapter(adapterPegawai);
+                adapterPegawai.notifyDataSetChanged();
                 if(mListPegawai.isEmpty())
                 {
                     Toast.makeText(tampil_data_pegawai.this,"Tidak Ada Data Pegawai!", Toast.LENGTH_SHORT).show();
@@ -145,9 +148,6 @@ public class tampil_data_pegawai extends AppCompatActivity {
                 else
                 {
                     Log.i(tampil_data_pegawai.class.getSimpleName(), response.body().toString());
-                    adapterPegawai = new Adapter_Pegawai(mListPegawai,tampil_data_pegawai.this,listener);
-                    recyclerView.setAdapter(adapterPegawai);
-                    adapterPegawai.notifyDataSetChanged();
                     Toast.makeText(tampil_data_pegawai.this,"Berhasil Memuat Data Pegawai!", Toast.LENGTH_SHORT).show();
                 }
 

@@ -101,6 +101,9 @@ public class tampil_data_shift extends AppCompatActivity {
             @Override
             public void onResponse (Call<LD_Shift> call, Response<LD_Shift> response) {
                 mListShift= response.body().getData();
+                adapterShift = new Adapter_Shift(mListShift,tampil_data_shift.this,listener);
+                recyclerView.setAdapter(adapterShift);
+                adapterShift.notifyDataSetChanged();
                 if(mListShift.isEmpty())
                 {
                     Toast.makeText(tampil_data_shift.this,"Tidak Ada Data Shift!", Toast.LENGTH_SHORT).show();
@@ -108,9 +111,6 @@ public class tampil_data_shift extends AppCompatActivity {
                 else
                 {
                     Log.i(tampil_data_shift.class.getSimpleName(), response.body().toString());
-                    adapterShift = new Adapter_Shift(mListShift,tampil_data_shift.this,listener);
-                    recyclerView.setAdapter(adapterShift);
-                    adapterShift.notifyDataSetChanged();
                     Toast.makeText(tampil_data_shift.this,"Berhasil Memuat Data Shift!", Toast.LENGTH_SHORT).show();
                 }
             }

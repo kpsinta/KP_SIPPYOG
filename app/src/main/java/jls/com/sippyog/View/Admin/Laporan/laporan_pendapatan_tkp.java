@@ -295,6 +295,9 @@ public class laporan_pendapatan_tkp extends AppCompatActivity {
             @Override
             public void onResponse (Call<LD_KendaraanKeluar> call, Response<LD_KendaraanKeluar> response) {
                 mListKendaraan= response.body().getData();
+                adapterListKendaraan = new Adapter_DetilPendapatanTKP(mListKendaraan, laporan_pendapatan_tkp.this,listener);
+                recyclerView.setAdapter(adapterListKendaraan);
+                adapterListKendaraan.notifyDataSetChanged();
                 if(mListKendaraan.isEmpty())
                 {
                     recyclerView.setVisibility(View.GONE);
@@ -319,9 +322,6 @@ public class laporan_pendapatan_tkp extends AppCompatActivity {
                     recyclerView.setVisibility(View.VISIBLE);
                     recyclerView2.setVisibility(View.VISIBLE);
                     Log.i(laporan_pendapatan_tkp.class.getSimpleName(), response.body().toString());
-                    adapterListKendaraan = new Adapter_DetilPendapatanTKP(mListKendaraan, laporan_pendapatan_tkp.this,listener);
-                    recyclerView.setAdapter(adapterListKendaraan);
-                    adapterListKendaraan.notifyDataSetChanged();
                     for (int i = 0; i < mListKendaraan.size(); i++) {
                         pendapatan = pendapatan+mListKendaraan.get(i).getTotal_transaksi();
                         Log.d("Total Transaksi : ",mListKendaraan.get(i).getTotal_transaksi().toString());
@@ -413,7 +413,9 @@ public class laporan_pendapatan_tkp extends AppCompatActivity {
             @Override
             public void onResponse (Call<LD_KendaraanKeluar> call, Response<LD_KendaraanKeluar> response) {
                 mListKendaraan= response.body().getData();
-                Toast.makeText(laporan_pendapatan_tkp.this,"Welcome", Toast.LENGTH_SHORT).show();
+                adapterListKendaraan = new Adapter_DetilPendapatanTKP(mListKendaraan, laporan_pendapatan_tkp.this,listener);
+                recyclerView.setAdapter(adapterListKendaraan);
+                adapterListKendaraan.notifyDataSetChanged();
                 final DateFormat inputFormat =  new SimpleDateFormat("yyyy-MM");
                 final DateFormat outputFormat = new SimpleDateFormat("MMMM yyyy");
                 Date date2 = null;
@@ -438,9 +440,6 @@ public class laporan_pendapatan_tkp extends AppCompatActivity {
                     recyclerView.setVisibility(View.VISIBLE);
                     recyclerView2.setVisibility(View.VISIBLE);
                     Log.i(laporan_pendapatan_tkp.class.getSimpleName(), response.body().toString());
-                    adapterListKendaraan = new Adapter_DetilPendapatanTKP(mListKendaraan, laporan_pendapatan_tkp.this,listener);
-                    recyclerView.setAdapter(adapterListKendaraan);
-                    adapterListKendaraan.notifyDataSetChanged();
                     for (int i = 0; i < mListKendaraan.size(); i++) {
                         pendapatan = pendapatan+mListKendaraan.get(i).getTotal_transaksi();
                         Log.d("Total Transaksi : ",mListKendaraan.get(i).getTotal_transaksi().toString());
@@ -521,6 +520,9 @@ public class laporan_pendapatan_tkp extends AppCompatActivity {
             @Override
             public void onResponse (Call<LD_KendaraanKeluar> call, Response<LD_KendaraanKeluar> response) {
                 mListKendaraan= response.body().getData();
+                adapterListKendaraan = new Adapter_DetilPendapatanTKP(mListKendaraan, laporan_pendapatan_tkp.this,listener);
+                recyclerView.setAdapter(adapterListKendaraan);
+                adapterListKendaraan.notifyDataSetChanged();
                 final DateFormat inputFormat =  new SimpleDateFormat("yyyy");
                 final DateFormat outputFormat = new SimpleDateFormat("yyyy");
                 Date date2 = null;
@@ -545,9 +547,6 @@ public class laporan_pendapatan_tkp extends AppCompatActivity {
                     recyclerView.setVisibility(View.VISIBLE);
                     recyclerView2.setVisibility(View.VISIBLE);
                     Log.i(laporan_pendapatan_tkp.class.getSimpleName(), response.body().toString());
-                    adapterListKendaraan = new Adapter_DetilPendapatanTKP(mListKendaraan, laporan_pendapatan_tkp.this,listener);
-                    recyclerView.setAdapter(adapterListKendaraan);
-                    adapterListKendaraan.notifyDataSetChanged();
                     for (int i = 0; i < mListKendaraan.size(); i++) {
                         pendapatan = pendapatan+mListKendaraan.get(i).getTotal_transaksi();
                         Log.d("Total Transaksi : ",mListKendaraan.get(i).getTotal_transaksi().toString());

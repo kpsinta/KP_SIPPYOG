@@ -28,7 +28,7 @@ public List<Model_KendaraanMasuk> kndprkFilter;
 public List<Model_KendaraanMasuk> kendaraanparkir = new ArrayList<>();
 private Context context;
 private Adapter_DetilKendaraanParkir.RecyclerViewClickListener mListener;
-        CustomFilter_DetilKendaraanParkir filter_kendaraanparkir;
+CustomFilter_DetilKendaraanParkir filter_kendaraanparkir;
 
 public Adapter_DetilKendaraanParkir(List<Model_KendaraanMasuk> kendaraanparkir, Context context, Adapter_DetilKendaraanParkir.RecyclerViewClickListener mListener) {
         this.kndprkFilter = kendaraanparkir;

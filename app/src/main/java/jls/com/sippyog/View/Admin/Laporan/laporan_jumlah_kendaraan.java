@@ -1,5 +1,7 @@
 package jls.com.sippyog.View.Admin.Laporan;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -209,6 +212,32 @@ public class laporan_jumlah_kendaraan extends AppCompatActivity {
     }
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_laporan, menu);
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        final SearchView searchView = (SearchView) menu.findItem(R.id.searchMenu).getActionView();
+        MenuItem searchMenuItem = menu.findItem(R.id.searchMenu);
+
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName())
+        );
+        searchView.setQueryHint("Cari Kendaraan");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(final String query) {
+
+                adapterListKendaraan.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                adapterListKendaraan.getFilter().filter(newText);
+                return false;
+            }
+        });
+        searchMenuItem.getIcon().setVisible(false, false);
+
         return true;
     }
     @Override
@@ -259,6 +288,9 @@ public class laporan_jumlah_kendaraan extends AppCompatActivity {
             @Override
             public void onResponse (Call<LD_KendaraanKeluar> call, Response<LD_KendaraanKeluar> response) {
                 mListKendaraan= response.body().getData();
+                adapterListKendaraan = new Adapter_DetilJumlahKendaraan(mListKendaraan, laporan_jumlah_kendaraan.this,listener);
+                recyclerView.setAdapter(adapterListKendaraan);
+                adapterListKendaraan.notifyDataSetChanged();
                 final DateFormat inputFormat =  new SimpleDateFormat("yyyy-MM-dd");
                 final DateFormat outputFormat = new SimpleDateFormat("EEEE, d MMMM yyyy");
                 Date date2 = null;
@@ -281,9 +313,6 @@ public class laporan_jumlah_kendaraan extends AppCompatActivity {
                     recyclerView.setVisibility(View.VISIBLE);
                     recyclerView2.setVisibility(View.VISIBLE);
                     Log.i(laporan_pendapatan_tkp.class.getSimpleName(), response.body().toString());
-                    adapterListKendaraan = new Adapter_DetilJumlahKendaraan(mListKendaraan, laporan_jumlah_kendaraan.this,listener);
-                    recyclerView.setAdapter(adapterListKendaraan);
-                    adapterListKendaraan.notifyDataSetChanged();
                     total_kendaraan = mListKendaraan.size();
                     totalKendaraan.setText(total_kendaraan.toString());
                     total_kendaraan=0;
@@ -358,6 +387,9 @@ public class laporan_jumlah_kendaraan extends AppCompatActivity {
             @Override
             public void onResponse (Call<LD_KendaraanKeluar> call, Response<LD_KendaraanKeluar> response) {
                 mListKendaraan= response.body().getData();
+                adapterListKendaraan = new Adapter_DetilJumlahKendaraan(mListKendaraan, laporan_jumlah_kendaraan.this,listener);
+                recyclerView.setAdapter(adapterListKendaraan);
+                adapterListKendaraan.notifyDataSetChanged();
                 final DateFormat inputFormat =  new SimpleDateFormat("yyyy-MM");
                 final DateFormat outputFormat = new SimpleDateFormat("MMMM yyyy");
                 Date date2 = null;
@@ -381,9 +413,6 @@ public class laporan_jumlah_kendaraan extends AppCompatActivity {
                     recyclerView.setVisibility(View.VISIBLE);
                     recyclerView2.setVisibility(View.VISIBLE);
                     Log.i(laporan_pendapatan_tkp.class.getSimpleName(), response.body().toString());
-                    adapterListKendaraan = new Adapter_DetilJumlahKendaraan(mListKendaraan, laporan_jumlah_kendaraan.this,listener);
-                    recyclerView.setAdapter(adapterListKendaraan);
-                    adapterListKendaraan.notifyDataSetChanged();
                     total_kendaraan = mListKendaraan.size();
                     totalKendaraan.setText(total_kendaraan.toString());
                     total_kendaraan=0;
@@ -469,6 +498,9 @@ public class laporan_jumlah_kendaraan extends AppCompatActivity {
                 setTanggal.setText(outputFormat.format(date2));
 
                 mListKendaraan= response.body().getData();
+                adapterListKendaraan = new Adapter_DetilJumlahKendaraan(mListKendaraan, laporan_jumlah_kendaraan.this,listener);
+                recyclerView.setAdapter(adapterListKendaraan);
+                adapterListKendaraan.notifyDataSetChanged();
                 if(mListKendaraan.isEmpty())
                 {
                     recyclerView.setVisibility(View.GONE);
@@ -481,9 +513,6 @@ public class laporan_jumlah_kendaraan extends AppCompatActivity {
                     recyclerView.setVisibility(View.VISIBLE);
                     recyclerView2.setVisibility(View.VISIBLE);
                     Log.i(laporan_pendapatan_tkp.class.getSimpleName(), response.body().toString());
-                    adapterListKendaraan = new Adapter_DetilJumlahKendaraan(mListKendaraan, laporan_jumlah_kendaraan.this,listener);
-                    recyclerView.setAdapter(adapterListKendaraan);
-                    adapterListKendaraan.notifyDataSetChanged();
                     total_kendaraan = mListKendaraan.size();
                     totalKendaraan.setText(total_kendaraan.toString());
                     total_kendaraan=0;
