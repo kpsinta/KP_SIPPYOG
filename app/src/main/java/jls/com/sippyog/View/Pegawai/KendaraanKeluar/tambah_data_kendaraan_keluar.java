@@ -225,12 +225,13 @@ public class tambah_data_kendaraan_keluar extends AppCompatActivity {
     }
 
     public void searchKendaraan() {
-        String plat;
+        String plat, kode;
         int find=0;
         nomorPlat = nomor_plat.getText().toString();
         for (int i = 0; i < mListKendaraanMasuk.size(); i++) {
             plat = mListKendaraanMasuk.get(i).getNo_plat();
-            if (plat.equals(nomorPlat)) {
+            kode = mListKendaraanMasuk.get(i).getKode_tiket();
+            if (plat.equals(nomorPlat) || kode.equals(nomorPlat)) {
                 find=1;
                 Toast.makeText(tambah_data_kendaraan_keluar.this, "No Plat Ditemukan", Toast.LENGTH_SHORT).show();
                 jenis_kendaraan.setText(mListKendaraanMasuk.get(i).getJenis_kendaraan());
@@ -310,7 +311,7 @@ public class tambah_data_kendaraan_keluar extends AppCompatActivity {
             }
         }
         if(find==0) {
-            Toast.makeText(tambah_data_kendaraan_keluar.this, "No Plat Tidak Ditemukan", Toast.LENGTH_SHORT).show();
+            Toast.makeText(tambah_data_kendaraan_keluar.this, "Kode Tiket/No Plat Tidak Ditemukan", Toast.LENGTH_SHORT).show();
             jenis_kendaraan.setText("-");
             kode_tiket.setText("-");
             biaya_parkir.setText("-");

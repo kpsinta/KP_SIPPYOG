@@ -90,17 +90,18 @@ tools:context=".View.Admin.Kendaraan.edit_data_kendaraan">
         android:layout_marginBottom="20dp"
         android:layout_gravity="center"
         android:orientation="horizontal">
+
         <Button
             android:id="@+id/btnEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="EDIT"
-            android:textColor="@color/colorAdmin"
-            android:background="@color/colorAdmin3"
-            android:textSize="14sp"
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_marginRight="5dp"
+            android:background="@color/colorAdmin3"
+            android:text="SIMPAN"
+            android:textColor="@color/colorAdmin"
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/btnBatal"
