@@ -49,6 +49,9 @@ public class tampil_data_kendaraan_keluar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tampil_data_kendaraan_keluar);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         recyclerView = findViewById(R.id.recycler_view_kendaraan_keluar);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -99,14 +102,14 @@ public class tampil_data_kendaraan_keluar extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
+        if (id == android.R.id.home) {
             Intent i = new Intent(tampil_data_kendaraan_keluar.this, pegawai_main_menu.class);
             startActivity(i);
-            return true;
+            finish();
         }
         return super.onOptionsItemSelected(item);
-    }public void setRecycleViewKendaraanKeluar() {
+    }
+    public void setRecycleViewKendaraanKeluar() {
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
@@ -122,6 +125,9 @@ public class tampil_data_kendaraan_keluar extends AppCompatActivity {
             @Override
             public void onResponse (Call<LD_KendaraanKeluar> call, Response<LD_KendaraanKeluar> response) {
                 mListKendaraanKeluar= response.body().getData();
+                adapterKendaraanKeluar = new Adapter_KendaraanKeluar(mListKendaraanKeluar,tampil_data_kendaraan_keluar.this,listener);
+                recyclerView.setAdapter(adapterKendaraanKeluar);
+                adapterKendaraanKeluar.notifyDataSetChanged();
                 if(mListKendaraanKeluar.isEmpty())
                 {
                     Toast.makeText(tampil_data_kendaraan_keluar.this,"Belum Ada Transaksi Hari Ini!", Toast.LENGTH_SHORT).show();
@@ -129,9 +135,6 @@ public class tampil_data_kendaraan_keluar extends AppCompatActivity {
                 else
                 {
                     Log.i(tampil_data_kendaraan_keluar.class.getSimpleName(), response.body().toString());
-                    adapterKendaraanKeluar = new Adapter_KendaraanKeluar(mListKendaraanKeluar,tampil_data_kendaraan_keluar.this,listener);
-                    recyclerView.setAdapter(adapterKendaraanKeluar);
-                    adapterKendaraanKeluar.notifyDataSetChanged();
                     Toast.makeText(tampil_data_kendaraan_keluar.this,"Berhasil Memuat Transaksi Hari Ini!", Toast.LENGTH_SHORT).show();
                 }
             }

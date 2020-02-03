@@ -12,9 +12,4 @@
         app:showAsAction="collapseActionView|always"
         android:icon="@drawable/ic_search_black"
         android:theme="@android:style/Theme.Holo.Light"/>
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="Pegawai Main Menu"
-        app:showAsAction="never" />
 </menu>
