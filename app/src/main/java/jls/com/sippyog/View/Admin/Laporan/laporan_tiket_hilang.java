@@ -39,6 +39,7 @@ import jls.com.sippyog.ListData.LD_KendaraanMasuk;
 import jls.com.sippyog.Model.Model_Kendaraan;
 import jls.com.sippyog.Model.Model_KendaraanMasuk;
 import jls.com.sippyog.R;
+import jls.com.sippyog.View.Admin.admin_laporan_tkp;
 import jls.com.sippyog.View.Admin.admin_main_menu;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -72,7 +73,11 @@ public class laporan_tiket_hilang extends AppCompatActivity {
 
         i = getIntent();
         waktu_laporan = i.getStringExtra("WAKTU_LAPORAN");
-        setTitle("Tiket Hilang " +waktu_laporan);
+        setTitle("Tiket Hilang");
+       // setTitle("Tiket Hilang " +waktu_laporan);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         laporan_harian = findViewById(R.id.laporan_harian);
         laporan_bulanan = findViewById(R.id.laporan_bulanan);
@@ -239,9 +244,8 @@ public class laporan_tiket_hilang extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            Intent i = new Intent(laporan_tiket_hilang.this, admin_main_menu.class);
+        if (id == android.R.id.home) {
+            Intent i = new Intent(laporan_tiket_hilang.this, admin_laporan_tkp.class);
             startActivity(i);
             return true;
         }

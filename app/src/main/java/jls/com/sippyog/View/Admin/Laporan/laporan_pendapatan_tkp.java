@@ -46,6 +46,7 @@ import jls.com.sippyog.Model.Model_KendaraanKeluar;
 import jls.com.sippyog.Model.Model_KendaraanMasuk;
 import jls.com.sippyog.R;
 import jls.com.sippyog.View.Admin.KapasitasParkir.tampil_detil_kendaraan_parkir;
+import jls.com.sippyog.View.Admin.admin_laporan_tkp;
 import jls.com.sippyog.View.Admin.admin_main_menu;
 import jls.com.sippyog.View.Pegawai.KendaraanMasuk.tampil_data_kendaraan_masuk;
 import retrofit2.Call;
@@ -80,7 +81,11 @@ public class laporan_pendapatan_tkp extends AppCompatActivity {
 
         i = getIntent();
         waktu_laporan = i.getStringExtra("WAKTU_LAPORAN");
-        setTitle("Pendapatan TKP " +waktu_laporan);
+        setTitle("Pendapatan TKP");
+//        setTitle("Pendapatan TKP " +waktu_laporan);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         laporan_harian = findViewById(R.id.laporan_harian);
         laporan_bulanan = findViewById(R.id.laporan_bulanan);
@@ -252,13 +257,14 @@ public class laporan_pendapatan_tkp extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            Intent i = new Intent(laporan_pendapatan_tkp.this, admin_main_menu.class);
+        if (id == android.R.id.home)
+        {
+            Intent i = new Intent(laporan_pendapatan_tkp.this, admin_laporan_tkp.class);
             startActivity(i);
             return true;
         }
-        else if(id == R.id.action_jumlah_kendaraan){
+        else if(id == R.id.action_jumlah_kendaraan)
+        {
             Intent i = new Intent(laporan_pendapatan_tkp.this, laporan_jumlah_kendaraan.class);
             i.putExtra("WAKTU_LAPORAN",waktu_laporan);
             startActivity(i);
