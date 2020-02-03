@@ -1,5 +1,6 @@
 package jls.com.sippyog.View.Admin.Laporan;
 
+import android.app.DatePickerDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -10,10 +11,12 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -26,6 +29,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -50,11 +54,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class laporan_jumlah_kendaraan extends AppCompatActivity {
 
-    TextView setTanggal, totalKendaraan;
+    TextView setTanggal, totalKendaraan, waktuLaporan;
     Intent i;
-    TextInputEditText waktuLaporan;
     ImageView searchLaporan;
     String waktu_laporan, date;
+    DatePickerDialog picker;
     LinearLayout laporan_harian, laporan_bulanan, laporan_tahunan;
     List<Model_KendaraanKeluar> mListKendaraan = new ArrayList<>();
     List<Model_Kendaraan> mListJenisKendaraan = new ArrayList<>();
@@ -107,6 +111,25 @@ public class laporan_jumlah_kendaraan extends AppCompatActivity {
             laporan_tahunan.setVisibility(View.GONE);
             setTanggal = findViewById(R.id.tanggal_laporan_harian);
             waktuLaporan = findViewById(R.id.text_input_tanggalLaporan);
+            waktuLaporan.setInputType(InputType.TYPE_NULL);
+            waktuLaporan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final Calendar cldr = Calendar.getInstance();
+                    int day = cldr.get(Calendar.DAY_OF_MONTH);
+                    int month = cldr.get(Calendar.MONTH);
+                    int year = cldr.get(Calendar.YEAR);
+                    // date picker dialog
+                    picker = new DatePickerDialog(laporan_jumlah_kendaraan.this,
+                            new DatePickerDialog.OnDateSetListener() {
+                                @Override
+                                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                    waktuLaporan.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                }
+                            }, year, month, day);
+                    picker.show();
+                }
+            });
             searchLaporan = findViewById(R.id.searchTanggal);
             //create a date string.
             String date_now = new SimpleDateFormat("EEEE, d MMMM yyyy", Locale.getDefault()).format(new Date());
