@@ -1,27 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorAdmin"
+    android:orientation="vertical"
+    android:scrollbarAlwaysDrawVerticalTrack="true">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="144dp"
-        android:layout_height="134dp"
-        android:layout_marginStart="149dp"
-        android:layout_marginTop="99dp"
-        android:layout_marginEnd="150dp"
-        android:layout_marginBottom="524dp"
-        android:src="@drawable/logo_sippyog"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+<TextView
+    android:id="@+id/login_title"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    android:layout_marginTop="22dp"
+    android:gravity="center_horizontal"
+    android:text="LOGIN APLIKASI"
+    android:textColor="#000"
+    android:textSize="28sp"/>
 
-    <android.support.design.widget.TextInputLayout
+
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/login_title"
+    android:layout_marginLeft="30dp"
+    android:layout_marginRight="30dp"
+    android:layout_marginTop="70dp"
+    android:background="#fff"
+    android:elevation="4dp"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="30dp">
+
+        <android.support.design.widget.TextInputLayout
         android:id="@+id/text_input_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,21 +45,17 @@
         android:layout_marginBottom="8dp"
         app:counterEnabled="true"
         app:counterMaxLength="15"
-        app:errorEnabled="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.433"
-        tools:layout_editor_absoluteX="0dp">
+        app:errorEnabled="true">
 
         <android.support.design.widget.TextInputEditText
-            android:id="@+id/input_username"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Username"
-            android:inputType="text" />
-    </android.support.design.widget.TextInputLayout>
+        android:id="@+id/input_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Username"
+        android:inputType="text" />
+        </android.support.design.widget.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
+        <android.support.design.widget.TextInputLayout
         android:id="@+id/text_input_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -52,48 +64,36 @@
         app:counterEnabled="true"
         app:counterMaxLength="15"
         app:errorEnabled="true"
-        app:passwordToggleEnabled="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.595"
-        tools:layout_editor_absoluteX="0dp">
+        app:passwordToggleEnabled="true">
 
         <android.support.design.widget.TextInputEditText
-            android:id="@+id/input_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:inputType="textPassword"/>
-    </android.support.design.widget.TextInputLayout>
-
-    <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/input_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="LOGIN"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.769"
-        tools:layout_editor_absoluteX="0dp" />
+        android:hint="Password"
+        android:inputType="textPassword"/>
+        </android.support.design.widget.TextInputLayout>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="LOGIN APLIKASI"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.045"
-        tools:text="LOGIN APLIKASI" />
 
-</android.support.constraint.ConstraintLayout>
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="22dp"
+            android:background="@color/colorAdmin3"
+            android:text="LOGIN"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+    </LinearLayout>
+</RelativeLayout>
+
+<ImageButton
+    android:id="@+id/user_profile_photo"
+    android:layout_width="144dp"
+    android:layout_height="134dp"
+    android:layout_below="@+id/login_title"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="16dp"
+    android:background="@drawable/logo_sippyog"
+    android:elevation="4dp"/>
+</RelativeLayout>

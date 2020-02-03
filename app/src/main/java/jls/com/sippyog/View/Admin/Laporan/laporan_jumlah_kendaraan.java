@@ -320,8 +320,7 @@ public class laporan_jumlah_kendaraan extends AppCompatActivity {
                     total_kendaraan = mListKendaraan.size();
                     totalKendaraan.setText(total_kendaraan.toString());
                     total_kendaraan=0;
-
-                    Toast.makeText(laporan_jumlah_kendaraan.this,"Welcome", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(laporan_jumlah_kendaraan.this,"Berhasil Memuat Laporan Jumlah Kendaraan Harian!", Toast.LENGTH_SHORT).show();
                     // show by Jenis Kendaraan
                     Gson gson = new GsonBuilder()
                             .setLenient()
@@ -420,7 +419,7 @@ public class laporan_jumlah_kendaraan extends AppCompatActivity {
                     total_kendaraan = mListKendaraan.size();
                     totalKendaraan.setText(total_kendaraan.toString());
                     total_kendaraan=0;
-                    Toast.makeText(laporan_jumlah_kendaraan.this,"Welcome", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(laporan_jumlah_kendaraan.this,"Berhasil Memuat Laporan Jumlah Kendaraan Bulanan!", Toast.LENGTH_SHORT).show();
                     // show by Jenis Kendaraan
                     Gson gson = new GsonBuilder()
                             .setLenient()
@@ -520,7 +519,7 @@ public class laporan_jumlah_kendaraan extends AppCompatActivity {
                     total_kendaraan = mListKendaraan.size();
                     totalKendaraan.setText(total_kendaraan.toString());
                     total_kendaraan=0;
-                    Toast.makeText(laporan_jumlah_kendaraan.this,"Welcome", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(laporan_jumlah_kendaraan.this,"Berhasil Memuat Laporan Jumlah Kendaraan Tahunan!", Toast.LENGTH_SHORT).show();
                     // show by Jenis Kendaraan
                     Gson gson = new GsonBuilder()
                             .setLenient()

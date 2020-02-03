@@ -416,7 +416,7 @@ public class tambah_data_kendaraan_keluar extends AppCompatActivity {
                                                     public void run() {
                                                         startIntent();
                                                     }
-                                                }, 700);
+                                                }, 300);
                                                 return;
                                             }
                                             else {

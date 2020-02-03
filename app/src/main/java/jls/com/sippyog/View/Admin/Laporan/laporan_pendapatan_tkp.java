@@ -348,6 +348,7 @@ public class laporan_pendapatan_tkp extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     setTanggal.setText(outputFormat.format(date2));
+                    Toast.makeText(laporan_pendapatan_tkp.this,"Berhasil Memuat Laporan Pendapatan Harian!", Toast.LENGTH_SHORT).show();
                     // show by Jenis Kendaraan
                     Gson gson = new GsonBuilder()
                             .setLenient()
@@ -455,6 +456,7 @@ public class laporan_pendapatan_tkp extends AppCompatActivity {
                     NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
                     totalPendapatan.setText(formatRupiah.format(pendapatan));
                     pendapatan=0.0;
+                    Toast.makeText(laporan_pendapatan_tkp.this,"Berhasil Memuat Laporan Pendapatan Bulanan!", Toast.LENGTH_SHORT).show();
                     // show by Jenis Kendaraan
                     Gson gson = new GsonBuilder()
                             .setLenient()
@@ -562,7 +564,7 @@ public class laporan_pendapatan_tkp extends AppCompatActivity {
                     NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
                     totalPendapatan.setText(formatRupiah.format(pendapatan));
                     pendapatan=0.0;
-                    Toast.makeText(laporan_pendapatan_tkp.this,"Welcome", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(laporan_pendapatan_tkp.this,"Berhasil Memuat Laporan Pendapatan Tahunan!", Toast.LENGTH_SHORT).show();
                     // show by Jenis Kendaraan
                     Gson gson = new GsonBuilder()
                             .setLenient()

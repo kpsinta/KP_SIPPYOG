@@ -172,7 +172,7 @@ public class tambah_data_shift extends AppCompatActivity implements TimePickerFr
                         public void run() {
                             startIntent();
                         }
-                    }, 700);
+                    }, 300);
                     return;
                 }
                 @Override

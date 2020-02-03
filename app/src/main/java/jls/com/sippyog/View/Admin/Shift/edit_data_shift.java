@@ -223,7 +223,7 @@ public class edit_data_shift extends AppCompatActivity implements TimePickerFrag
                             public void run() {
                                 startIntent();
                             }
-                        }, 700);
+                        }, 300);
                         return;
                     } else {
                         Toast.makeText(getApplicationContext(), "Gagal Edit Shift!", Toast.LENGTH_SHORT).show();
@@ -261,7 +261,7 @@ public class edit_data_shift extends AppCompatActivity implements TimePickerFrag
                         public void run() {
                             startIntent();
                         }
-                    }, 700);
+                    }, 300);
                     return;
                 } else {
                     Toast.makeText(getApplicationContext(), "Gagal Hapus Shift!", Toast.LENGTH_SHORT).show();

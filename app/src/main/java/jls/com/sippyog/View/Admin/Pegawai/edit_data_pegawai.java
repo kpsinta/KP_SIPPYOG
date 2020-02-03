@@ -305,7 +305,7 @@ public class edit_data_pegawai extends AppCompatActivity {
                             public void run() {
                                 startIntent();
                             }
-                        }, 700);
+                        }, 300);
                     } else {
                         Toast.makeText(getApplicationContext(), "Gagal Edit Pegawai!", Toast.LENGTH_SHORT).show();
                     }
@@ -340,7 +340,7 @@ public class edit_data_pegawai extends AppCompatActivity {
                         public void run() {
                             startIntent();
                         }
-                    }, 700);
+                    }, 300);
                     return;
                 } else {
                     Toast.makeText(getApplicationContext(), "Gagal Hapus Pegawai!", Toast.LENGTH_SHORT).show();

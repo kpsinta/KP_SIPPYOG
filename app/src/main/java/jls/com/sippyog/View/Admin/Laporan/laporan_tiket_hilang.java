@@ -315,7 +315,7 @@ public class laporan_tiket_hilang extends AppCompatActivity {
                     total_hilang = mListKendaraan.size();
                     tiketHilang.setText(total_hilang.toString());
                     total_hilang=0;
-                    Toast.makeText(laporan_tiket_hilang.this,"Welcome", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(laporan_tiket_hilang.this,"Berhasil Memuat Laporan Tiket Hilang Harian!", Toast.LENGTH_SHORT).show();
                     // show by Jenis Kendaraan
                     Gson gson = new GsonBuilder()
                             .setLenient()
@@ -413,6 +413,7 @@ public class laporan_tiket_hilang extends AppCompatActivity {
                     total_hilang = mListKendaraan.size();
                     tiketHilang.setText(total_hilang.toString());
                     total_hilang=0;
+                    Toast.makeText(laporan_tiket_hilang.this,"Berhasil Memuat Laporan Tiket Hilang Bulanan!", Toast.LENGTH_SHORT).show();
                     // show by Jenis Kendaraan
                     Gson gson = new GsonBuilder()
                             .setLenient()
@@ -510,7 +511,8 @@ public class laporan_tiket_hilang extends AppCompatActivity {
                     total_hilang = mListKendaraan.size();
                     tiketHilang.setText(total_hilang.toString());
                     total_hilang=0;
-                    Toast.makeText(laporan_tiket_hilang.this,"Welcome", Toast.LENGTH_SHORT).show();
+
+                    Toast.makeText(laporan_tiket_hilang.this,"Berhasil Memuat Laporan Tiket Hilang Tahunan!", Toast.LENGTH_SHORT).show();
                     // show by Jenis Kendaraan
                     Gson gson = new GsonBuilder()
                             .setLenient()
