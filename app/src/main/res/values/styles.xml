@@ -4,7 +4,7 @@
     <style name="AdminMainTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorAdmin</item>
-        <item name="colorPrimaryDark">@color/colorAdmin2</item>
+        <item name="colorPrimaryDark">@color/colorAdmin3</item>
         <item name="colorAccent">@color/colorAdmin3</item>
         <item name="android:textColor">@color/colorAdmin4</item>
     </style>
@@ -37,13 +37,13 @@
         <item name="colorPrimary">@color/colorKonsumen</item>
         <item name="colorPrimaryDark">@color/colorKonsumen2</item>
         <item name="colorAccent">@color/colorKonsumen3</item>
-        <item name="android:textColor">@color/colorKonsumen4</item>
+        <item name="android:textColor">@color/colorAdmin4</item>
     </style>
 
     <style name="KonsumenViewTheme" parent="Theme.AppCompat.Light">
         <item name="colorPrimary">@color/colorKonsumen</item>
         <item name="colorPrimaryDark">@color/colorKonsumen2</item>
         <item name="colorAccent">@color/colorKonsumen3</item>
-        <item name="android:textColor">@color/colorKonsumen4</item>
+        <item name="android:textColor">@color/colorAdmin4</item>
     </style>
 </resources>

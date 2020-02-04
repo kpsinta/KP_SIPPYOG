@@ -6,8 +6,8 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:background="@drawable/icon_background"
-android:theme="@style/AdminMainTheme"
-tools:context=".View.Admin.admin_main_menu">
+android:theme="@style/KonsumenMainTheme"
+tools:context=".View.Konsumen.konsumen_main_menu">
 
 <LinearLayout
     android:orientation="vertical"
@@ -21,26 +21,31 @@ tools:context=".View.Admin.admin_main_menu">
         android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
             android:id="@+id/txtSIPPYOG"
-            android:text="SIPP YOG"
-            android:textSize="28sp"
-            android:textColor="#FFFF"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="TKP Beskalan"
+            android:textColor="#FFFF"
+            android:textSize="28sp" />
+
         <TextView
-            android:layout_margin="6dp"
-            android:layout_below="@id/txtSIPPYOG"
-            android:text="Hi, Admin!"
-            android:textColor="#FFFF"
-            android:textSize="16sp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtSIPPYOG"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="6dp"
+            android:text="Selamat Datang!"
+            android:textColor="#FFFF"
+            android:textSize="16sp" />
         <ImageView
-            android:src="@drawable/icon_owner"
+            android:src="@drawable/logo_sippyog"
             android:layout_alignParentRight="true"
-            android:layout_width="88dp"
-            android:layout_height="88dp"/>
+            android:layout_width="109dp"
+            android:layout_height="109dp"/>
     </RelativeLayout>
     <GridLayout
         android:columnCount="1"
@@ -60,30 +65,28 @@ tools:context=".View.Admin.admin_main_menu">
             >
 
             <LinearLayout
-                android:id="@+id/layout_pengelolaan_data"
+                android:id="@+id/layout_tentang_tkp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:background="@color/colorAdmin"
                 android:orientation="vertical"
                 android:padding="16dp"
-                android:onClick="pengelolaan_data">
+                android:onClick="tentang_tkp">
 
                 <ImageView
-                    android:id="@+id/img_pengelolaanData"
+                    android:id="@+id/img_tentangTKP"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/icon_pengelolaan_data"
-                    />
-
+                    android:src="@drawable/icon_tentang_tkp"/>
                 <TextView
-                    android:id="@+id/textView_pengelolaanData"
+                    android:id="@+id/textView_tentangTKP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="12dp"
-                    android:text="Pengelolaan Data"
+                    android:text="Tentang TKP"
                     android:textSize="18dp" />
             </LinearLayout>
 
@@ -95,8 +98,7 @@ tools:context=".View.Admin.admin_main_menu">
             android:layout_rowWeight="1"
             app:cardElevation="6dp"
             app:cardCornerRadius="12dp"
-            android:layout_margin="12dp"
-            >
+            android:layout_margin="12dp">
 
             <LinearLayout
                 android:id="@+id/layout_tampil_kapasitas_parkir"
@@ -107,14 +109,12 @@ tools:context=".View.Admin.admin_main_menu">
                 android:orientation="vertical"
                 android:padding="16dp"
                 android:onClick="tampil_kapasitas_parkir">
-
                 <ImageView
                     android:id="@+id/img_tampilKapasitasParkir"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
                     android:src="@drawable/icon_tampil_kapasitas_parkir" />
-
                 <TextView
                     android:id="@+id/textView_kapasitasParkir"
                     android:layout_width="wrap_content"
@@ -124,7 +124,6 @@ tools:context=".View.Admin.admin_main_menu">
                     android:text="Tampil Kapasitas Parkir"
                     android:textSize="18dp" />
             </LinearLayout>
-
         </android.support.v7.widget.CardView>
         <android.support.v7.widget.CardView
             android:layout_width="wrap_content"
@@ -136,64 +135,6 @@ tools:context=".View.Admin.admin_main_menu">
             android:layout_margin="12dp"
             >
 
-            <LinearLayout
-                android:id="@+id/layout_laporan_tkp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:background="@color/colorAdmin"
-                android:orientation="vertical"
-                android:padding="16dp"
-                android:onClick="laporan_tkp">
-
-                <ImageView
-                    android:id="@+id/img_laporan"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/icon_laporan" />
-
-                <TextView
-                    android:id="@+id/textView_laporanTKP"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="12dp"
-                    android:text="Laporan TKP"
-                    android:textSize="18dp" />
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            app:cardElevation="6dp"
-            app:cardCornerRadius="12dp"
-            android:layout_margin="12dp"
-            >
-
-            <LinearLayout
-                android:id="@+id/layout_logout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:background="@color/colorAdmin2"
-                android:orientation="vertical"
-                android:padding="16dp"
-                android:onClick="logout">
-
-                <TextView
-                    android:id="@+id/textView_logout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="LOGOUT"
-                    android:textSize="18dp"
-                    android:textStyle="bold" />
-            </LinearLayout>
         </android.support.v7.widget.CardView>
 
 

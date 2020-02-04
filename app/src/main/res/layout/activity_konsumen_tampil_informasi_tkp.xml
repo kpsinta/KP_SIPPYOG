@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.Konsumen.konsumen_tampil_informasi_tkp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/colorAdmin">
+
+        <TextView
+            android:id="@+id/tentang_tkp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tentang TKP Beskalan"
+            android:layout_gravity="center"
+            android:textSize="26dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/judul_waktu_operasional"
+            android:background="@color/colorAdmin3"
+            android:textColor="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="  Waktu Operasional"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/waktu_operasional"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Waktu Operasional"
+            android:textSize="20dp"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:id="@+id/judul_alamat_tkp"
+            android:background="@color/colorAdmin3"
+            android:textColor="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="  Alamat TKP"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/alamat_tkp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Alamat TKP"
+            android:textSize="20dp"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:id="@+id/judul_nomor_telepon"
+            android:background="@color/colorAdmin3"
+            android:textColor="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="  Nomor Telepon"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/nomor_telepon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Nomor Telepon"
+            android:textSize="20dp"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:id="@+id/judul_deskripsi"
+            android:background="@color/colorAdmin3"
+            android:textColor="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="  Deskripsi"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/deskripsi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Deskripsi"
+            android:textSize="20dp"
+            android:layout_marginBottom="20dp"/>
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
+
+

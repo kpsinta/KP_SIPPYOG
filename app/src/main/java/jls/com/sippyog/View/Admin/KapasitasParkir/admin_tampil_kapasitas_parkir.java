@@ -117,6 +117,5 @@ public class admin_tampil_kapasitas_parkir extends AppCompatActivity {
             super.onResume();
             setRecycleViewKendaraan();
         }
-
     }
 
