@@ -89,7 +89,7 @@ public class tambah_data_kendaraan_keluar extends AppCompatActivity {
         biaya_parkir = findViewById(R.id.biaya_parkir);
         kode_tiket = findViewById(R.id.kode_tiket);
         uang_pembayaran = findViewById(R.id.text_input_uangPembayaran);
-        statusTiket = "Ada";
+        rgStatusTiket.setVisibility(View.INVISIBLE);
         Thread t = new Thread() {
             @Override
             public void run() {
@@ -242,6 +242,7 @@ public class tambah_data_kendaraan_keluar extends AppCompatActivity {
                 waktuKeluar = waktu_keluar.getText().toString();
                 waktuMasuk = mListKendaraanMasuk.get(i).getWaktu_masuk();
                 selectedIDTiket = mListKendaraanMasuk.get(i).getId_tiket();
+                rgStatusTiket.setVisibility(View.VISIBLE);
                 rgStatusTiket.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(RadioGroup group, int checkedId) {

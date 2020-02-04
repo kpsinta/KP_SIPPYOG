@@ -17,13 +17,6 @@
         <activity android:name=".View.Konsumen.konsumen_tampil_kapasitas_parkir"
             android:label="Tampil Kapasitas Parkir"
             android:theme="@style/AdminViewTheme" />
-        <activity android:name=".View.Konsumen.konsumen_main_menu">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".RecycleAdapter.recycle_adapter_detil_kendaraan_laporan" />
         <activity android:name=".RecycleAdapter.recycle_adapter_detil_tiket_hilang_dan_jumlah_kendaraan" />
         <activity android:name=".RecycleAdapter.recycle_adapter_detil_pendapatan_tkp" />
@@ -89,7 +82,13 @@
             android:name=".View.Pegawai.pegawai_main_menu"
             android:theme="@style/PegawaiMainTheme" />
         <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".View.Konsumen.konsumen_main_menu">
         </activity>
     </application>
 
