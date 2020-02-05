@@ -8,6 +8,7 @@ import android.view.View;
 import jls.com.sippyog.R;
 import jls.com.sippyog.SessionManager.SessionManager;
 import jls.com.sippyog.View.Admin.KapasitasParkir.admin_tampil_kapasitas_parkir;
+import jls.com.sippyog.tentang_aplikasi;
 
 public class admin_main_menu extends AppCompatActivity {
 
@@ -31,6 +32,10 @@ public class admin_main_menu extends AppCompatActivity {
     }
     public void laporan_tkp(View view) {
         Intent i = new Intent(admin_main_menu.this, admin_laporan_tkp.class);
+        startActivity(i);
+    }
+    public void tentang_aplikasi(View view) {
+        Intent i = new Intent(admin_main_menu.this, tentang_aplikasi.class);
         startActivity(i);
     }
     public void logout(View view) {

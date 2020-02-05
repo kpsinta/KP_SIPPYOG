@@ -197,7 +197,16 @@ tools:context=".View.Pegawai.pegawai_main_menu">
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
-
+        <TextView
+            android:id="@+id/textView_tentang_aplikasi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Tentang Aplikasi"
+            android:textSize="14dp"
+            android:textStyle="italic"
+            android:onClick="tentang_aplikasi"
+            android:layout_marginBottom="5dp"/>
 
     </GridLayout>
 </LinearLayout>
