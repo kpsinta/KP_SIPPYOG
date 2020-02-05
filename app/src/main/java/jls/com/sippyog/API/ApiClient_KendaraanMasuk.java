@@ -2,6 +2,7 @@ package jls.com.sippyog.API;
 
 import jls.com.sippyog.ListData.LD_Kendaraan;
 import jls.com.sippyog.ListData.LD_KendaraanMasuk;
+import jls.com.sippyog.ListData.LD_PengawaiOnDuty;
 import jls.com.sippyog.Model.Model_Kendaraan;
 import jls.com.sippyog.Model.Model_KendaraanMasuk;
 import jls.com.sippyog.Model.Model_PegawaiOnDuty;
@@ -44,7 +45,9 @@ public interface ApiClient_KendaraanMasuk {
     @GET("api/tiket/{id_tiket}")
     Call<LD_KendaraanMasuk> showById(
             @Path("id_tiket")Integer id_tiket);
-
+    @GET("api/pegawaionduty/showByIdTiket/{id}")
+    Call<LD_PengawaiOnDuty> showByIdTiket(
+            @Path("id")Integer id);
     @GET("api/tiket/showByStatusParkir/{status}")
     Call<LD_KendaraanMasuk> showByStatusParkir(
             @Path("status")Integer status);

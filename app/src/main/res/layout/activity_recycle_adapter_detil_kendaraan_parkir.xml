@@ -24,22 +24,6 @@ android:id="@+id/row_container">
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@color/colorAdmin">
-        <TextView
-            android:id="@+id/judul_waktu_masuk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="  Waktu Masuk"
-            android:textSize="14dp"
-            android:textColor="@color/colorAdmin3"/>
-
-        <TextView
-            android:id="@+id/waktu_masuk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:text="Waktu Masuk"
-            android:textSize="16dp"
-            android:textStyle="bold" />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -49,8 +33,23 @@ android:id="@+id/row_container">
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginRight="10dp"
             android:background="@color/colorAdmin">
+            <TextView
+                android:id="@+id/judul_waktu_masuk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  Waktu Masuk"
+                android:textSize="14dp"
+                android:textColor="@color/colorAdmin3"/>
+
+            <TextView
+                android:id="@+id/waktu_masuk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="Waktu Masuk"
+                android:textSize="16dp"
+                android:textStyle="bold" />
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -101,15 +100,30 @@ android:id="@+id/row_container">
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@color/colorAdmin">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/judul_nama_pegawai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  Petugas Parkir"
+                    android:textSize="14dp"
+                    android:textColor="@color/colorAdmin3"/>
+                <TextView
+                    android:id="@+id/nama_pegawai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="Petugas Parkir"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@color/colorAdmin">
                     <TextView
                         android:id="@+id/judul_jenis_kendaraan"
                         android:layout_width="wrap_content"
@@ -117,7 +131,6 @@ android:id="@+id/row_container">
                         android:text="  Jenis Kendaraan"
                         android:textSize="14dp"
                         android:textColor="@color/colorAdmin3"/>
-
                     <TextView
                         android:id="@+id/jenis_kendaraan"
                         android:layout_width="wrap_content"
@@ -126,8 +139,7 @@ android:id="@+id/row_container">
                         android:text="Jenis Kendaraan"
                         android:textSize="16dp"
                         android:textStyle="bold" />
-                </LinearLayout>
-            </LinearLayout>
+        </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
