@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AdminMainTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".tentang_aplikasi"></activity>
+        <activity android:name=".View.Admin.DeskripsiParkir.pengaturan_halaman_tkp"></activity>
+        <activity android:name=".tentang_aplikasi" />
         <activity android:name=".View.Konsumen.konsumen_tampil_informasi_tkp" />
         <activity
             android:name=".View.Konsumen.konsumen_tampil_kapasitas_parkir"
@@ -84,14 +85,12 @@
             android:name=".View.Pegawai.pegawai_main_menu"
             android:theme="@style/PegawaiMainTheme" />
         <activity android:name=".MainActivity">
-
-        </activity>
-        <activity android:name=".View.Konsumen.konsumen_main_menu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".View.Konsumen.konsumen_main_menu">
         </activity>
     </application>
 
