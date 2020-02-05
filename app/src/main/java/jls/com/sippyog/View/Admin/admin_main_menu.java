@@ -34,6 +34,10 @@ public class admin_main_menu extends AppCompatActivity {
         Intent i = new Intent(admin_main_menu.this, admin_laporan_tkp.class);
         startActivity(i);
     }
+    public void pengaturan_halaman_tkp(View view) {
+//        Intent i = new Intent(admin_main_menu.this, tentang_aplikasi.class);
+//        startActivity(i);
+    }
     public void tentang_aplikasi(View view) {
         Intent i = new Intent(admin_main_menu.this, tentang_aplikasi.class);
         startActivity(i);
