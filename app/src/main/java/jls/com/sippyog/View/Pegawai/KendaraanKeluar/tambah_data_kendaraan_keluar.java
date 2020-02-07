@@ -124,7 +124,7 @@ public class tambah_data_kendaraan_keluar extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                selectedIDShift = 1;
+                selectedIDShift = Integer.parseInt(spinner_IDShift.get(0));
                 Log.d("Selected ID Shift : ", selectedIDShift.toString());
 
             }

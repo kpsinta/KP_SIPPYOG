@@ -89,8 +89,8 @@ public class tambah_data_kendaraan_masuk extends AppCompatActivity {
             }
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                selectedIDShift=1;
-                Log.d("Selected ID Shift : ",selectedIDShift.toString());
+                selectedIDShift=Integer.parseInt(spinner_IDShift.get(0));
+                Log.d("Selected ID Shift2 : ",selectedIDShift.toString());
             }
         });
         spinner_jenis_kendaraan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() { //Listener dropdown jenis kendaraan saat dipilih
@@ -102,7 +102,7 @@ public class tambah_data_kendaraan_masuk extends AppCompatActivity {
             }
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                selectedIDKendaraan=1;
+                selectedIDKendaraan= Integer.parseInt(spinner_IDKendaraan.get(0));
                 jenisKendaraan = string_jenisKendaraan.get(selectedIDKendaraan);
                 Log.d("Selected ID Ken : ",selectedIDKendaraan.toString());
             }
